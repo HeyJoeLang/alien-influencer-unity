@@ -515,7 +515,7 @@ PrefabInstance:
       addedObject: {fileID: 2994872190001650464}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e434827fd688a2a4eb5e02262c9bec82, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4734808863185016356}
+      addedObject: {fileID: 2457636112042993020}
     - targetCorrespondingSourceObject: {fileID: -4679845598923857358, guid: e434827fd688a2a4eb5e02262c9bec82, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5396532214930960992}
@@ -569,28 +569,30 @@ MonoBehaviour:
   animator: {fileID: 5396532214930960992}
   houseTrans: {fileID: 0}
   attackParticles: {fileID: 4318543842423268616}
---- !u!195 &4734808863185016356
-NavMeshAgent:
+  walkingSpeed: 2
+--- !u!136 &2457636112042993020
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8588835238360295397}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_AgentTypeID: 0
+  serializedVersion: 2
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!4 &8969618532801379679 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e434827fd688a2a4eb5e02262c9bec82, type: 3}

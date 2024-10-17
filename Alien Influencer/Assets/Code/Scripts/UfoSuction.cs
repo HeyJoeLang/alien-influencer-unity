@@ -14,7 +14,7 @@ public class UfoSuction : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetButton("Fire1") || Input.GetKey(KeyCode.Z))
         {
             SuckUpPeople();
             if (!suctionConeEffect.isPlaying)
@@ -56,21 +56,17 @@ public class UfoSuction : MonoBehaviour
 
                 if (distanceToUfo <= 5f)
                 {
-                    InstantiateSuctionParticleEffect(hitCollider.transform.position);
-                    SpawnPikminSphere();
-                    Destroy(hitCollider.gameObject);
-                    /*
-                    ! Probably need better way to add score + manage different point values
-                    */
+                    Minion minion = hitCollider.GetComponent<Minion>();
+                    if (minion != null)
+                    {
+                        minion.enabled = true;
+                        InstantiateSuctionParticleEffect(hitCollider.transform.position);
+                        minion.InfluenceMinion();
+                    }
+                    //Destroy(hitCollider.gameObject);
                 }
             }
         }
-    }
-
-    private void SpawnPikminSphere()
-    {
-        Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
-        Instantiate(pikminSpherePrefab, spawnPosition, Quaternion.identity);
     }
 
     private void InstantiateSuctionParticleEffect(Vector3 position)

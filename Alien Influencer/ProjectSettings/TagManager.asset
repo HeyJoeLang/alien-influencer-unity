@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - UFO
   - Pikmin
+  - FxTemporaire
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - UI
   - People
   - Pikmin
-  - 
-  - 
+  - Building
+  - Terrain
   - 
   - 
   - 

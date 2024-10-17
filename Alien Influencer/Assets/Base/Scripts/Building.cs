@@ -16,6 +16,7 @@ public class Building : MonoBehaviour
     public int maxDamage = 100;
     public int currentDamage = 0;
 
+    public int scoreValue = 10;
     public GameObject buildingStanding, buildingDestroyed;
     public ParticleSystem damagedParticles, destroyedParticles;
     public Animator damageBarAnimator;
@@ -87,7 +88,7 @@ public class Building : MonoBehaviour
         StartCoroutine(StallDisableStandingBuildingObjects());
         buildingDestroyed.SetActive(true);
         CurrentState = BuildingState.IsDestroyed;
-        GameManager.Instance.AddScore(10);
+        GameManager.Instance.AddScore(scoreValue);
     }
     void IsDestroyed()
     {

@@ -49,7 +49,6 @@ public class UfoMovement : MonoBehaviour
 
         float terrainHeight = terrain.SampleHeight(terrainCenter) + terrain.transform.position.y;
         rb.position = new Vector3(terrainCenter.x, terrainHeight + targetHeight, terrainCenter.z);
-        rb.rotation = (Quaternion.Euler(0, Random.Range(0, 360), 0));
     }
 
     private void FixedUpdate()
