@@ -32,6 +32,7 @@ public class UFOLaser : MonoBehaviour
 
         if (Physics.Raycast(startPos, rayDirection, out hit, rayLength, raycastLayer.value))
         {
+            Debug.Log(hit.collider.gameObject.name);
             endPos = hit.point;
             lineRenderer.startColor = hitColor;
             lineRenderer.endColor = hitColor;
@@ -42,7 +43,7 @@ public class UFOLaser : MonoBehaviour
             lineRenderer.startColor = missColor;
             lineRenderer.endColor = missColor;
         }
-        if(Input.GetKeyDown(KeyCode.X))
+        if(Input.GetButton("Fire2") || Input.GetKey(KeyCode.X))
         {
             BuildingHighlighter.Instance.SelectObject();
         }

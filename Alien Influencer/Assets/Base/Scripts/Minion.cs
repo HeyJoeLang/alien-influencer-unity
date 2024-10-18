@@ -6,19 +6,19 @@ public class Minion : MonoBehaviour
 {
 
     #region Variables
-
+    Vector2 positionDelta;
     public enum MinionState
     {
-        StartIdle,
-        Idle,
+        StartMovingToUFO,
+        MovingToUFO,
         StartMovingToBuilding,
         MovingToBuilding,
         StartAttackingBuilding,
         AttackingBuilding,
-        StartMovingToUFO,
-        MovingToUFO
+        StartIdle,
+        Idle
     }
-    public MinionState state = MinionState.Idle;
+    public MinionState state = MinionState.StartMovingToUFO;
     public enum AttackState
     {
         StartAttack,
@@ -29,17 +29,21 @@ public class Minion : MonoBehaviour
     public Animator animator;
     public Transform houseTrans;
     public ParticleSystem attackParticles;
-    public float walkingSpeed = 2.0f;
+    public float walkingSpeed = 1.0f;
+    public ParticleSystem influencedParticles;
+    Civilian civilian;
     Vector3 destination;
     Transform ufoTrans;
     int damage = 1;
+    Vector2 v2Pos, v2Dest;
+    public int scoreValue = 1;
 
     #endregion
     #region Unity Methods
 
     void Start()
     {
-        ufoTrans = GameObject.FindWithTag("UFO").transform;
+        civilian = GetComponent<Civilian>();
     }
     void OnEnable()
     {
@@ -53,11 +57,11 @@ public class Minion : MonoBehaviour
     {
         switch (state)
         {
-            case MinionState.StartIdle:
-                StartIdle();
+            case MinionState.StartMovingToUFO:
+                StartMovingToUFO();
                 break;
-            case MinionState.Idle:
-                Idle();
+            case MinionState.MovingToUFO:
+                MovingToUFO();
                 break;
             case MinionState.MovingToBuilding:
                 MovingToBuilding();
@@ -68,20 +72,84 @@ public class Minion : MonoBehaviour
             case MinionState.AttackingBuilding:
                 AttackingBuilding();
                 break;
-            case MinionState.StartMovingToUFO:
-                StartMovingToUFO();
+            case MinionState.StartIdle:
+                StartIdle();
                 break;
-            case MinionState.MovingToUFO:
-                MovingToUFO();
+            case MinionState.Idle:
+                Idle();
                 break;
             default:
                 break;
         }
     }
-
     #endregion
     #region State Functions
 
+
+    void StartMovingToUFO()
+    {
+        animator.SetTrigger("StartWalk");
+        destination = GameObject.Find("UFO").transform.position;
+        state = MinionState.MovingToUFO;
+    }
+    void MovingToUFO()
+    {
+        Vector3 ufoGroundPosition = new Vector3(ufoTrans.position.x + positionDelta[0], ufoTrans.position.y - 8, ufoTrans.position.z + positionDelta[1]);
+        DistanceToTarget = Vector3.Distance(transform.position, ufoGroundPosition);
+        transform.position = Vector3.MoveTowards(transform.position, ufoGroundPosition, walkingSpeed * DistanceToTarget * Time.deltaTime);
+        transform.LookAt(new Vector3(ufoGroundPosition.x, transform.position.y, ufoGroundPosition.z));
+
+        if (Vector3.Distance(transform.position, ufoGroundPosition) < 2.0f)
+        {
+            state = MinionState.StartIdle;
+        }
+    }
+
+    public void MoveToBuilding()
+    {
+        destination = MinionManager.Instance.SelectedBuilding.transform.position;
+        transform.LookAt(destination);
+        animator.SetTrigger("StartWalk");
+        state = MinionState.MovingToBuilding;
+    }
+    void MovingToBuilding()
+    {
+        DistanceToTarget = Vector3.Distance(transform.position, destination);
+        transform.position = Vector3.MoveTowards(transform.position, destination, walkingSpeed * DistanceToTarget * Time.deltaTime);
+
+
+        //Snap minion
+        v2Pos.x = transform.position.x;
+        v2Pos.y = transform.position.z;
+        v2Dest.x = destination.x;
+        v2Dest.y = destination.z;
+        if(Vector2.Distance(v2Pos, v2Dest) < 8.0f) //if (Vector3.Distance(transform.position, destination) < 8.0f)
+        {
+            transform.position = new Vector3(transform.position.x, destination.y, transform.position.z);
+            state = MinionState.StartAttackingBuilding;
+        }
+    }
+    void StartAttackingBuilding()
+    {
+        state = MinionState.AttackingBuilding;
+    }
+    void AttackingBuilding()
+    {
+        if (!MinionManager.Instance.CanAttackBuilding())
+        {
+            state = MinionState.StartMovingToUFO;
+            return;
+        }
+        switch (attackState)
+        {
+            case AttackState.StartAttack:
+                StartCoroutine(StallAttack());
+                attackState = AttackState.Attacking;
+                break;
+            case AttackState.Attacking:
+                break;
+        }
+    }
     void StartIdle()
     {
         animator.SetTrigger("StartIdle");
@@ -95,68 +163,34 @@ public class Minion : MonoBehaviour
             state = MinionState.StartMovingToUFO;
         }
     }
-    public void MoveToBuilding()
-    {
-        destination = MinionManager.Instance.SelectedBuilding.transform.position;
-        houseTrans = MinionManager.Instance.SelectedBuilding.transform;
-        transform.LookAt(destination);
-        animator.SetTrigger("StartWalk");
-        state = MinionState.MovingToBuilding;
-    }
-    void MovingToBuilding()
-    {
-        DistanceToTarget = Vector3.Distance(transform.position, destination);
-        transform.position = Vector3.MoveTowards(transform.position, destination, walkingSpeed * DistanceToTarget * Time.deltaTime);
-        if (Vector3.Distance(transform.position, destination) < 8.0f)
-        {
-            state = MinionState.StartAttackingBuilding;
-        }
-    }
-    void StartAttackingBuilding()
-    {
-        animator.SetTrigger("StartAttack");
-        state = MinionState.AttackingBuilding;
-    }
-    void AttackingBuilding()
-    {
-        switch (attackState)
-        {
-            case AttackState.StartAttack:
-                StartCoroutine(StallAttack());
-                attackState = AttackState.Attacking;
-                break;
-            case AttackState.Attacking:
-                break;
-        }
-    }
-    void StartMovingToUFO()
-    {
-        animator.SetTrigger("StartWalk");
-        destination = GameObject.Find("UFO").transform.position;
-        state = MinionState.MovingToUFO;
-    }
-    void MovingToUFO()
-    {
-        Vector3 ufoGroundPosition = new Vector3(ufoTrans.position.x, transform.position.y, ufoTrans.position.z);
-        DistanceToTarget = Vector3.Distance(transform.position, ufoGroundPosition);
-        transform.position = Vector3.MoveTowards(transform.position, ufoGroundPosition, walkingSpeed * DistanceToTarget * Time.deltaTime);
-        transform.LookAt(ufoGroundPosition);
-        if (Vector3.Distance(transform.position, ufoGroundPosition) < 1.0f)
-        {
-            state = MinionState.StartIdle;
-        }
-    }
 
     #endregion
     #region Utility Functions
 
+    public void InfluenceMinion()
+    {
+        if(civilian == null)
+        {
+            civilian = GetComponent<Civilian>();
+        }
+        if(ufoTrans == null)
+        {
+            ufoTrans = GameObject.Find("UFO").transform;
+        }
+        GameManager.Instance.AddScore(scoreValue);
+        civilian.enabled = false;
+        state = MinionState.StartMovingToUFO;
+        gameObject.layer = LayerMask.NameToLayer("Default");
+        positionDelta = MinionPlacement.MinonPlacementDelta();
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        transform.position = ufoTrans.position + new Vector3(positionDelta[0], -8, positionDelta[1]);
+        influencedParticles.gameObject.SetActive(true);
+
+    }
+
     IEnumerator StallAttack()
     {
-        if (!MinionManager.Instance.CanAttackBuilding())
-        {
-            state = MinionState.StartMovingToUFO;
-            yield return 0;
-        }
+        animator.SetTrigger("StartAttack");
         attackParticles.Play();
         MinionManager.Instance.AttackBuilding(damage);
         yield return new WaitForSeconds(1);

@@ -7,6 +7,8 @@ public class Spawner : MonoBehaviour
     public GameObject personPrefab;
     public GameObject enemyTowerPrefab;
     public Terrain terrain;
+    int numCivilianMeshes = 19;
+    private int civilianMeshIndex = 0;
     public int maxPeople = 500;
     public int maxTowers = 50;
     public float minTowerDistance = 10f;
@@ -74,10 +76,8 @@ public class Spawner : MonoBehaviour
         */
         //GameObject person = PoolManager.instance.SpawnFromPool("Person", spawnPosition, Quaternion.identity);
 
-        person.AddComponent<PersonMovement>().Initialize(spawnPosition);
-
-        float scale = Random.Range(0.25f, 1f);
-        person.transform.localScale = new Vector3(scale, scale, scale);
+        person.GetComponent<Civilian>().Initialize(spawnPosition, civilianMeshIndex);
+        civilianMeshIndex = civilianMeshIndex >= numCivilianMeshes ? 0 : civilianMeshIndex + 1;
     }
 
     void SpawnEnemyTower()
@@ -123,38 +123,3 @@ public class Spawner : MonoBehaviour
     }
 }
 
-class PersonMovement : MonoBehaviour
-{
-    private Vector3 centerPosition;
-    private float speed;
-    private float radius;
-    private float angle;
-
-    public void Initialize(Vector3 spawnPosition)
-    {
-        centerPosition = spawnPosition;
-        speed = Random.Range(5.0f, 40.0f);
-        radius = Random.Range(5.0f, 20.0f);
-        angle = Random.Range(0, 360);
-    }
-
-    void Update()
-    {
-        /* *
-        * Moving the person in a circular path around the center position
-        * */
-
-        angle += speed * Time.deltaTime;
-
-
-        float radian = angle * Mathf.Deg2Rad;
-
-        float x = centerPosition.x + Mathf.Cos(radian) * radius;
-        float z = centerPosition.z + Mathf.Sin(radian) * radius;
-
-        Vector3 destination = new Vector3(x, transform.position.y, z);
-
-        transform.LookAt(destination);
-        transform.position = destination;
-    }
-}
