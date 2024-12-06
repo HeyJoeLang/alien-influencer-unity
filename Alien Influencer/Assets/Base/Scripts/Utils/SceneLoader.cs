@@ -12,6 +12,7 @@ public class SceneLoader : MonoBehaviour
     
     [Header("References")]
     public Animator animator;
+    public CoinManager coinManager;
     string[] sceneNames = new string[] { 
         "MainMenu",
         "Level 1" 
@@ -29,12 +30,15 @@ public class SceneLoader : MonoBehaviour
 
     public void PlayGame()
     {
+        if(coinManager)
+        {
+            coinManager.RemoveCredit();
+        }
         StartCoroutine(C_SwitchScene(1));
     }
 
     public void MainMenu()
     {
-        Time.timeScale = 1.0f;
        StartCoroutine(C_SwitchScene(0));
     }
 

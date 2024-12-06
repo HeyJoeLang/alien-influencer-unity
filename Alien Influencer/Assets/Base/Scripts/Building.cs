@@ -21,12 +21,17 @@ public class Building : MonoBehaviour
     public ParticleSystem damagedParticles, destroyedParticles;
     public Animator damageBarAnimator;
     public ProgressBarPro damageProgressBar;
+    public AudioClip buildingDestroyedSound;
+    public AudioClip damagedSound;
+    AudioSource audioSource;
+
 
     #endregion
     #region Unity Methods
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         buildingStanding.SetActive(true);
         buildingDestroyed.SetActive(false);
         damagedParticles.gameObject.SetActive(false);
@@ -79,8 +84,8 @@ public class Building : MonoBehaviour
     }
     void StartDestroyed()
     {
+        audioSource.PlayOneShot(buildingDestroyedSound);
         damageBarAnimator.SetTrigger("Close");
-        damagedParticles.loop = false;
         buildingStanding.SetActive(false);
 
         destroyedParticles.gameObject.SetActive(true);
@@ -99,7 +104,8 @@ public class Building : MonoBehaviour
 
     public void AddDamage(int amount)
     {
-        if(CurrentState == BuildingState.IsDestroyed)
+        audioSource.PlayOneShot(damagedSound,.1f);
+        if (CurrentState == BuildingState.IsDestroyed)
         {
             return;
         }

@@ -5,6 +5,8 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+using Unity.AI.Navigation;
+
 public class GameManager : Singleton<GameManager>
 {
     public GameObject gameOverMenu;
@@ -12,15 +14,14 @@ public class GameManager : Singleton<GameManager>
     public GameObject gameplayHUD;
     public TMP_Text[] scoreText;
     public TMP_Text timeLeftText;
-    private float timeRemaining = 241f;
+    private float timeRemaining = 181f;
     private int score = 0;
-    int minutes = 0;
-    int seconds = 0;
     public float UFOHeight = 8;
     public TMP_Text followerCount;
     private bool isCountingDown = false;
     public EventSystem eventSystem;
     public Button PlayAgainButton;
+    public GameObject fadeInOut;
 
     UFOLaser ufoLaser;
     UfoSuction ufoSuction;
@@ -29,11 +30,12 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        fadeInOut.SetActive(true);
         ufoLaser = FindObjectOfType<UFOLaser>().GetComponent<UFOLaser>();
         ufoSuction = FindObjectOfType<UfoSuction>().GetComponent<UfoSuction>();
         ufoMovement = FindObjectOfType<UfoMovement>().GetComponent<UfoMovement>();
-        timeRemaining = 241f;
-        MinionPlacement.Reset();
+        timeRemaining = 181f;
+        PositionDeltaManager.Reset();
         Debug.Log("Starting Game...");
         StartGame();
     }
@@ -49,15 +51,21 @@ public class GameManager : Singleton<GameManager>
 
     public void GameOver()
     {
+        ufoMovement.enabled = false;
         ufoLaser.enabled = false;
         ufoSuction.enabled = false;
         ufoMovement.enabled = false;
         gameplayHUD.SetActive(false);
         gameOverMenu.SetActive(true);
-        Time.timeScale = 0f;
+        isCountingDown = false;
         eventSystem.SetSelectedGameObject(PlayAgainButton.gameObject);
+        StartCoroutine(GameOverDelay());
     }
-
+    IEnumerator GameOverDelay()
+    {
+        yield return new WaitForSeconds(10);
+        GetComponent<SceneLoader>().MainMenu();
+    }
     public void WinGame()
     {
         winMenu.SetActive(true);
@@ -67,11 +75,13 @@ public class GameManager : Singleton<GameManager>
     public void StartTimer()
     {
         isCountingDown = true;
+        ufoSuction.enabled = true;
+        ufoMovement.enabled = true;
     }
 
     private void FixedUpdate()
     {
-        followerCount.text = "Followers: " + MinionPlacement.minionCount;
+        followerCount.text = "Followers: " + PositionDeltaManager.minionCount;
         UpdateTimer();
     }
     private void UpdateTimer()

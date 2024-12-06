@@ -12,7 +12,6 @@ public class Billboard : MonoBehaviour
 
     void FixedUpdate()
     {
-        //For world space UI that always faces camera, like building destruction progress bar
-        transform.rotation = camTransform.rotation * originalRotation;
+        transform.LookAt(camTransform.position, Vector3.up);
     }
 }

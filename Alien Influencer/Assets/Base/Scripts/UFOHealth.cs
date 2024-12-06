@@ -15,7 +15,7 @@ public class UFOHealth : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             collision.gameObject.GetComponent<Bullet>().Explode();
-            health -= .1f;
+            //health -= .1f;
             if (health <= 0)
             {
                 GameManager.Instance.GameOver();

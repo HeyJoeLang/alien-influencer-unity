@@ -1,54 +1,140 @@
 fileFormatVersion: 2
 guid: 9b58fc436471b9d42b5dc7e892bafbdf
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: Back blade
-    100002: Back rotor
-    100004: Body
-    100006: Landing Skid
-    100008: Light
-    100010: Main Blades
-    100012: Main rotor
-    100014: //RootNode
-    100016: Tail
-    400000: Back blade
-    400002: Back rotor
-    400004: Body
-    400006: Landing Skid
-    400008: Light
-    400010: Main Blades
-    400012: Main rotor
-    400014: //RootNode
-    400016: Tail
-    2100000: 01 - Default
-    2300000: Back blade
-    2300002: Back rotor
-    2300004: Body
-    2300006: Landing Skid
-    2300008: Light
-    2300010: Main Blades
-    2300012: Main rotor
-    2300014: Tail
-    3300000: Back blade
-    3300002: Back rotor
-    3300004: Body
-    3300006: Landing Skid
-    3300008: Light
-    3300010: Main Blades
-    3300012: Main rotor
-    3300014: Tail
-    4300000: Body
-    4300002: Tail
-    4300004: Landing Skid
-    4300006: Main rotor
-    4300008: Main Blades
-    4300010: Back rotor
-    4300012: Light
-    4300014: Back blade
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Back blade
+  - first:
+      1: 100002
+    second: Back rotor
+  - first:
+      1: 100004
+    second: Body
+  - first:
+      1: 100006
+    second: Landing Skid
+  - first:
+      1: 100008
+    second: Light
+  - first:
+      1: 100010
+    second: Main Blades
+  - first:
+      1: 100012
+    second: Main rotor
+  - first:
+      1: 100014
+    second: //RootNode
+  - first:
+      1: 100016
+    second: Tail
+  - first:
+      4: 400000
+    second: Back blade
+  - first:
+      4: 400002
+    second: Back rotor
+  - first:
+      4: 400004
+    second: Body
+  - first:
+      4: 400006
+    second: Landing Skid
+  - first:
+      4: 400008
+    second: Light
+  - first:
+      4: 400010
+    second: Main Blades
+  - first:
+      4: 400012
+    second: Main rotor
+  - first:
+      4: 400014
+    second: //RootNode
+  - first:
+      4: 400016
+    second: Tail
+  - first:
+      21: 2100000
+    second: 01 - Default
+  - first:
+      23: 2300000
+    second: Back blade
+  - first:
+      23: 2300002
+    second: Back rotor
+  - first:
+      23: 2300004
+    second: Body
+  - first:
+      23: 2300006
+    second: Landing Skid
+  - first:
+      23: 2300008
+    second: Light
+  - first:
+      23: 2300010
+    second: Main Blades
+  - first:
+      23: 2300012
+    second: Main rotor
+  - first:
+      23: 2300014
+    second: Tail
+  - first:
+      33: 3300000
+    second: Back blade
+  - first:
+      33: 3300002
+    second: Back rotor
+  - first:
+      33: 3300004
+    second: Body
+  - first:
+      33: 3300006
+    second: Landing Skid
+  - first:
+      33: 3300008
+    second: Light
+  - first:
+      33: 3300010
+    second: Main Blades
+  - first:
+      33: 3300012
+    second: Main rotor
+  - first:
+      33: 3300014
+    second: Tail
+  - first:
+      43: 4300000
+    second: Body
+  - first:
+      43: 4300002
+    second: Tail
+  - first:
+      43: 4300004
+    second: Landing Skid
+  - first:
+      43: 4300006
+    second: Main rotor
+  - first:
+      43: 4300008
+    second: Main Blades
+  - first:
+      43: 4300010
+    second: Back rotor
+  - first:
+      43: 4300012
+    second: Light
+  - first:
+      43: 4300014
+    second: Back blade
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -57,6 +143,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -80,32 +167,49 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -115,14 +219,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

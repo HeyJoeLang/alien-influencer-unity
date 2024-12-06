@@ -29,7 +29,7 @@ public class Minion : MonoBehaviour
     public Animator animator;
     public Transform houseTrans;
     public ParticleSystem attackParticles;
-    public float walkingSpeed = 1.0f;
+    public float speed = 1.0f;
     public ParticleSystem influencedParticles;
     Civilian civilian;
     Vector3 destination;
@@ -47,11 +47,11 @@ public class Minion : MonoBehaviour
     }
     void OnEnable()
     {
-        MinionManager.OnNewBuildingSelected += MoveToBuilding;
+        MinionManager.OnNewBuildingSelected += RecieveNewBuildingSelectedEvent;
     }
     void OnDisable()
     {
-        MinionManager.OnNewBuildingSelected -= MoveToBuilding;
+        MinionManager.OnNewBuildingSelected -= RecieveNewBuildingSelectedEvent;
     }
     private void Update()
     {
@@ -85,10 +85,20 @@ public class Minion : MonoBehaviour
     #endregion
     #region State Functions
 
-
+    void RecieveNewBuildingSelectedEvent()
+    {
+        if (state != MinionState.AttackingBuilding)
+        {
+            StartMovingToBuilding();
+        }
+    }
     void StartMovingToUFO()
     {
-        animator.SetTrigger("StartWalk");
+        speed = 1f;
+        animator.SetBool("StartWalking", true);
+        animator.SetBool("StartIdling", false);
+        animator.SetBool("StartAttacking", false);
+        animator.SetBool("StartFalling", false);
         destination = GameObject.Find("UFO").transform.position;
         state = MinionState.MovingToUFO;
     }
@@ -96,7 +106,7 @@ public class Minion : MonoBehaviour
     {
         Vector3 ufoGroundPosition = new Vector3(ufoTrans.position.x + positionDelta[0], ufoTrans.position.y - 8, ufoTrans.position.z + positionDelta[1]);
         DistanceToTarget = Vector3.Distance(transform.position, ufoGroundPosition);
-        transform.position = Vector3.MoveTowards(transform.position, ufoGroundPosition, walkingSpeed * DistanceToTarget * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, ufoGroundPosition, speed * DistanceToTarget * Time.deltaTime);
         transform.LookAt(new Vector3(ufoGroundPosition.x, transform.position.y, ufoGroundPosition.z));
 
         if (Vector3.Distance(transform.position, ufoGroundPosition) < 2.0f)
@@ -105,18 +115,45 @@ public class Minion : MonoBehaviour
         }
     }
 
-    public void MoveToBuilding()
+
+    // Time when the movement started.
+    private float startTime;
+
+    // Total distance between the markers.
+    private float journeyLength;
+    Vector3 startPosition;
+    public void StartMovingToBuilding()
     {
+        speed = 10f;
         destination = MinionManager.Instance.SelectedBuilding.transform.position;
         transform.LookAt(destination);
-        animator.SetTrigger("StartWalk");
+        animator.SetBool("StartWalking", true);
+        animator.SetBool("StartIdling", false);
+        animator.SetBool("StartAttacking", false);
+        animator.SetBool("StartFalling", false);
+
+
+        // Keep a note of the time the movement started.
+        startTime = Time.time;
+        startPosition = transform.position;
+        // Calculate the journey length.
+        journeyLength = Vector3.Distance(startPosition, destination);
+
         state = MinionState.MovingToBuilding;
     }
     void MovingToBuilding()
     {
         DistanceToTarget = Vector3.Distance(transform.position, destination);
-        transform.position = Vector3.MoveTowards(transform.position, destination, walkingSpeed * DistanceToTarget * Time.deltaTime);
+        //transform.position = Vector3.Lerp(transform.position, destination, speed * DistanceToTarget * Time.deltaTime);
 
+        // Distance moved equals elapsed time times speed..
+        float distCovered = (Time.time - startTime) * speed;
+
+        // Fraction of journey completed equals current distance divided by total distance.
+        float fractionOfJourney = distCovered / journeyLength;
+
+        // Set our position as a fraction of the distance between the markers.
+        transform.position = Vector3.Lerp(startPosition, destination, fractionOfJourney);
 
         //Snap minion
         v2Pos.x = transform.position.x;
@@ -152,7 +189,10 @@ public class Minion : MonoBehaviour
     }
     void StartIdle()
     {
-        animator.SetTrigger("StartIdle");
+        animator.SetBool("StartIdling", true);
+        animator.SetBool("StartWalking", false);
+        animator.SetBool("StartAttacking", false);
+        animator.SetBool("StartFalling", false);
         state = MinionState.Idle;
     }
     void Idle()
@@ -169,28 +209,57 @@ public class Minion : MonoBehaviour
 
     public void InfluenceMinion()
     {
-        if(civilian == null)
+        if (civilian == null)
         {
             civilian = GetComponent<Civilian>();
         }
-        if(ufoTrans == null)
+        if (ufoTrans == null)
         {
             ufoTrans = GameObject.Find("UFO").transform;
         }
         GameManager.Instance.AddScore(scoreValue);
+        civilian.StopFalling();
         civilian.enabled = false;
-        state = MinionState.StartMovingToUFO;
         gameObject.layer = LayerMask.NameToLayer("Default");
-        positionDelta = MinionPlacement.MinonPlacementDelta();
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        positionDelta = PositionDeltaManager.MinonPlacementDelta();
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if(rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.isKinematic = true;
+        }
         transform.position = ufoTrans.position + new Vector3(positionDelta[0], -8, positionDelta[1]);
         influencedParticles.gameObject.SetActive(true);
-
+        if (MinionManager.Instance.CanAttackBuilding())
+        {
+            StartMovingToBuilding();
+            state = MinionState.StartMovingToBuilding;
+        }
+        else
+        {
+            state = MinionState.StartMovingToUFO;
+        }
     }
-
+    IEnumerator StallDestroyNavMesh()
+    {
+        Civilian civ = GetComponent<Civilian>();
+        if (civ != null)
+        {
+            Destroy(civ);
+        }
+        yield return new WaitForSeconds(1f);
+        UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (agent != null)
+        {
+            Destroy(agent, 1f);
+        }
+    }
     IEnumerator StallAttack()
     {
-        animator.SetTrigger("StartAttack");
+        animator.SetBool("StartAttacking", true);
+        animator.SetBool("StartWalking", false);
+        animator.SetBool("StartIdling", false);
+        animator.SetBool("StartFalling", false);
         attackParticles.Play();
         MinionManager.Instance.AttackBuilding(damage);
         yield return new WaitForSeconds(1);
