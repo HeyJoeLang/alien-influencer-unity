@@ -1,4 +1,6 @@
 using UnityEngine;
+using Cinemachine;
+using System.Collections.Generic;
 
 public class UfoSuction : MonoBehaviour
 {
@@ -11,66 +13,102 @@ public class UfoSuction : MonoBehaviour
     public ParticleSystem suctionConeEffect;
     public GameObject pikminSpherePrefab;
     public GameObject beamLight;
+    UfoMovement ufoMovement;
+    public CinemachineVirtualCamera virtualCamera;
+    CinemachineTransposer transposer;
+    List<Civilian> civList;
+    public AudioClip influencedSound;
+    AudioSource audioSource;
+    public Vector3 deltaPositon = new Vector3(0, 10, -20);
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+        ufoMovement = GetComponent<UfoMovement>();
+    }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetButton("Fire1") || Input.GetKey(KeyCode.Return))
         {
             SuckUpPeople();
-            if (!suctionConeEffect.isPlaying)
-            {
-                suctionConeEffect.Play();
-                beamLight.SetActive(true);
-            }
+            beamLight.SetActive(true);
+            ufoMovement.moveSpeed = 10f;
+            //transposer.m_FollowOffset = Vector3.Lerp(transposer.m_FollowOffset, new Vector3(0, 10, -10), Time.deltaTime * 2);
         }
         else
         {
-            if (suctionConeEffect.isPlaying)
+            if(civList != null)
             {
-                suctionConeEffect.Stop();
-                beamLight.SetActive(false);
+                foreach (var civ in civList)
+                {
+                    civ.StopFalling();
+                }
+                civList.Clear();
             }
+            ufoMovement.moveSpeed = 25f;
+            beamLight.SetActive(false);
+            transposer.m_FollowOffset = Vector3.Lerp(transposer.m_FollowOffset, deltaPositon, Time.deltaTime * 2);
         }
     }
 
     private void SuckUpPeople()
     {
+
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, suctionRadius, personLayer);
         foreach (var hitCollider in hitColliders)
         {
             Rigidbody rb = hitCollider.GetComponent<Rigidbody>();
             if (rb != null)
             {
+                UnityEngine.AI.NavMeshAgent agent = rb.GetComponent<UnityEngine.AI.NavMeshAgent>();
+                if(agent != null)
+                {
+                    agent.velocity = Vector3.zero;
+                    agent.enabled = false;
+                }
+                Civilian civilian = hitCollider.GetComponent<Civilian>();
+                if (civilian != null)
+                {
+                    if(civList == null)
+                    {
+                        civList = new List<Civilian>();
+                    }
+                    if (!civList.Contains(civilian))
+                    {
+                        civList.Add(civilian);
+                    }
+                    civilian.StartFalling();
+                }
                 Vector3 directionToUfo = (transform.position - hitCollider.transform.position).normalized;
                 float distanceToUfo = Vector3.Distance(transform.position, hitCollider.transform.position);
 
                 float speed = suctionPower * (1 - Mathf.Clamp01(distanceToUfo / suctionRadius));
-
-
                 rb.velocity = directionToUfo * speed;
 
-                if (hitCollider.transform.Find(suctionEffectTrailPrefab.name + "(Clone)") == null)
+                if (distanceToUfo <= 3f)
                 {
-                    Instantiate(suctionEffectTrailPrefab, hitCollider.transform.position, Quaternion.identity, hitCollider.transform);
-                }
-
-                if (distanceToUfo <= 5f)
-                {
-                    InstantiateSuctionParticleEffect(hitCollider.transform.position);
-                    SpawnPikminSphere();
-                    Destroy(hitCollider.gameObject);
-                    /*
-                    ! Probably need better way to add score + manage different point values
-                    */
+                    Minion minion = hitCollider.GetComponent<Minion>();
+                    if (minion != null)
+                    {
+                        audioSource.PlayOneShot(influencedSound);
+                        minion.enabled = true;
+                        //InstantiateSuctionParticleEffect(hitCollider.transform.position);
+                        minion.InfluenceMinion();
+                        UFOLaser laser = GetComponent<UFOLaser>();
+                        if(laser != null)
+                        {
+                            if (laser.enabled == false)
+                            {
+                                laser.enabled = true;
+                            }
+                        }
+                    }
+                    //Destroy(hitCollider.gameObject);
                 }
             }
         }
-    }
-
-    private void SpawnPikminSphere()
-    {
-        Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
-        Instantiate(pikminSpherePrefab, spawnPosition, Quaternion.identity);
     }
 
     private void InstantiateSuctionParticleEffect(Vector3 position)

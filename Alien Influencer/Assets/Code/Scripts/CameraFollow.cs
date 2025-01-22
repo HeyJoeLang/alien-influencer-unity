@@ -1,25 +1,43 @@
 using UnityEngine;
+using Cinemachine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;
-    public float positionSmoothSpeed = 0.125f;
-    public float rotationSmoothSpeed = 0.1f;
-    public Vector3 offset;
 
-    private Vector3 currentVelocity;
+    public CinemachineVirtualCamera[] cameras;
 
-    private void LateUpdate()
+    public CinemachineVirtualCamera startCamera;
+    private CinemachineVirtualCamera currentCam;
+
+    private void Start()
     {
-        if (target != null)
+        currentCam = startCamera;
+
+        for (int i = 0; i < cameras.Length; i++)
         {
-            Vector3 desiredPosition = target.position + target.TransformDirection(offset);
+            if (cameras[i] == currentCam)
+            {
+                cameras[i].Priority = 20;
+            }
+            else
+            {
+                cameras[i].Priority = 10;
+            }
 
-            Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref currentVelocity, positionSmoothSpeed);
-            transform.position = smoothedPosition;
+        }
+    }
+    public void SwitchCamera(CinemachineVirtualCamera newCam)
+    {
+        currentCam = newCam;
 
-            Quaternion targetRotation = Quaternion.LookRotation(target.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothSpeed);
+        currentCam.Priority = 20;
+
+        for (int i = 0; i < cameras.Length; i++)
+        {
+            if (cameras[i] != currentCam)
+            {
+                cameras[i].Priority = 10;
+            }
         }
     }
 }

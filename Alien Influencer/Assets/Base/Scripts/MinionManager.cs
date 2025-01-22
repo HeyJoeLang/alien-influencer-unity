@@ -12,6 +12,10 @@ public class MinionManager : Singleton<MinionManager>
     }
     public bool CanAttackBuilding()
     {
+        if(SelectedBuilding == null)
+        {
+            return false;
+        }
         Building building = SelectedBuilding.transform.parent.GetComponent<Building>();
         if(building == null)
         {
