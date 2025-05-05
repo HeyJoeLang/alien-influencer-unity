@@ -1,13 +1,13 @@
 using UnityEngine;
-using Cinemachine;
+using Unity.Cinemachine;
 
 public class CameraFollow : MonoBehaviour
 {
 
-    public CinemachineVirtualCamera[] cameras;
+    public CinemachineCamera[] cameras;
 
-    public CinemachineVirtualCamera startCamera;
-    private CinemachineVirtualCamera currentCam;
+    public CinemachineCamera startCamera;
+    private CinemachineCamera currentCam;
 
     private void Start()
     {
@@ -26,7 +26,7 @@ public class CameraFollow : MonoBehaviour
 
         }
     }
-    public void SwitchCamera(CinemachineVirtualCamera newCam)
+    public void SwitchCamera(CinemachineCamera newCam)
     {
         currentCam = newCam;
 

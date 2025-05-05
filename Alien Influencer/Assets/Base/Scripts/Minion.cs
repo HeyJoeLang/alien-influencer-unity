@@ -225,7 +225,7 @@ public class Minion : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         if(rb != null)
         {
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.isKinematic = true;
         }
         transform.position = ufoTrans.position + new Vector3(positionDelta[0], -8, positionDelta[1]);

@@ -14,7 +14,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject gameplayHUD;
     public TMP_Text[] scoreText;
     public TMP_Text timeLeftText;
-    private float timeRemaining = 181f;
+    private float timeRemaining = 1810f;
     private int score = 0;
     public float UFOHeight = 8;
     public TMP_Text followerCount;

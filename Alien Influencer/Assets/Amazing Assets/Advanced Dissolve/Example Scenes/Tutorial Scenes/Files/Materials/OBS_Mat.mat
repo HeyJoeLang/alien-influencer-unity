@@ -12,14 +12,14 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _AD_CUTOUT_GEOMETRIC_COUNT_THREE
-  - _AD_CUTOUT_GEOMETRIC_TYPE_SPHERE
+  - _AD_CUTOUT_GEOMETRIC_TYPE_XYZ
   - _AD_CUTOUT_STANDARD_SOURCE_CUSTOM_MAP
   - _AD_EDGE_BASE_SOURCE_ALL
   - _AD_STATE_ENABLED
   - _METALLICGLOSSMAP
   - _NORMALMAP
   m_InvalidKeywords:
+  - _AD_CUTOUT_GEOMETRIC_COUNT_ONE
   - _AD_CUTOUT_STANDARD_MAPS_MAPPING_TYPE_TRIPLANAR
   - _AD_CUTOUT_STANDARD_SOURCE_MAPS_MAPPING_TYPE_DEFAULT
   - _AD_EDGE_ADDITIONAL_COLOR_NONE
@@ -236,15 +236,15 @@ Material:
     - _AdvancedDissolveCutoutBaseInvert: 0
     - _AdvancedDissolveCutoutClip: 0
     - _AdvancedDissolveCutoutGeometric1Height: 2.5
-    - _AdvancedDissolveCutoutGeometric1Radius: 3
+    - _AdvancedDissolveCutoutGeometric1Radius: 1.25
     - _AdvancedDissolveCutoutGeometric2Height: 0
-    - _AdvancedDissolveCutoutGeometric2Radius: 10.000007
+    - _AdvancedDissolveCutoutGeometric2Radius: 0.5
     - _AdvancedDissolveCutoutGeometric3Height: 1
-    - _AdvancedDissolveCutoutGeometric3Radius: 3
+    - _AdvancedDissolveCutoutGeometric3Radius: 0.75
     - _AdvancedDissolveCutoutGeometric4Height: 1
     - _AdvancedDissolveCutoutGeometric4Radius: 1
-    - _AdvancedDissolveCutoutGeometricInvert: 1
-    - _AdvancedDissolveCutoutGeometricNoise: 0.05
+    - _AdvancedDissolveCutoutGeometricInvert: 0
+    - _AdvancedDissolveCutoutGeometricNoise: 0
     - _AdvancedDissolveCutoutGeometricXYZAxis: 2
     - _AdvancedDissolveCutoutGeometricXYZForm: 0
     - _AdvancedDissolveCutoutGeometricXYZRollout: 0
@@ -329,7 +329,7 @@ Material:
     - _AdvancedDissolveEdgeAlphaOffset: 0
     - _AdvancedDissolveEdgeBaseColorTransparency: 1
     - _AdvancedDissolveEdgeBaseShape: 0
-    - _AdvancedDissolveEdgeBaseWidthGeometric: 0.05
+    - _AdvancedDissolveEdgeBaseWidthGeometric: 0.1
     - _AdvancedDissolveEdgeBaseWidthParametric: 0.1
     - _AdvancedDissolveEdgeBaseWidthSimple: 0.1
     - _AdvancedDissolveEdgeBaseWidthStandard: 0.1
@@ -343,8 +343,8 @@ Material:
     - _AdvancedDissolveEdgeShape: 2
     - _AdvancedDissolveEdgeUVDistortionStrength: 0
     - _AdvancedDissolveEdgeWidth: 0.285
-    - _AdvancedDissolveKeywordCutoutGeometricCount: 2
-    - _AdvancedDissolveKeywordCutoutGeometricType: 3
+    - _AdvancedDissolveKeywordCutoutGeometricCount: 0
+    - _AdvancedDissolveKeywordCutoutGeometricType: 1
     - _AdvancedDissolveKeywordCutoutMappingType: 1
     - _AdvancedDissolveKeywordCutoutParametricCount: 0
     - _AdvancedDissolveKeywordCutoutParametricType: 1
@@ -522,12 +522,12 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AdvancedDissolveBakedKeywords: {r: 0, g: 0, b: 0, a: 0}
-    - _AdvancedDissolveCutoutGeometric1Normal: {r: 0, g: 0, b: -1, a: 0}
-    - _AdvancedDissolveCutoutGeometric1Position: {r: 0, g: 8, b: 0, a: 0}
+    - _AdvancedDissolveCutoutGeometric1Normal: {r: -0.7071068, g: -0.00000008940697, b: 0.7071068, a: 0}
+    - _AdvancedDissolveCutoutGeometric1Position: {r: 1.26, g: 0.27, b: 0.83, a: 0}
     - _AdvancedDissolveCutoutGeometric2Normal: {r: 0, g: 1, b: 0, a: 0}
-    - _AdvancedDissolveCutoutGeometric2Position: {r: 42, g: 48.3, b: 42, a: 0}
+    - _AdvancedDissolveCutoutGeometric2Position: {r: -1.078, g: 1.472, b: 0.129, a: 0}
     - _AdvancedDissolveCutoutGeometric3Normal: {r: 1, g: 0, b: 0, a: 0}
-    - _AdvancedDissolveCutoutGeometric3Position: {r: 0, g: 8, b: 0, a: 0}
+    - _AdvancedDissolveCutoutGeometric3Position: {r: -1.317, g: 0.409, b: 1.57, a: 0}
     - _AdvancedDissolveCutoutGeometric4Normal: {r: 1, g: 0, b: 0, a: 0}
     - _AdvancedDissolveCutoutGeometric4Position: {r: 0, g: 0, b: 0, a: 0}
     - _AdvancedDissolveCutoutGeometricXYZPosition: {r: 0, g: 0, b: 1, a: 0}
@@ -583,8 +583,8 @@ Material:
     - _AdvancedDissolveEdgeAdditionalColorMapOffset: {r: 0, g: 0, b: 0, a: 0}
     - _AdvancedDissolveEdgeAdditionalColorMapScroll: {r: 0, g: 0, b: 0, a: 0}
     - _AdvancedDissolveEdgeAdditionalColorMapTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _AdvancedDissolveEdgeBaseColor: {r: 0.12949446, g: 0.6966767, b: 0.9150943, a: 1}
-    - _AdvancedDissolveEdgeBaseColorIntensity: {r: 2, g: 6.389056, b: 0, a: 0}
+    - _AdvancedDissolveEdgeBaseColor: {r: 0.9622642, g: 0.081701696, b: 0.8038416, a: 1}
+    - _AdvancedDissolveEdgeBaseColorIntensity: {r: 0.5, g: 0.6487212, b: 0, a: 0}
     - _AdvancedDissolveEdgeColor: {r: 0.015224886, g: 0.48570853, b: 0.81761277, a: 1}
     - _AdvancedDissolveEdgeColor2: {r: 1, g: 0, b: 0, a: 1}
     - _AdvancedDissolveEdgeColor2Intensity: {r: 0, g: 0, b: 0, a: 0}
@@ -615,6 +615,7 @@ Material:
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!114 &2017276512533925070
 MonoBehaviour:
   m_ObjectHideFlags: 11

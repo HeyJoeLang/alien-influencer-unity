@@ -445,7 +445,7 @@ Material:
     m_Colors:
     - _AdvancedDissolveBakedKeywords: {r: 0, g: 0, b: 0, a: 0}
     - _AdvancedDissolveCutoutGeometric1Normal: {r: -0.962313, g: -0.00000004656613, b: -0.2719444, a: 0}
-    - _AdvancedDissolveCutoutGeometric1Position: {r: -1.73, g: 0, b: -0.87, a: 0}
+    - _AdvancedDissolveCutoutGeometric1Position: {r: 0, g: 0, b: -0.87, a: 0}
     - _AdvancedDissolveCutoutGeometric2Normal: {r: 1, g: 0, b: 0, a: 0}
     - _AdvancedDissolveCutoutGeometric2Position: {r: 0, g: 0, b: 0, a: 0}
     - _AdvancedDissolveCutoutGeometric3Normal: {r: 1, g: 0, b: 0, a: 0}
@@ -540,3 +540,4 @@ Material:
     - _SpecularColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

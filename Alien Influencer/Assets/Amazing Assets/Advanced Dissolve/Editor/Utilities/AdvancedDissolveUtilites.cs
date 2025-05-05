@@ -109,9 +109,9 @@ namespace AmazingAssets.AdvancedDissolveEditor
 
         static public RenderPipeline GetProjectRenderPipeline()
         {
-            if (UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset == null)
+            if (UnityEngine.Rendering.GraphicsSettings.defaultRenderPipeline == null)
                 return RenderPipeline.BuiltIn;
-            else if (UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset.name.Contains("Universal") || UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset.name.Contains("URP"))
+            else if (UnityEngine.Rendering.GraphicsSettings.defaultRenderPipeline.name.Contains("Universal") || UnityEngine.Rendering.GraphicsSettings.defaultRenderPipeline.name.Contains("URP"))
                 return RenderPipeline.Universal;
             else
                 return RenderPipeline.HighDefinition;

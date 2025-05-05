@@ -1,5 +1,5 @@
 using UnityEngine;
-using Cinemachine;
+using Unity.Cinemachine;
 using System.Collections.Generic;
 
 public class UfoSuction : MonoBehaviour
@@ -14,8 +14,7 @@ public class UfoSuction : MonoBehaviour
     public GameObject pikminSpherePrefab;
     public GameObject beamLight;
     UfoMovement ufoMovement;
-    public CinemachineVirtualCamera virtualCamera;
-    CinemachineTransposer transposer;
+    public CinemachineCamera virtualCamera;
     List<Civilian> civList;
     public AudioClip influencedSound;
     AudioSource audioSource;
@@ -24,7 +23,6 @@ public class UfoSuction : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
         ufoMovement = GetComponent<UfoMovement>();
     }
 
@@ -35,7 +33,6 @@ public class UfoSuction : MonoBehaviour
             SuckUpPeople();
             beamLight.SetActive(true);
             ufoMovement.moveSpeed = 10f;
-            //transposer.m_FollowOffset = Vector3.Lerp(transposer.m_FollowOffset, new Vector3(0, 10, -10), Time.deltaTime * 2);
         }
         else
         {
@@ -49,7 +46,7 @@ public class UfoSuction : MonoBehaviour
             }
             ufoMovement.moveSpeed = 25f;
             beamLight.SetActive(false);
-            transposer.m_FollowOffset = Vector3.Lerp(transposer.m_FollowOffset, deltaPositon, Time.deltaTime * 2);
+            //transposer.m_FollowOffset = Vector3.Lerp(transposer.m_FollowOffset, deltaPositon, Time.deltaTime * 2);
         }
     }
 
@@ -85,7 +82,7 @@ public class UfoSuction : MonoBehaviour
                 float distanceToUfo = Vector3.Distance(transform.position, hitCollider.transform.position);
 
                 float speed = suctionPower * (1 - Mathf.Clamp01(distanceToUfo / suctionRadius));
-                rb.velocity = directionToUfo * speed;
+                rb.linearVelocity = directionToUfo * speed;
 
                 if (distanceToUfo <= 3f)
                 {
