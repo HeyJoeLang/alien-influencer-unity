@@ -14,7 +14,7 @@ public class Building : MonoBehaviour
     }
     public BuildingState CurrentState = BuildingState.Untouched;
     public int maxDamage = 100;
-    public int currentDamage = 0;
+    public float currentDamage = 0;
 
     public int scoreValue = 10;
     public GameObject buildingStanding, buildingDestroyed;
@@ -102,7 +102,7 @@ public class Building : MonoBehaviour
     #endregion
     #region Public Methods
 
-    public void AddDamage(int amount)
+    public void AddDamage(float amount)
     {
         audioSource.PlayOneShot(damagedSound,.1f);
         if (CurrentState == BuildingState.IsDestroyed)

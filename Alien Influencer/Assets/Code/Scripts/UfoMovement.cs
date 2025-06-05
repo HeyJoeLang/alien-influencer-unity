@@ -11,7 +11,10 @@ public class UfoMovement : MonoBehaviour
     public float tiltAmount = 0f;
     public Terrain terrain;
     private Rigidbody rb;
-    public float targetHeight = 8f;
+    public float targetHeight = 10f;
+    public float minHeight = 6f;
+    public float maxHeight = 15f;
+    public float heightChangeSpeed = 5f;
     public float heightLerpSpeed = 3.0f;
 
     private float minXPosition;
