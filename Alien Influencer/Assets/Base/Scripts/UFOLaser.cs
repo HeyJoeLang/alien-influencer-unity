@@ -15,8 +15,12 @@ public class UFOLaser : MonoBehaviour
     public Color missColor = Color.yellow;
     private float laserDamage = 10f;
     public GameObject laserBeam;
+    public GameObject megaLaserBeam;
     public Transform laserBeamImpact;
-
+    public Transform megaImpact1, megaImpact2, megaImpact3;
+    public enum LaserBeamType { Mega, Normal }
+    public LaserBeamType laserBeamType = LaserBeamType.Mega;
+    private GameObject laserGameObject;
     public GameObject crosshair;
     Material crosshairMat;
     
@@ -53,7 +57,6 @@ public class UFOLaser : MonoBehaviour
         }
         else if (Physics.Raycast(startPos, rayDirection, out hit, rayLength, terrainLayer.value))
         {
-            
             crosshair.SetActive(true);
             endPos = hit.point;
             crosshairMat.color = missColor;
@@ -66,13 +69,15 @@ public class UFOLaser : MonoBehaviour
         }
         if(Input.GetButton("Fire2") || Input.GetKey(KeyCode.P))
         {
-            laserBeam.SetActive(true);
+            laserGameObject = laserBeamType == LaserBeamType.Mega ? megaLaserBeam : laserBeam;
+            laserGameObject.SetActive(true);
             if (Physics.Raycast(startPos, rayDirection, out hit, rayLength, raycastLayer.value))
             {
                 var building = hit.collider.transform.parent.GetComponent<Building>();
                 if (building)
                 {
-                    building.AddDamage(laserDamage * Time.fixedDeltaTime); // Apply damage every physics update
+                    float damage = laserBeamType == LaserBeamType.Normal ? laserDamage : laserDamage * 10f;
+                    building.AddDamage(damage * Time.fixedDeltaTime); // Apply damage every physics update
                 }
             }
            // BuildingHighlighter.Instance.SelectObject();
@@ -80,9 +85,10 @@ public class UFOLaser : MonoBehaviour
         else
         {
             laserBeam.SetActive(false);
+            megaLaserBeam.SetActive(false);
         }
         crosshair.transform.position = endPos - (endPos - startPos).normalized * 0.5f;
-        laserBeamImpact.position = endPos - (endPos - startPos).normalized;
+        laserBeamImpact.position = megaImpact1.position = megaImpact2.position = megaImpact3.position = endPos - (endPos - startPos).normalized;
         
         if (Input.GetKeyDown(KeyCode.M) && Time.time >= missileNextFireTime)
         {
