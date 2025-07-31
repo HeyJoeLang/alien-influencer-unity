@@ -15,6 +15,7 @@ public class UFOLaser : MonoBehaviour
     public Color missColor = Color.yellow;
     private float laserDamage = 10f;
     public GameObject laserBeam;
+    public GameObject LaserBeamImpactFlames;
     public GameObject megaLaserBeam;
     public Transform laserBeamImpact;
     public Transform megaImpact1, megaImpact2, megaImpact3;
@@ -40,8 +41,9 @@ public class UFOLaser : MonoBehaviour
 
     void FixedUpdate()
     {
+        bool didHitBuilding = false;
+        //LaserBeamImpactFlames.SetActive(false);
         Vector3 rayDirection = transform.TransformDirection(deltaDirection);
-        
         RaycastHit hit;
         Vector3 startPos = transform.position + deltaPosition;
         Vector3 endPos = startPos + rayDirection * rayLength;
@@ -76,6 +78,8 @@ public class UFOLaser : MonoBehaviour
                 var building = hit.collider.transform.parent.GetComponent<Building>();
                 if (building)
                 {
+                    didHitBuilding = true;
+                    //LaserBeamImpactFlames.SetActive(true);
                     float damage = laserBeamType == LaserBeamType.Normal ? laserDamage : laserDamage * 10f;
                     building.AddDamage(damage * Time.fixedDeltaTime); // Apply damage every physics update
                 }
@@ -89,7 +93,7 @@ public class UFOLaser : MonoBehaviour
         }
         crosshair.transform.position = endPos - (endPos - startPos).normalized * 0.5f;
         laserBeamImpact.position = megaImpact1.position = megaImpact2.position = megaImpact3.position = endPos - (endPos - startPos).normalized;
-        
+        LaserBeamImpactFlames.SetActive(didHitBuilding);
         if (Input.GetKeyDown(KeyCode.M) && Time.time >= missileNextFireTime)
         {
             LaunchMissile(startPos);
