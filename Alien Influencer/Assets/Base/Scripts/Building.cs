@@ -24,6 +24,7 @@ public class Building : MonoBehaviour
     public AudioClip buildingDestroyedSound;
     public AudioClip damagedSound;
     AudioSource audioSource;
+    ParticleSystem sparksParticles;
 
 
     #endregion
@@ -37,6 +38,12 @@ public class Building : MonoBehaviour
         damagedParticles.gameObject.SetActive(false);
         destroyedParticles.gameObject.SetActive(false);
         damageBarAnimator.gameObject.SetActive(false);
+        
+        // Cache the sparks particle system reference
+        if (damagedParticles != null && damagedParticles.transform.childCount > 0)
+        {
+            sparksParticles = damagedParticles.transform.GetChild(0).GetComponent<ParticleSystem>();
+        }
 
     }
     void Update()
@@ -76,6 +83,9 @@ public class Building : MonoBehaviour
         damagedParticles.gameObject.SetActive(true);
         damagedParticles.Play();
         damageProgressBar.SetValue(0);
+        
+        // Set initial emission rate based on current damage
+        UpdateParticleEmissionRate();
 
         CurrentState = BuildingState.IsDamaged;
     }
@@ -115,6 +125,10 @@ public class Building : MonoBehaviour
         }
         currentDamage += amount;
         damageProgressBar.SetValue(currentDamage, maxDamage, false);
+        
+        // Update particle emission rate when damage changes
+        UpdateParticleEmissionRate();
+        
         if (currentDamage >= maxDamage)
         {
             CurrentState = BuildingState.StartDestroyed;
@@ -123,6 +137,26 @@ public class Building : MonoBehaviour
 
     #endregion
     #region Utility Functions
+
+    void UpdateParticleEmissionRate()
+    {
+        if (damagedParticles != null && CurrentState != BuildingState.Untouched && CurrentState != BuildingState.IsDestroyed)
+        {
+            float normalizedDamage = Mathf.Clamp(currentDamage, 1f, maxDamage);
+            
+            // Scale main particle emission rate: damage 1 = rate 10, damage 100 = rate 200
+            float mainEmissionRate = 10f + (normalizedDamage - 1f) * 190f / 99f;
+            var mainEmission = damagedParticles.emission;
+            mainEmission.rateOverTime = mainEmissionRate;
+            
+            // Scale sparks particle emission rate: damage 1 = rate 1, damage 100 = rate 30
+            if (!sparksParticles)
+                return;
+            float sparksEmissionRate = 1f + (normalizedDamage - 1f) * 29f / 99f;
+            var sparksEmission = sparksParticles.emission;
+            sparksEmission.rateOverTime = sparksEmissionRate;
+        }
+    }
 
     IEnumerator StallDisableStandingBuildingObjects()
     {

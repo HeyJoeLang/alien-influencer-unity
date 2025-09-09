@@ -30,13 +30,23 @@ public class UFOLaser : MonoBehaviour
     // Add these new fields at the top with other fields
     private float missileNextFireTime = 0f;
     private const float MISSILE_COOLDOWN = 0.5f;
-
-
+    
+    // Fire pool variables
+    private FirePool firePool;
+    private float fireNextSpawnTime = 0f;
+    private const float FIRE_COOLDOWN = 0.1f;
 
     void Start()
     {
         crosshairMat = crosshair.GetComponent<MeshRenderer>().material;
         laserBeam.transform.position = transform.position + deltaPosition;
+        
+        // Get reference to FirePool component on the same GameObject
+        firePool = GetComponent<FirePool>();
+        if (firePool == null)
+        {
+            Debug.LogError("FirePool component not found on " + gameObject.name);
+        }
     }
 
     void FixedUpdate()
@@ -79,9 +89,16 @@ public class UFOLaser : MonoBehaviour
                 if (building)
                 {
                     didHitBuilding = true;
-                    //LaserBeamImpactFlames.SetActive(true);
+                    //LaserBeamImpactFlames.SetActive(false);
                     float damage = laserBeamType == LaserBeamType.Normal ? laserDamage : laserDamage * 10f;
                     building.AddDamage(damage * Time.fixedDeltaTime); // Apply damage every physics update
+                    
+                    // Create fire effect at hit location with cooldown
+                    if (firePool != null && Time.time >= fireNextSpawnTime)
+                    {
+                        firePool.CreateFire(hit.point, hit.collider.transform);
+                        fireNextSpawnTime = Time.time + FIRE_COOLDOWN;
+                    }
                 }
             }
            // BuildingHighlighter.Instance.SelectObject();
