@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82405
+  packageName: Health and Progress Bar Pro (Mana, Stamina, Energy...)
+  packageVersion: 1.3.1
+  assetPath: Assets/Sharklib/ProgressBar/Scripts/BarViewPosImageFill.cs
+  uploadId: 460064

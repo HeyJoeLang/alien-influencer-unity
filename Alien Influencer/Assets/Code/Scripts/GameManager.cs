@@ -17,7 +17,6 @@ public class GameManager : Singleton<GameManager>
     private float timeRemaining = 1810f;
     private int score = 0;
     public float UFOHeight = 8;
-    public TMP_Text followerCount;
     private bool isCountingDown = false;
     public EventSystem eventSystem;
     public Button PlayAgainButton;
@@ -26,7 +25,6 @@ public class GameManager : Singleton<GameManager>
     UFOLaser ufoLaser;
     UfoSuction ufoSuction;
     UfoMovement ufoMovement;
-
 
     private void Start()
     {
@@ -47,6 +45,8 @@ public class GameManager : Singleton<GameManager>
         score = 0;
         UpdateScore(0);
         Time.timeScale = 1f;
+        ufoMovement.enabled = true;
+        ufoLaser.enabled = true;
     }
 
     public void GameOver()
@@ -54,7 +54,6 @@ public class GameManager : Singleton<GameManager>
         ufoMovement.enabled = false;
         ufoLaser.enabled = false;
         ufoSuction.enabled = false;
-        ufoMovement.enabled = false;
         gameplayHUD.SetActive(false);
         gameOverMenu.SetActive(true);
         isCountingDown = false;
@@ -81,7 +80,6 @@ public class GameManager : Singleton<GameManager>
 
     private void FixedUpdate()
     {
-        followerCount.text = "Followers: " + PositionDeltaManager.minionCount;
         UpdateTimer();
     }
     private void UpdateTimer()
