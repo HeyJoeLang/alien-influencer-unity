@@ -26,6 +26,7 @@ public class UFOLaser : MonoBehaviour
     public GameObject crosshair;
     Material crosshairMat;
 	public ProgressBarPro progressBar;
+    private Animator progressBarAnimator;
     
     // Mega laser timer variables
     private float megaLaserTimer = 0f;
@@ -71,6 +72,7 @@ public class UFOLaser : MonoBehaviour
     {
         crosshairMat = crosshair.GetComponent<MeshRenderer>().material;
         laserBeam.transform.position = transform.position + deltaPosition;
+        progressBarAnimator = progressBar.GetComponent<Animator>();
         
         // Get reference to FirePool component on the same GameObject
         firePool = GetComponent<FirePool>();
@@ -115,6 +117,7 @@ public class UFOLaser : MonoBehaviour
                 
                 // Trigger deactivation event
                 OnMegaLaserDeactivated?.Invoke();
+                progressBarAnimator.SetTrigger("FadeToZero");
             }
         }
         else
@@ -153,6 +156,7 @@ public class UFOLaser : MonoBehaviour
                 
                 // Trigger activation event
                 OnMegaLaserActivated?.Invoke();
+                progressBarAnimator.SetTrigger("FadeToOne");
             }
             else
             {
@@ -194,12 +198,6 @@ public class UFOLaser : MonoBehaviour
         
         if (shouldLaserFire)
         {
-            // Trigger laser activation event if not already firing
-            if (!isLaserCurrentlyFiring)
-            {
-                isLaserCurrentlyFiring = true;
-                OnLaserActivated?.Invoke();
-            }
             
             // Ensure only one laser type is active at a time
             if (laserBeamType == LaserBeamType.Mega)
@@ -210,6 +208,12 @@ public class UFOLaser : MonoBehaviour
             }
             else
             {
+                // Trigger laser activation event if not already firing
+                if (!isLaserCurrentlyFiring)
+                {
+                    isLaserCurrentlyFiring = true;
+                    OnLaserActivated?.Invoke();
+                }
                 laserBeam.SetActive(true);
                 megaLaserBeam.SetActive(false);
                 laserGameObject = laserBeam;
