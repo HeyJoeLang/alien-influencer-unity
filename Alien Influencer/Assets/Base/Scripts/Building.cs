@@ -96,7 +96,6 @@ public class Building : MonoBehaviour
     {
         audioSource.PlayOneShot(buildingDestroyedSound);
         damageBarAnimator.SetTrigger("Close");
-        buildingStanding.SetActive(false);
 
         destroyedParticles.gameObject.SetActive(true);
         destroyedParticles.Play();
@@ -104,6 +103,7 @@ public class Building : MonoBehaviour
         buildingDestroyed.SetActive(true);
         CurrentState = BuildingState.IsDestroyed;
         GameManager.Instance.AddScore(scoreValue);
+        buildingStanding.SetActive(false);
     }
     void IsDestroyed()
     {

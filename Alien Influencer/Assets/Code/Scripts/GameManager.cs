@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
     public EventSystem eventSystem;
     public Button PlayAgainButton;
     public GameObject fadeInOut;
+    public AlienAnimationManager alienAnimation;
 
     UFOLaser ufoLaser;
     UfoSuction ufoSuction;
@@ -103,6 +104,7 @@ public class GameManager : Singleton<GameManager>
     {
         score += points;
         UpdateScore(score);
+        alienAnimation.AlienCelebrate();
     }
 
     private void UpdateScore(int newScore)
