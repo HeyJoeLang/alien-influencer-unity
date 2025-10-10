@@ -6,6 +6,10 @@ public class WeaponsUI : MonoBehaviour
     [Header("References")]
     public UFOLaser weaponsScript;
     
+    [Header("Animations")]
+    public Animator missilesAnimator;
+    public Animator megaLaserAnimator;
+    
     [Header("UI Elements")]
     public GameObject laserBGIndicator;
     public GameObject megaLaserBGIndicator;
@@ -25,6 +29,8 @@ public class WeaponsUI : MonoBehaviour
         UFOLaser.OnMegaLaserDeactivated += DisableMegaLaser;
         UFOLaser.OnMissileLaunched += OnMissileLaunched;
         UFOLaser.OnMissileRechargeComplete += OnMissileRechargeComplete;
+        UFOLaser.OnMissileAdded += OnMissilesAdded;
+        UFOLaser.OnMegaLaserAdded += OnMegaLaserAdded;
     }
     
     void OnDestroy()
@@ -36,6 +42,8 @@ public class WeaponsUI : MonoBehaviour
         UFOLaser.OnMegaLaserDeactivated -= DisableMegaLaser;
         UFOLaser.OnMissileLaunched -= OnMissileLaunched;
         UFOLaser.OnMissileRechargeComplete -= OnMissileRechargeComplete;
+        UFOLaser.OnMissileAdded -= OnMissilesAdded;
+        UFOLaser.OnMegaLaserAdded -= OnMegaLaserAdded;
     }
     
     // Laser Events
@@ -74,7 +82,19 @@ public class WeaponsUI : MonoBehaviour
         missileBGIndicator.SetActive(false);
         UpdateMissileChargesUI();
     }
+
+    void OnMissilesAdded()
+    {
+        missilesAnimator.SetTrigger("Grow");
+        UpdateMissileChargesUI();
+    }
     
+    void OnMegaLaserAdded()
+    {
+        megaLaserAnimator.SetTrigger("Grow");
+        UpdateMegaLaserChargesUI();
+    }
+
     // UI Update Methods
     void UpdateMegaLaserChargesUI()
     {

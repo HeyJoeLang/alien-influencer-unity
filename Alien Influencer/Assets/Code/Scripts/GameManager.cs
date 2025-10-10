@@ -24,14 +24,14 @@ public class GameManager : Singleton<GameManager>
     public AlienAnimationManager alienAnimation;
 
     UFOLaser ufoLaser;
-    UfoSuction ufoSuction;
+    //UfoSuction ufoSuction;
     UfoMovement ufoMovement;
 
     private void Start()
     {
         fadeInOut.SetActive(true);
         ufoLaser = FindObjectOfType<UFOLaser>().GetComponent<UFOLaser>();
-        ufoSuction = FindObjectOfType<UfoSuction>().GetComponent<UfoSuction>();
+        //ufoSuction = FindObjectOfType<UfoSuction>().GetComponent<UfoSuction>();
         ufoMovement = FindObjectOfType<UfoMovement>().GetComponent<UfoMovement>();
         timeRemaining = 181f;
         PositionDeltaManager.Reset();
@@ -54,7 +54,7 @@ public class GameManager : Singleton<GameManager>
     {
         ufoMovement.enabled = false;
         ufoLaser.enabled = false;
-        ufoSuction.enabled = false;
+        //ufoSuction.enabled = false;
         gameplayHUD.SetActive(false);
         gameOverMenu.SetActive(true);
         isCountingDown = false;
@@ -75,7 +75,7 @@ public class GameManager : Singleton<GameManager>
     public void StartTimer()
     {
         isCountingDown = true;
-        ufoSuction.enabled = true;
+        //ufoSuction.enabled = true;
         ufoMovement.enabled = true;
     }
 

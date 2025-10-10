@@ -104,6 +104,7 @@ public class Building : MonoBehaviour
         CurrentState = BuildingState.IsDestroyed;
         GameManager.Instance.AddScore(scoreValue);
         buildingStanding.SetActive(false);
+        PowerupSpawner.Instance.SpawnAtLocation(new Vector3(transform.position.x, 8, transform.position.z));
     }
     void IsDestroyed()
     {
@@ -114,7 +115,7 @@ public class Building : MonoBehaviour
 
     public void AddDamage(float amount)
     {
-        audioSource.PlayOneShot(damagedSound,.1f);
+        //audioSource.PlayOneShot(damagedSound,.1f);
         if (CurrentState == BuildingState.IsDestroyed)
         {
             return;

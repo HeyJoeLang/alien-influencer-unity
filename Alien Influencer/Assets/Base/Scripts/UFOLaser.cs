@@ -7,6 +7,18 @@ using System; // Added for Action
 
 public class UFOLaser : MonoBehaviour
 {
+    // Add these variables at the top of the UFOLaser class
+    [Header("Audio")]
+    public AudioClip laserSound;
+    public AudioClip megaLaserSound;
+    public AudioClip missileSound;
+
+    private AudioSource laserAudioSource;
+    private AudioSource megaLaserAudioSource;
+    private AudioSource missileAudioSource;
+
+    [SerializeField] private float audioFadeTime = 0.2f; // Time to fade in/out
+    [SerializeField] private float weaponVolume = 1f;
     public LayerMask raycastLayer;
     public LayerMask terrainLayer;
     public Vector3 deltaPosition = Vector3.zero;
@@ -63,11 +75,40 @@ public class UFOLaser : MonoBehaviour
     public static event Action OnLaserActivated;
     public static event Action OnLaserDeactivated;
     
+    public static event Action OnMissileAdded;
+    public static event Action OnMegaLaserAdded;
+    
     // Fire pool variables
     private FirePool firePool;
     private float fireNextSpawnTime = 0f;
     private const float FIRE_COOLDOWN = 0.1f;
 
+    // Add this method to handle audio setup
+    private void SetupAudioSources()
+    {
+        // Setup laser audio source
+        laserAudioSource = gameObject.AddComponent<AudioSource>();
+        laserAudioSource.clip = laserSound;
+        laserAudioSource.loop = true;
+        laserAudioSource.playOnAwake = false;
+        laserAudioSource.volume = 0f;
+
+        // Setup mega laser audio source
+        megaLaserAudioSource = gameObject.AddComponent<AudioSource>();
+        megaLaserAudioSource.clip = megaLaserSound;
+        megaLaserAudioSource.loop = true;
+        megaLaserAudioSource.playOnAwake = false;
+        megaLaserAudioSource.volume = 0f;
+
+        // Setup missile audio source
+        missileAudioSource = gameObject.AddComponent<AudioSource>();
+        missileAudioSource.clip = missileSound;
+        missileAudioSource.loop = false;
+        missileAudioSource.playOnAwake = false;
+        missileAudioSource.spatialBlend = 1f; // Make it fully 3D sound
+    }
+
+    // Add this to the existing Start() method
     void Start()
     {
         crosshairMat = crosshair.GetComponent<MeshRenderer>().material;
@@ -81,6 +122,68 @@ public class UFOLaser : MonoBehaviour
             Debug.LogError("FirePool component not found on " + gameObject.name);
         }
         progressBar.Start();
+        // Existing code...
+        SetupAudioSources();
+        
+        // Subscribe to events
+        OnLaserActivated += StartLaserSound;
+        OnLaserDeactivated += StopLaserSound;
+        OnMegaLaserActivated += StartMegaLaserSound;
+        OnMegaLaserDeactivated += StopMegaLaserSound;
+        OnMissileLaunched += PlayMissileSound;
+    }
+
+    // Add these methods for handling the audio
+    private void StartLaserSound()
+    {
+        StopAllCoroutines(); // Stop any ongoing fades
+        if (!laserAudioSource.isPlaying)
+        {
+            laserAudioSource.Play();
+        }
+        StartCoroutine(FadeAudio(laserAudioSource, 0f, weaponVolume, audioFadeTime));
+    }
+
+    private void StopLaserSound()
+    {
+        StartCoroutine(FadeAudio(laserAudioSource, laserAudioSource.volume, 0f, audioFadeTime));
+    }
+
+    private void StartMegaLaserSound()
+    {
+        StopAllCoroutines(); // Stop any ongoing fades
+        if (!megaLaserAudioSource.isPlaying)
+        {
+            megaLaserAudioSource.Play();
+        }
+        StartCoroutine(FadeAudio(megaLaserAudioSource, 0f, weaponVolume, audioFadeTime));
+    }
+
+    private void StopMegaLaserSound()
+    {
+        StartCoroutine(FadeAudio(megaLaserAudioSource, megaLaserAudioSource.volume, 0f, audioFadeTime));
+    }
+
+    private void PlayMissileSound()
+    {
+        missileAudioSource.PlayOneShot(missileSound, weaponVolume);
+    }
+
+    private IEnumerator FadeAudio(AudioSource audioSource, float startVolume, float targetVolume, float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(startVolume, targetVolume, elapsed / duration);
+            yield return null;
+        }
+        audioSource.volume = targetVolume;
+        
+        if (targetVolume == 0f)
+        {
+            audioSource.Stop();
+        }
     }
 
     void FixedUpdate()
@@ -139,7 +242,7 @@ public class UFOLaser : MonoBehaviour
                 Debug.Log("Cannot switch laser types while mega laser is active!");
             }
         }
-        else if (Input.GetKeyDown(KeyCode.K)) // Attempt to switch to mega laser
+        else if (Input.GetKeyDown(KeyCode.Z)) // Attempt to switch to mega laser
         {
             if (isMegaLaserActive)
             {
@@ -194,7 +297,7 @@ public class UFOLaser : MonoBehaviour
         }
         
         // Check if laser should be firing (Fire2 button or P key)
-        bool shouldLaserFire = Input.GetButton("Fire2") || Input.GetKey(KeyCode.P);
+        bool shouldLaserFire = Input.GetButton("Fire1");
         
         if (shouldLaserFire)
         {
@@ -257,7 +360,7 @@ public class UFOLaser : MonoBehaviour
         LaserBeamImpactFlames.SetActive(didHitBuilding);
         
         // Handle missile launching with recharge time and charge system
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             if (missileCharges <= 0)
             {
@@ -304,6 +407,7 @@ public class UFOLaser : MonoBehaviour
     {
         megaLaserCharges++;
         Debug.Log("Mega laser charge added! Total charges: " + megaLaserCharges);
+        OnMegaLaserAdded?.Invoke();
     }
     
     /// <summary>
@@ -321,6 +425,7 @@ public class UFOLaser : MonoBehaviour
     {
         missileCharges += amount;
         Debug.Log("Missile charges added! Amount: " + amount + ", Total charges: " + missileCharges);
+        OnMissileAdded?.Invoke();
     }
     
     /// <summary>
@@ -371,5 +476,16 @@ public class UFOLaser : MonoBehaviour
     public bool CanFireMissile()
     {
         return missileCharges > 0 && Time.time >= missileNextFireTime;
+    }
+
+    // Add this to OnDestroy (create if it doesn't exist)
+    private void OnDestroy()
+    {
+        // Unsubscribe from events
+        OnLaserActivated -= StartLaserSound;
+        OnLaserDeactivated -= StopLaserSound;
+        OnMegaLaserActivated -= StartMegaLaserSound;
+        OnMegaLaserDeactivated -= StopMegaLaserSound;
+        OnMissileLaunched -= PlayMissileSound;
     }
 }
