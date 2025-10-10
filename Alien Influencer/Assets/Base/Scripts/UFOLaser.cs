@@ -242,7 +242,7 @@ public class UFOLaser : MonoBehaviour
                 Debug.Log("Cannot switch laser types while mega laser is active!");
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Z)) // Attempt to switch to mega laser
+        else if (Input.GetButton("Fire1")) // Attempt to switch to mega laser
         {
             if (isMegaLaserActive)
             {
@@ -297,7 +297,7 @@ public class UFOLaser : MonoBehaviour
         }
         
         // Check if laser should be firing (Fire2 button or P key)
-        bool shouldLaserFire = Input.GetButton("Fire1");
+        bool shouldLaserFire = Input.GetButton("Fire3");
         
         if (shouldLaserFire)
         {
@@ -377,7 +377,7 @@ public class UFOLaser : MonoBehaviour
         LaserBeamImpactFlames.SetActive(didHitBuilding);
         
         // Handle missile launching with recharge time and charge system
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetButton("Jump"))
         {
             if (missileCharges <= 0)
             {
