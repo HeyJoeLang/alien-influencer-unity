@@ -91,7 +91,7 @@ MonoBehaviour:
   explosionDamage: 200
   explosionEffectPrefab: {fileID: 8224405871194641388, guid: a1e8c48af8434c14fa3456e238717721, type: 3}
   flyingSound: {fileID: 0}
-  explosionSound: {fileID: 0}
+  explosionSound: {fileID: 8300000, guid: 552634c5fce21bf4f8cb962c08be6287, type: 3}
 --- !u!1 &7084127630581081571
 GameObject:
   m_ObjectHideFlags: 0

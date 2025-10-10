@@ -301,7 +301,21 @@ public class UFOLaser : MonoBehaviour
         
         if (shouldLaserFire)
         {
-            
+            if (!isLaserCurrentlyFiring)
+            {
+                isLaserCurrentlyFiring = true;
+                switch (laserBeamType)
+                {
+                    case LaserBeamType.Mega:
+                        OnMegaLaserActivated?.Invoke();
+                        OnLaserDeactivated?.Invoke(); // Deactivate normal laser if mega laser is active
+                        break;
+                    case LaserBeamType.Normal:
+                        OnLaserActivated?.Invoke();
+                        OnMegaLaserDeactivated?.Invoke();
+                        break;
+                }
+            }
             // Ensure only one laser type is active at a time
             if (laserBeamType == LaserBeamType.Mega)
             {
@@ -311,12 +325,6 @@ public class UFOLaser : MonoBehaviour
             }
             else
             {
-                // Trigger laser activation event if not already firing
-                if (!isLaserCurrentlyFiring)
-                {
-                    isLaserCurrentlyFiring = true;
-                    OnLaserActivated?.Invoke();
-                }
                 laserBeam.SetActive(true);
                 megaLaserBeam.SetActive(false);
                 laserGameObject = laserBeam;
@@ -347,8 +355,17 @@ public class UFOLaser : MonoBehaviour
             // Trigger laser deactivation event if currently firing
             if (isLaserCurrentlyFiring)
             {
+                
+                switch (laserBeamType)
+                {
+                    case LaserBeamType.Mega:
+                        OnMegaLaserDeactivated?.Invoke();
+                        break;
+                    case LaserBeamType.Normal:
+                        OnLaserDeactivated?.Invoke();
+                        break;
+                }
                 isLaserCurrentlyFiring = false;
-                OnLaserDeactivated?.Invoke();
             }
             
             laserBeam.SetActive(false);

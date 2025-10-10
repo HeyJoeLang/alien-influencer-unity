@@ -61,7 +61,7 @@ MonoBehaviour:
   damageBarAnimator: {fileID: 2898087470032890657}
   damageProgressBar: {fileID: 1075496719375530877}
   buildingDestroyedSound: {fileID: 8300000, guid: 5ff823f546b52574a931e1d9b44290a6, type: 3}
-  damagedSound: {fileID: 8300000, guid: af47128edb1cc1249ad49e069b492180, type: 3}
+  damagedSound: {fileID: 8300000, guid: 5b049947d7d290341bb48b254822a730, type: 3}
 --- !u!82 &3310205183571354162
 AudioSource:
   m_ObjectHideFlags: 0
