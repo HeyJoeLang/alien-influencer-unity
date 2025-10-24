@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: db97ba35f680c914480ecc075d752dbf
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307255
+  packageName: Homing Missile
+  packageVersion: 1.0.0
+  assetPath: Assets/homing missile/prefabs/rocket_smoke.prefab
+  uploadId: 727139

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b12b6f52427a94744acc5cfb7487ec15
+labels:
+- Triangle
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46952
+  packageName: proPrototype Collection
+  packageVersion: 1.1
+  assetPath: Assets/proPrototypeCollection/Prefabs/triangle_02.prefab
+  uploadId: 88966

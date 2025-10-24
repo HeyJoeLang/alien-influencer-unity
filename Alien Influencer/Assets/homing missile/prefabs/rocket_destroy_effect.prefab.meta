@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7bcf29c8fbb433f4cbc27a4ae6ac2b79
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307255
+  packageName: Homing Missile
+  packageVersion: 1.0.0
+  assetPath: Assets/homing missile/prefabs/rocket_destroy_effect.prefab
+  uploadId: 727139

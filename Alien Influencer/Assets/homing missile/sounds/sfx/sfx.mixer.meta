@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7fad5446c1d6ab94e8b84d6eb4227844
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 24100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307255
+  packageName: Homing Missile
+  packageVersion: 1.0.0
+  assetPath: Assets/homing missile/sounds/sfx/sfx.mixer
+  uploadId: 727139

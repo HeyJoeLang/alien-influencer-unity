@@ -1,0 +1,30 @@
+Third-Party Content and Licenses
+
+This asset package contains third-party content used under the appropriate licenses. Details are as follows:
+
+1. **Mobile Missiles Pack**  
+   - Source: https://assetstore.unity.com/packages/3d/props/weapons/mobile-missiles-pack-71890  
+   - Publisher: 3Dynamite (http://3dynamitemail.wixsite.com/3dynamite)  
+   - License: Per the terms provided by the Unity Asset Store at the time of download. Please review the original asset page for more details.
+
+2. **Explosion and Grinding Crash Sound**  
+   - Source: https://freesound.org/s/245581/  
+   - Author: waddl_e  
+   - License: Creative Commons 0 (https://creativecommons.org/publicdomain/zero/1.0/)  
+   - No attribution required.
+
+3. **Rocket Launch Sound**  
+   - Source: https://freesound.org/s/728264/  
+   - Author: Bryce835  
+   - License: Creative Commons 0
+(https://creativecommons.org/publicdomain/zero/1.0/)  
+   - No attribution required.
+
+4. **M16 Rifle Shots Sound**  
+   - Source: https://freesound.org/s/187677/
+   - Author: qubodup 
+   - License: Creative Commons 0
+(https://creativecommons.org/publicdomain/zero/1.0/)  
+   - No attribution required.
+
+By using this asset package, you agree to comply with the respective licenses provided for each third-party component.

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 780649abf859240e8be3defea6ea009d
+labels:
+- Torus
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46952
+  packageName: proPrototype Collection
+  packageVersion: 1.1
+  assetPath: Assets/proPrototypeCollection/Prefabs/torus_06.prefab
+  uploadId: 88966

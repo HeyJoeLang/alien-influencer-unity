@@ -6,7 +6,7 @@ public class CoinManager : MonoBehaviour
 {
     public TMP_Text coinDisplay;
     public int minCoinsForCredit = 1;
-    private int coinCount = 0;
+    private int coinCount = 1;
     private const string CoinKey = "CoinCount";
     public Button playButton;
     public EventSystem eventSystem;
@@ -17,7 +17,7 @@ public class CoinManager : MonoBehaviour
         {
             Screen.fullScreen = true;
         }
-        coinCount = PlayerPrefs.GetInt(CoinKey, 0);
+        coinCount = PlayerPrefs.GetInt(CoinKey, 1);
         UpdateCoinDisplay();
     }
 
@@ -50,10 +50,11 @@ public class CoinManager : MonoBehaviour
         coinCount -= minCoinsForCredit;
         PlayerPrefs.SetInt(CoinKey, coinCount);
         UpdateCoinDisplay();
+        InsertCoin(); //Demo: unlimited coins
     }
     void ResetCredits()
     {
-        coinCount = 0;
+        coinCount = 1;
         PlayerPrefs.SetInt(CoinKey, coinCount);
         UpdateCoinDisplay();
     }

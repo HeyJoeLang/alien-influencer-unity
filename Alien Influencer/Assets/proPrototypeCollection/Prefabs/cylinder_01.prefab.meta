@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d83d3ac400e5342f3b980c577e2bef76
+labels:
+- Primitives
+- BasicObjects
+- PrimitiveObjects
+- Primitive
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46952
+  packageName: proPrototype Collection
+  packageVersion: 1.1
+  assetPath: Assets/proPrototypeCollection/Prefabs/cylinder_01.prefab
+  uploadId: 88966

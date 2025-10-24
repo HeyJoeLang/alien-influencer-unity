@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 42fc6f42ffc3a4e8cb2d9a6d2bcd0547
+labels:
+- Cone
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46952
+  packageName: proPrototype Collection
+  packageVersion: 1.1
+  assetPath: Assets/proPrototypeCollection/Prefabs/cone_03.prefab
+  uploadId: 88966

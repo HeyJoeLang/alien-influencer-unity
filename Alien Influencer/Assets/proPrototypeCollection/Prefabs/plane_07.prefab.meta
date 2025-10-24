@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 249ed8da4f1694745997314a870469fa
+labels:
+- Plane
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46952
+  packageName: proPrototype Collection
+  packageVersion: 1.1
+  assetPath: Assets/proPrototypeCollection/Prefabs/plane_07.prefab
+  uploadId: 88966

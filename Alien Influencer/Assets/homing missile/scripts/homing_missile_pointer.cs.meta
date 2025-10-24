@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 588121caddfb8b34c80ebad9eeb475d5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307255
+  packageName: Homing Missile
+  packageVersion: 1.0.0
+  assetPath: Assets/homing missile/scripts/homing_missile_pointer.cs
+  uploadId: 727139

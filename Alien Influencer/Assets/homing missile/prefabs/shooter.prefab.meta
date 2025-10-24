@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 51b01902675d53f43851c1a5308425cc
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307255
+  packageName: Homing Missile
+  packageVersion: 1.0.0
+  assetPath: Assets/homing missile/prefabs/shooter.prefab
+  uploadId: 727139

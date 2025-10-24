@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 81fe757d26b682440ac910341006a511
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307255
+  packageName: Homing Missile
+  packageVersion: 1.0.0
+  assetPath: Assets/homing missile/invoices.txt
+  uploadId: 727139

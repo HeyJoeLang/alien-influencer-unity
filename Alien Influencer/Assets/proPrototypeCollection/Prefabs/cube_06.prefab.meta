@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 7099cf089ea2e4d509b0f59a7041469f
+labels:
+- Cube
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46952
+  packageName: proPrototype Collection
+  packageVersion: 1.1
+  assetPath: Assets/proPrototypeCollection/Prefabs/cube_06.prefab
+  uploadId: 88966

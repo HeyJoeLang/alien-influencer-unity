@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 72fc56a54bf23cf4eb5ac7620947d798
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307255
+  packageName: Homing Missile
+  packageVersion: 1.0.0
+  assetPath: Assets/homing missile/Materials/Explosion.mat
+  uploadId: 727139

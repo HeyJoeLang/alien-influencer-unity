@@ -23,25 +23,26 @@ public class GameManager : Singleton<GameManager>
     public GameObject fadeInOut;
     public AlienAnimationManager alienAnimation;
 
-    UFOLaser ufoLaser;
+    public UFOLaser ufoLaser;
     //UfoSuction ufoSuction;
-    UfoMovement ufoMovement;
+    public UfoMovement ufoMovement;
 
     private void Start()
     {
         fadeInOut.SetActive(true);
-        ufoLaser = FindObjectOfType<UFOLaser>().GetComponent<UFOLaser>();
+        //ufoLaser = FindObjectOfType<UFOLaser>().GetComponent<UFOLaser>();
         //ufoSuction = FindObjectOfType<UfoSuction>().GetComponent<UfoSuction>();
-        ufoMovement = FindObjectOfType<UfoMovement>().GetComponent<UfoMovement>();
+        //ufoMovement = FindObjectOfType<UfoMovement>().GetComponent<UfoMovement>();
         timeRemaining = 181f;
         PositionDeltaManager.Reset();
         Debug.Log("Starting Game...");
-        StartGame();
+        //StartGame();
     }
 
     public void StartGame()
     {
         gameOverMenu.SetActive(false);
+        gameplayHUD.SetActive(false);
         winMenu.SetActive(false);
         score = 0;
         UpdateScore(0);
@@ -77,6 +78,9 @@ public class GameManager : Singleton<GameManager>
         isCountingDown = true;
         //ufoSuction.enabled = true;
         ufoMovement.enabled = true;
+        ufoLaser.enabled = true;
+        gameplayHUD.SetActive(true);
+        //game
     }
 
     private void FixedUpdate()

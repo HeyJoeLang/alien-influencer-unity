@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: f07b12576cbe74a8a8286f6ff79659ea
+labels:
+- Sphere
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46952
+  packageName: proPrototype Collection
+  packageVersion: 1.1
+  assetPath: Assets/proPrototypeCollection/Prefabs/sphere_05.prefab
+  uploadId: 88966

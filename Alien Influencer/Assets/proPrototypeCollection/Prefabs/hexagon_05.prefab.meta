@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6b9148b927c154a88900351ddf130c46
+labels:
+- Hexagon
+- Hex
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46952
+  packageName: proPrototype Collection
+  packageVersion: 1.1
+  assetPath: Assets/proPrototypeCollection/Prefabs/hexagon_05.prefab
+  uploadId: 88966

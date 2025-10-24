@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 58ce1ff59b73a447cbb8eb5769fcf2c4
+labels:
+- Pipe
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46952
+  packageName: proPrototype Collection
+  packageVersion: 1.1
+  assetPath: Assets/proPrototypeCollection/Prefabs/pipe_08.prefab
+  uploadId: 88966

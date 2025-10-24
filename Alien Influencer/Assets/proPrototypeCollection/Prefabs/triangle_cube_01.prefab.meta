@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 1366bbd3463ba4764a2990b9bfddd4f6
+labels:
+- Triangle
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46952
+  packageName: proPrototype Collection
+  packageVersion: 1.1
+  assetPath: Assets/proPrototypeCollection/Prefabs/triangle_cube_01.prefab
+  uploadId: 88966

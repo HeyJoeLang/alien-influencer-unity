@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0a65518cf426103488cda2a110600d42
+timeCreated: 1474234740
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307255
+  packageName: Homing Missile
+  packageVersion: 1.0.0
+  assetPath: Assets/homing missile/prefabs/Missil_05.prefab
+  uploadId: 727139

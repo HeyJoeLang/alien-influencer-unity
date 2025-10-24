@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8f0336b9a7e25034c9db1c0b7d91c224
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307255
+  packageName: Homing Missile
+  packageVersion: 1.0.0
+  assetPath: Assets/homing missile/Materials/SmokeLight.mat
+  uploadId: 727139
