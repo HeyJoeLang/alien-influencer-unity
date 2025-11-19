@@ -6,6 +6,7 @@ public class ForceField : MonoBehaviour
 {
     private bool isOn = false;
     public Animator animator;
+    public GameObject deflectMissile;
     
     // Persistent list to track homing missiles in the force field area
     private List<GameObject> homingMissilesInField = new List<GameObject>();
@@ -71,6 +72,9 @@ public class ForceField : MonoBehaviour
             {
                 missile.SetActive(false);
                 Destroy(missile);
+                Vector3 direction = (missile.transform.position - transform.position).normalized;
+                Instantiate(deflectMissile, missile.transform.position, Quaternion.LookRotation(direction+ new Vector3(0,-.2f,0)) );
+
             }
         }
         

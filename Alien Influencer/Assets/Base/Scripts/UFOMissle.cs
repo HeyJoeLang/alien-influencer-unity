@@ -10,6 +10,7 @@ public class UFOMissile : MonoBehaviour
     public GameObject explosionEffectPrefab;
     public AudioClip flyingSound;
     public AudioClip explosionSound;
+    
 
     private AudioSource audioSource;
     private bool hasExploded = false;
@@ -88,6 +89,10 @@ public class UFOMissile : MonoBehaviour
         MeshRenderer renderer = GetComponent<MeshRenderer>();
         if (renderer) renderer.enabled = false;
 
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
         // Destroy the missile after sound plays
         Destroy(gameObject, explosionSound ? explosionSound.length : 0.1f);
     }
