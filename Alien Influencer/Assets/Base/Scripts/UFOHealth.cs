@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using HomingMissile;
 using UnityEngine;
 
 public class UFOHealth : MonoBehaviour
@@ -10,21 +11,17 @@ public class UFOHealth : MonoBehaviour
     {
         healthBar.SetValue(health);
     }
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "homing_missile")
         {
-            collision.gameObject.GetComponent<Bullet>().Explode();
-            //health -= .1f;
+            collision.gameObject.GetComponent<homing_missile>().DestroyMe();
+            health -= .1f;
             if (health <= 0)
             {
                 GameManager.Instance.GameOver();
             }
             healthBar.SetValue(health);
         }
-    }
-    void Update()
-    {
-        
     }
 }

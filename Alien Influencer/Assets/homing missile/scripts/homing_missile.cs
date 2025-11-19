@@ -39,8 +39,6 @@ public class homing_missile : MonoBehaviour
     public void setmissile()
     {
         timealive = 0;
-        transform.rotation = shooter.transform.rotation;
-        transform.Rotate(0, 90, 0);
         transform.position = shooter.transform.position;
     }
     public void DestroyMe()
@@ -66,28 +64,6 @@ public class homing_missile : MonoBehaviour
         isactive = true;
         setmissile();
 
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (isactive)
-        {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                if (other.gameObject == shooter)
-                {
-                    if (fully_active)
-                    {
-                    //damege the shooter;
-                    DestroyMe();
-                    }
-                }
-                else
-                {
-                    //damage the enemy;
-                    DestroyMe();
-                }
-            }
-        }
     }
     void FixedUpdate()
     {
