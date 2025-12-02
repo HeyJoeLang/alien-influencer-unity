@@ -32,9 +32,7 @@ public class UFOLaser : MonoBehaviour
     public GameObject megaLaserBeam;
     public Transform laserBeamImpact;
     public Transform megaImpact1, megaImpact2, megaImpact3;
-    public enum LaserBeamType { Mega, Normal }
-    public LaserBeamType laserBeamType = LaserBeamType.Normal;
-    private GameObject laserGameObject;
+    
     public GameObject crosshair;
     Material crosshairMat;
 	public ProgressBarPro progressBar;
@@ -68,8 +66,9 @@ public class UFOLaser : MonoBehaviour
     public static event Action OnMissileLaunched;
     public static event Action OnMissileRechargeComplete;
     
-    // Laser firing state tracking
-    private bool isLaserCurrentlyFiring = false;
+    // Laser firing state tracking - separate for each laser type
+    private bool isNormalLaserCurrentlyFiring = false;
+    private bool isMegaLaserCurrentlyFiring = false;
     
     // Public events for laser firing state changes
     public static event Action OnLaserActivated;
@@ -207,8 +206,7 @@ public class UFOLaser : MonoBehaviour
             
             if (megaLaserTimer >= MEGA_LASER_DURATION)
             {
-                // Switch back to normal laser and consume a charge
-                laserBeamType = LaserBeamType.Normal;
+                // End mega laser session and consume a charge
                 isMegaLaserActive = false;
                 megaLaserTimer = 0f;
                 megaLaserTimeRemainingPercent = 0f;
@@ -218,8 +216,14 @@ public class UFOLaser : MonoBehaviour
                 megaLaserCharges--;
                 Debug.Log("Mega laser charge consumed. Remaining charges: " + megaLaserCharges);
                 
-                // Trigger deactivation event
-                OnMegaLaserDeactivated?.Invoke();
+                // If mega laser was currently firing, stop it
+                if (isMegaLaserCurrentlyFiring)
+                {
+                    isMegaLaserCurrentlyFiring = false;
+                    megaLaserBeam.SetActive(false);
+                    OnMegaLaserDeactivated?.Invoke();
+                }
+                
                 progressBarAnimator.SetTrigger("FadeToZero");
             }
         }
@@ -229,46 +233,7 @@ public class UFOLaser : MonoBehaviour
             megaLaserTimeRemainingPercent = 0f;
         }
         
-        // Handle laser type switching
-        if (Input.GetKeyDown(KeyCode.L)) // Switch to normal laser
-        {
-            // Only allow switching to normal if mega laser is not currently active
-            if (!isMegaLaserActive)
-            {
-                laserBeamType = LaserBeamType.Normal;
-            }
-            else
-            {
-                Debug.Log("Cannot switch laser types while mega laser is active!");
-            }
-        }
-        else if (Input.GetButton("Fire1")) // Attempt to switch to mega laser
-        {
-            if (isMegaLaserActive)
-            {
-                Debug.Log("Mega laser is already active! Wait for it to complete before using another charge.");
-            }
-            else if (megaLaserCharges > 0)
-            {
-                // Start mega laser and activate timer
-                laserBeamType = LaserBeamType.Mega;
-                isMegaLaserActive = true;
-                megaLaserTimer = 0f;
-                megaLaserTimeRemainingPercent = 1f; // Start with full time remaining
-                Debug.Log("Mega laser activated! Charges remaining after this use: " + (megaLaserCharges - 1));
-                
-                // Trigger activation event
-                OnMegaLaserActivated?.Invoke();
-                progressBarAnimator.SetTrigger("FadeToOne");
-            }
-            else
-            {
-                Debug.Log("No mega laser charges remaining!");
-            }
-        }
-        
         bool didHitBuilding = false;
-        //LaserBeamImpactFlames.SetActive(false);
         Vector3 rayDirection = transform.TransformDirection(deltaDirection);
         RaycastHit hit;
         Vector3 startPos = transform.position + deltaPosition;
@@ -279,9 +244,7 @@ public class UFOLaser : MonoBehaviour
             crosshair.SetActive(true);
             crosshairMat.color = hitColor;
             crosshair.transform.rotation = Quaternion.LookRotation(hit.normal);
-            //Debug.Log(hit.collider.gameObject.name);
             endPos = hit.point;
-           // BuildingHighlighter.Instance.HighlightObject(hit.collider.gameObject);
         }
         else if (Physics.Raycast(startPos, rayDirection, out hit, rayLength, terrainLayer.value))
         {
@@ -296,39 +259,18 @@ public class UFOLaser : MonoBehaviour
             crosshair.SetActive(false);
         }
         
-        // Check if laser should be firing (Fire2 button or P key)
-        bool shouldLaserFire = Input.GetButton("Fire3");
+        // Handle normal laser firing (Fire3 button)
+        bool shouldNormalLaserFire = Input.GetButton("Fire3");
         
-        if (shouldLaserFire)
+        if (shouldNormalLaserFire)
         {
-            if (!isLaserCurrentlyFiring)
+            if (!isNormalLaserCurrentlyFiring)
             {
-                isLaserCurrentlyFiring = true;
-                switch (laserBeamType)
-                {
-                    case LaserBeamType.Mega:
-                        OnMegaLaserActivated?.Invoke();
-                        OnLaserDeactivated?.Invoke(); // Deactivate normal laser if mega laser is active
-                        break;
-                    case LaserBeamType.Normal:
-                        OnLaserActivated?.Invoke();
-                        OnMegaLaserDeactivated?.Invoke();
-                        break;
-                }
+                isNormalLaserCurrentlyFiring = true;
+                OnLaserActivated?.Invoke();
             }
-            // Ensure only one laser type is active at a time
-            if (laserBeamType == LaserBeamType.Mega)
-            {
-                megaLaserBeam.SetActive(true);
-                laserBeam.SetActive(false);
-                laserGameObject = megaLaserBeam;
-            }
-            else
-            {
-                laserBeam.SetActive(true);
-                megaLaserBeam.SetActive(false);
-                laserGameObject = laserBeam;
-            }
+            
+            laserBeam.SetActive(true);
             
             if (Physics.Raycast(startPos, rayDirection, out hit, rayLength, raycastLayer.value))
             {
@@ -336,9 +278,7 @@ public class UFOLaser : MonoBehaviour
                 if (building)
                 {
                     didHitBuilding = true;
-                    //LaserBeamImpactFlames.SetActive(false);
-                    float damage = laserBeamType == LaserBeamType.Normal ? laserDamage : laserDamage * 10f;
-                    building.AddDamage(damage * Time.fixedDeltaTime); // Apply damage every physics update
+                    building.AddDamage(laserDamage * Time.fixedDeltaTime); // Apply normal laser damage
                     
                     // Create fire effect at hit location with cooldown
                     if (firePool != null && Time.time >= fireNextSpawnTime)
@@ -348,27 +288,68 @@ public class UFOLaser : MonoBehaviour
                     }
                 }
             }
-           // BuildingHighlighter.Instance.SelectObject();
         }
         else
         {
-            // Trigger laser deactivation event if currently firing
-            if (isLaserCurrentlyFiring)
+            if (isNormalLaserCurrentlyFiring)
             {
-                
-                switch (laserBeamType)
-                {
-                    case LaserBeamType.Mega:
-                        OnMegaLaserDeactivated?.Invoke();
-                        break;
-                    case LaserBeamType.Normal:
-                        OnLaserDeactivated?.Invoke();
-                        break;
-                }
-                isLaserCurrentlyFiring = false;
+                isNormalLaserCurrentlyFiring = false;
+                OnLaserDeactivated?.Invoke();
             }
-            
             laserBeam.SetActive(false);
+        }
+        
+        // Handle mega laser firing (Fire1 button)
+        bool shouldMegaLaserFire = Input.GetButtonDown("Fire1"); // Changed to GetButtonDown for single press
+        
+        if (shouldMegaLaserFire)
+        {
+            if (isMegaLaserActive)
+            {
+                Debug.Log("Mega laser is already active! Wait for it to complete before using another charge.");
+            }
+            else if (megaLaserCharges > 0)
+            {
+                // Start mega laser session - it will fire continuously for the full duration
+                isMegaLaserActive = true;
+                isMegaLaserCurrentlyFiring = true;
+                megaLaserTimer = 0f;
+                megaLaserTimeRemainingPercent = 1f; // Start with full time remaining
+                Debug.Log("Mega laser activated! Firing continuously for " + MEGA_LASER_DURATION + " seconds. Charges remaining after this use: " + (megaLaserCharges - 1));
+                
+                OnMegaLaserActivated?.Invoke();
+                progressBarAnimator.SetTrigger("FadeToOne");
+            }
+            else
+            {
+                Debug.Log("No mega laser charges remaining!");
+            }
+        }
+        
+        // Mega laser fires continuously while active
+        if (isMegaLaserActive)
+        {
+            megaLaserBeam.SetActive(true);
+            
+            if (Physics.Raycast(startPos, rayDirection, out hit, rayLength, raycastLayer.value))
+            {
+                var building = hit.collider.transform.parent.GetComponent<Building>();
+                if (building)
+                {
+                    didHitBuilding = true;
+                    building.AddDamage(laserDamage * 10f * Time.fixedDeltaTime); // Apply mega laser damage (10x normal)
+                    
+                    // Create fire effect at hit location with cooldown
+                    if (firePool != null && Time.time >= fireNextSpawnTime)
+                    {
+                        firePool.CreateFire(hit.point, hit.collider.transform);
+                        fireNextSpawnTime = Time.time + FIRE_COOLDOWN;
+                    }
+                }
+            }
+        }
+        else
+        {
             megaLaserBeam.SetActive(false);
         }
         
@@ -480,11 +461,27 @@ public class UFOLaser : MonoBehaviour
     }
     
     /// <summary>
-    /// Check if laser is currently firing (either normal or mega)
+    /// Check if normal laser is currently firing
     /// </summary>
-    public bool IsLaserCurrentlyFiring()
+    public bool IsNormalLaserCurrentlyFiring()
     {
-        return isLaserCurrentlyFiring;
+        return isNormalLaserCurrentlyFiring;
+    }
+    
+    /// <summary>
+    /// Check if mega laser is currently firing
+    /// </summary>
+    public bool IsMegaLaserCurrentlyFiring()
+    {
+        return isMegaLaserCurrentlyFiring;
+    }
+    
+    /// <summary>
+    /// Check if any laser is currently firing (either normal or mega)
+    /// </summary>
+    public bool IsAnyLaserCurrentlyFiring()
+    {
+        return isNormalLaserCurrentlyFiring || isMegaLaserCurrentlyFiring;
     }
     
     /// <summary>
