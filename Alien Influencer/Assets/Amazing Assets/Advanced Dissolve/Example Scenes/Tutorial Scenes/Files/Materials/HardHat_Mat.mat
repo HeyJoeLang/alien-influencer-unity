@@ -251,7 +251,7 @@ Material:
     - _AdvancedDissolveCutoutGeometric1Height: 5.5
     - _AdvancedDissolveCutoutGeometric1Radius: 3
     - _AdvancedDissolveCutoutGeometric2Height: 0
-    - _AdvancedDissolveCutoutGeometric2Radius: 10.000003
+    - _AdvancedDissolveCutoutGeometric2Radius: 10
     - _AdvancedDissolveCutoutGeometric3Height: 1
     - _AdvancedDissolveCutoutGeometric3Radius: 0.75
     - _AdvancedDissolveCutoutGeometric4Height: 1
@@ -538,7 +538,7 @@ Material:
     - _AdvancedDissolveCutoutGeometric1Normal: {r: 0, g: 0, b: 1, a: 0}
     - _AdvancedDissolveCutoutGeometric1Position: {r: 0, g: 8, b: 0, a: 0}
     - _AdvancedDissolveCutoutGeometric2Normal: {r: 0, g: 1, b: 0, a: 0}
-    - _AdvancedDissolveCutoutGeometric2Position: {r: 0, g: 13, b: 7, a: 0}
+    - _AdvancedDissolveCutoutGeometric2Position: {r: 0, g: 15.5, b: 14.5, a: 0}
     - _AdvancedDissolveCutoutGeometric3Normal: {r: 1, g: 0, b: 0, a: 0}
     - _AdvancedDissolveCutoutGeometric3Position: {r: -1.317, g: 0.409, b: 1.57, a: 0}
     - _AdvancedDissolveCutoutGeometric4Normal: {r: 1, g: 0, b: 0, a: 0}
