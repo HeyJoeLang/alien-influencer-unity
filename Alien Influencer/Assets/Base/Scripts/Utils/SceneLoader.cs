@@ -53,4 +53,9 @@ public class SceneLoader : MonoBehaviour
         }
         SceneManager.LoadScene(sceneIndex);
     }
+    public void PlayGameNow()
+    {
+        SceneManager.LoadScene(1);
+    }
+
 }
