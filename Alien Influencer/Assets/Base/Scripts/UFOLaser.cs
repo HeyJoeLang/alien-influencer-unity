@@ -26,7 +26,7 @@ public class UFOLaser : MonoBehaviour
     public float rayLength = 10f;
     public Color hitColor = Color.green;
     public Color missColor = Color.yellow;
-    private float laserDamage = 10f;
+    private float laserDamage = 20f;
     public GameObject laserBeam;
     public GameObject LaserBeamImpactFlames;
     public GameObject megaLaserBeam;
