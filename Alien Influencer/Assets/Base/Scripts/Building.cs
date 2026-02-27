@@ -23,16 +23,17 @@ public class Building : MonoBehaviour
     public ProgressBarPro damageProgressBar;
     public AudioClip buildingDestroyedSound;
     public AudioClip damagedSound;
-    AudioSource audioSource;
+    public FMODUnity.EventReference buildingDestroyedSoundEvent;
+    public FMODUnity.EventReference damagedSoundEvent;
+    FMODUnity.EmitterGameEvent audioSource;
     ParticleSystem sparksParticles;
-
 
     #endregion
     #region Unity Methods
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<FMODUnity.EmitterGameEvent>();
         buildingStanding.SetActive(true);
         buildingDestroyed.SetActive(false);
         damagedParticles.gameObject.SetActive(false);
@@ -94,7 +95,8 @@ public class Building : MonoBehaviour
     }
     void StartDestroyed()
     {
-        audioSource.PlayOneShot(buildingDestroyedSound);
+        FMODUnity.RuntimeManager.PlayOneShot(buildingDestroyedSoundEvent, transform.position);
+        //audioSource.PlayEvent..(buildingDestroyedSound);
         damageBarAnimator.SetTrigger("Close");
 
         destroyedParticles.gameObject.SetActive(true);
