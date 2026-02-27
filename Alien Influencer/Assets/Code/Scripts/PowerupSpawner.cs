@@ -16,7 +16,7 @@ public class PowerupSpawner : Singleton<PowerupSpawner>
     [SerializeField] private PowerupPool missilesPool;
     
     [Header("Spawn Settings")]
-    [SerializeField] private float spawnChance = 0.1f; // 1 in 10 chance
+    [SerializeField] private float spawnChance = 0.25f; // 1 in 10 chance
 
     private void Start()
     {
