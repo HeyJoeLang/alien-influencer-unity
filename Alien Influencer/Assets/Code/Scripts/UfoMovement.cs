@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using FMODUnity;
+using FMOD.Studio;
 
 [RequireComponent(typeof(Rigidbody))]
 public class UfoMovement : MonoBehaviour
@@ -18,6 +19,10 @@ public class UfoMovement : MonoBehaviour
     public float heightChangeSpeed = 5f;
     public float heightLerpSpeed = 3.0f;
 
+    [Header("FMOD")]
+    [SerializeField] private EventReference ufoEngineEvent;
+    private EventInstance ufoEngineInstance;
+
     private float minXPosition;
     private float maxXPosition;
     private float minZPosition;
@@ -32,6 +37,16 @@ public class UfoMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         lastPosition = transform.position;
         InitializeUfoPosition();
+
+        ufoEngineInstance = RuntimeManager.CreateInstance(ufoEngineEvent);
+        RuntimeManager.AttachInstanceToGameObject(ufoEngineInstance, transform);
+        ufoEngineInstance.start();
+    }
+
+    private void OnDestroy()
+    {
+        ufoEngineInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        ufoEngineInstance.release();
     }
 
     private void InitializeUfoPosition()
@@ -87,7 +102,7 @@ public class UfoMovement : MonoBehaviour
         // Velocity from position delta for FMOD UFO Speed (0-1)
         Vector3 velocity = (newPosition - lastPosition) / Time.fixedDeltaTime;
         float normalizedSpeed = moveSpeed <= 0f ? 0f : Mathf.Clamp01(velocity.magnitude / moveSpeed);
-        RuntimeManager.StudioSystem.setParameterByName("UFO Speed", normalizedSpeed);
+        ufoEngineInstance.setParameterByName("UFO Speed", normalizedSpeed);
         lastPosition = newPosition;
     }
 }

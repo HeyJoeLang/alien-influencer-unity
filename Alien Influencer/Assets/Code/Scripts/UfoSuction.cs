@@ -17,12 +17,12 @@ public class UfoSuction : MonoBehaviour
     public CinemachineCamera virtualCamera;
     List<Civilian> civList;
     public AudioClip influencedSound;
-    AudioSource audioSource;
+    //AudioSource audioSource;
     public Vector3 deltaPositon = new Vector3(0, 10, -20);
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
         ufoMovement = GetComponent<UfoMovement>();
     }
 
@@ -89,7 +89,7 @@ public class UfoSuction : MonoBehaviour
                     Minion minion = hitCollider.GetComponent<Minion>();
                     if (minion != null)
                     {
-                        audioSource.PlayOneShot(influencedSound);
+                        //audioSource.PlayOneShot(influencedSound);
                         minion.enabled = true;
                         //InstantiateSuctionParticleEffect(hitCollider.transform.position);
                         minion.InfluenceMinion();

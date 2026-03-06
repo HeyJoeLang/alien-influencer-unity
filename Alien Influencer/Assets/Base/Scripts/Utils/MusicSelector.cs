@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-[RequireComponent(typeof(AudioSource))]
+//[RequireComponent(typeof(AudioSource))]
 public class MusicSelector : MonoBehaviour
 {
+    /*
     [System.Serializable]
     public class Music
     {
@@ -58,4 +59,5 @@ public class MusicSelector : MonoBehaviour
             PlayNextMusic();
         }
     }
+    */
 }

@@ -12,11 +12,12 @@ public class UFOMissile : MonoBehaviour
     public AudioClip explosionSound;
     
 
-    private AudioSource audioSource;
+    //private AudioSource audioSource;
     private bool hasExploded = false;
 
     private void Start()
     {
+        /*
         audioSource = GetComponent<AudioSource>();
         if (audioSource && flyingSound)
         {
@@ -24,6 +25,7 @@ public class UFOMissile : MonoBehaviour
             audioSource.loop = true;
             audioSource.Play();
         }
+        */
     }
 
     private void Update()
@@ -63,7 +65,7 @@ public class UFOMissile : MonoBehaviour
         {
             Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
         }
-
+        /*
         // Play explosion sound
         if (audioSource && explosionSound)
         {
@@ -71,6 +73,7 @@ public class UFOMissile : MonoBehaviour
             audioSource.loop = false;
             audioSource.PlayOneShot(explosionSound);
         }
+        */
 
         // Find all colliders within explosion radius
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, raycastLayer);

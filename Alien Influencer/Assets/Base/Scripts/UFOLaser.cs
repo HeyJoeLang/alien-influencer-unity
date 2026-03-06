@@ -125,11 +125,13 @@ public class UFOLaser : MonoBehaviour
         SetupAudioSources();
         
         // Subscribe to events
+        /*
         OnLaserActivated += StartLaserSound;
         OnLaserDeactivated += StopLaserSound;
         OnMegaLaserActivated += StartMegaLaserSound;
         OnMegaLaserDeactivated += StopMegaLaserSound;
         OnMissileLaunched += PlayMissileSound;
+        */
     }
 
     // Add these methods for handling the audio

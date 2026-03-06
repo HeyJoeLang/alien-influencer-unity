@@ -21,8 +21,8 @@ public class homing_missile : MonoBehaviour
     public Vector3 sleepposition;
     public GameObject targetpointer;
     public float turnSpeed = 0.035f;
-    public AudioSource launch_sound;
-    public AudioSource thrust_sound;
+    //public AudioSource launch_sound;
+    //public AudioSource thrust_sound;
     public GameObject smoke_obj;
     public ParticleSystem smoke;
     public GameObject smoke_position;
@@ -52,7 +52,7 @@ public class homing_missile : MonoBehaviour
         smoke.transform.position =sleepposition;
         smoke.Play();
         projectilerb.linearVelocity = Vector3.zero;
-        thrust_sound.Pause();
+        //thrust_sound.Pause();
         call_destroy_effects();
         transform.position = sleepposition;
         Destroy(smoke.gameObject,3);
@@ -60,7 +60,7 @@ public class homing_missile : MonoBehaviour
     }
     public void usemissile()
     {
-        launch_sound.Play();
+        //launch_sound.Play();
         isactive = true;
         setmissile();
 
@@ -76,7 +76,7 @@ public class homing_missile : MonoBehaviour
             if (timealive == timebeforeactivition)
             {
                 fully_active = true;
-                thrust_sound.Play();
+                //thrust_sound.Play();
             }
             timealive++;
             if (timealive < timebeforebursting)
