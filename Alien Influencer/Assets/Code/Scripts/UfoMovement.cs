@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using FMODUnity;
 
 [RequireComponent(typeof(Rigidbody))]
 public class UfoMovement : MonoBehaviour
@@ -22,12 +23,14 @@ public class UfoMovement : MonoBehaviour
     private float minZPosition;
     private float maxZPosition;
     private Vector3 terrainCenter;
+    private Vector3 lastPosition;
 
     //private float currentSpeed = 0.0f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        lastPosition = transform.position;
         InitializeUfoPosition();
     }
 
@@ -80,5 +83,11 @@ public class UfoMovement : MonoBehaviour
 
         // Apply the new position (only updating X and Z for now)
         transform.position = newPosition;
+
+        // Velocity from position delta for FMOD UFO Speed (0-1)
+        Vector3 velocity = (newPosition - lastPosition) / Time.fixedDeltaTime;
+        float normalizedSpeed = moveSpeed <= 0f ? 0f : Mathf.Clamp01(velocity.magnitude / moveSpeed);
+        RuntimeManager.StudioSystem.setParameterByName("UFO Speed", normalizedSpeed);
+        lastPosition = newPosition;
     }
 }
