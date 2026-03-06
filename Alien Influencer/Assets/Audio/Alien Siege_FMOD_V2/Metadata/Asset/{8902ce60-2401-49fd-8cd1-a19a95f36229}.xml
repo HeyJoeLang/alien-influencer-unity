@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{8902ce60-2401-49fd-8cd1-a19a95f36229}">
+		<property name="assetPath">
+			<value>Weapons/UFO Missile/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e177d6c7-0c16-424f-9fae-e0015f586440}</destination>
+		</relationship>
+	</object>
+</objects>

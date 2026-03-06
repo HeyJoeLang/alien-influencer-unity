@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{da1edea7-7156-4222-ae89-34c2f2fff493}">
+		<property name="assetPath">
+			<value>Weapons/UFO Missile/UFO Missile_Laser 1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.552</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e177d6c7-0c16-424f-9fae-e0015f586440}</destination>
+		</relationship>
+	</object>
+</objects>

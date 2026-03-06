@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7f8ea4f6-16b3-4a36-a255-751c8f16c1d1}">
+		<property name="assetPath">
+			<value>Weapons/UFO Force Field/Force Field Bounce_Impact 1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.5</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e177d6c7-0c16-424f-9fae-e0015f586440}</destination>
+		</relationship>
+	</object>
+</objects>

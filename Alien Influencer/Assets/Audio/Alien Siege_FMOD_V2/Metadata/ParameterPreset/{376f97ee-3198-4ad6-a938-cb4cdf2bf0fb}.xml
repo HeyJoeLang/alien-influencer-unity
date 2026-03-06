@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{376f97ee-3198-4ad6-a938-cb4cdf2bf0fb}">
+		<property name="name">
+			<value>UFO Speed</value>
+		</property>
+		<relationship name="folder">
+			<destination>{21bc3d32-0f0b-47d5-9da3-f478c30b2bc2}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{226ba3fa-ce99-4fb4-9b01-d9c869a2cd69}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{226ba3fa-ce99-4fb4-9b01-d9c869a2cd69}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
