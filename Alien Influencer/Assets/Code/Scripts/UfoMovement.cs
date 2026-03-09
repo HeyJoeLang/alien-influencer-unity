@@ -6,6 +6,7 @@ using FMOD.Studio;
 [RequireComponent(typeof(Rigidbody))]
 public class UfoMovement : MonoBehaviour
 {
+    public float normalizedVelocity;
     public float moveSpeed = 25.0f;
     public float acceleration = 10.0f;
     public float deceleration = 20.0f;
@@ -101,8 +102,8 @@ public class UfoMovement : MonoBehaviour
 
         // Velocity from position delta for FMOD UFO Speed (0-1)
         Vector3 velocity = (newPosition - lastPosition) / Time.fixedDeltaTime;
-        float normalizedSpeed = moveSpeed <= 0f ? 0f : Mathf.Clamp01(velocity.magnitude / moveSpeed);
-        ufoEngineInstance.setParameterByName("UFO Speed", normalizedSpeed);
+        normalizedVelocity = moveSpeed <= 0f ? 0f : Mathf.Clamp01(velocity.magnitude / moveSpeed);
+        ufoEngineInstance.setParameterByName("UFO Speed", normalizedVelocity);
         lastPosition = newPosition;
     }
 }
