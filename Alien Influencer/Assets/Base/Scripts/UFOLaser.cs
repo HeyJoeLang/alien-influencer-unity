@@ -4,19 +4,22 @@ using System.Collections.Generic;
 using PilotoStudio;
 using UnityEngine;
 using System; // Added for Action
+using FMODUnity;
+using FMOD.Studio;
 
 public class UFOLaser : MonoBehaviour
 {
     // Add these variables at the top of the UFOLaser class
-    [Header("Audio")]
-    public AudioClip laserSound;
-    public AudioClip megaLaserSound;
-    public AudioClip missileSound;
-
-    private AudioSource laserAudioSource;
-    private AudioSource megaLaserAudioSource;
-    private AudioSource missileAudioSource;
-
+    
+    [Header("FMOD Event")]
+    [SerializeField] private EventReference eventLaser;
+    [SerializeField] private EventReference eventMegaLaser;
+    [SerializeField] private EventReference eventMissile;
+    
+    private EventInstance laserEventInstance;
+    private EventInstance megaLaserEventInstance;
+    private EventInstance missileEventInstance;
+    
     [SerializeField] private float audioFadeTime = 0.2f; // Time to fade in/out
     [SerializeField] private float weaponVolume = 1f;
     public LayerMask raycastLayer;
@@ -85,26 +88,15 @@ public class UFOLaser : MonoBehaviour
     // Add this method to handle audio setup
     private void SetupAudioSources()
     {
-        // Setup laser audio source
-        laserAudioSource = gameObject.AddComponent<AudioSource>();
-        laserAudioSource.clip = laserSound;
-        laserAudioSource.loop = true;
-        laserAudioSource.playOnAwake = false;
-        laserAudioSource.volume = 0f;
-
-        // Setup mega laser audio source
-        megaLaserAudioSource = gameObject.AddComponent<AudioSource>();
-        megaLaserAudioSource.clip = megaLaserSound;
-        megaLaserAudioSource.loop = true;
-        megaLaserAudioSource.playOnAwake = false;
-        megaLaserAudioSource.volume = 0f;
-
-        // Setup missile audio source
-        missileAudioSource = gameObject.AddComponent<AudioSource>();
-        missileAudioSource.clip = missileSound;
-        missileAudioSource.loop = false;
-        missileAudioSource.playOnAwake = false;
-        missileAudioSource.spatialBlend = 1f; // Make it fully 3D sound
+        
+        laserEventInstance = RuntimeManager.CreateInstance(eventLaser);
+        megaLaserEventInstance = RuntimeManager.CreateInstance(eventMegaLaser);
+        missileEventInstance = RuntimeManager.CreateInstance(eventMissile);
+        
+        RuntimeManager.AttachInstanceToGameObject(laserEventInstance, transform);
+        RuntimeManager.AttachInstanceToGameObject(megaLaserEventInstance, transform);
+        RuntimeManager.AttachInstanceToGameObject(missileEventInstance, transform);
+        
     }
 
     // Add this to the existing Start() method
@@ -137,37 +129,40 @@ public class UFOLaser : MonoBehaviour
     // Add these methods for handling the audio
     private void StartLaserSound()
     {
-        StopAllCoroutines(); // Stop any ongoing fades
-        if (!laserAudioSource.isPlaying)
+        Debug.Log("Laser sound started");
+        laserEventInstance.getPlaybackState(out var playbackState);
+
+        if (playbackState != PLAYBACK_STATE.PLAYING)
         {
-            laserAudioSource.Play();
+            laserEventInstance.start();
         }
-        StartCoroutine(FadeAudio(laserAudioSource, 0f, weaponVolume, audioFadeTime));
     }
 
     private void StopLaserSound()
     {
-        StartCoroutine(FadeAudio(laserAudioSource, laserAudioSource.volume, 0f, audioFadeTime));
+        laserEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); 
     }
 
     private void StartMegaLaserSound()
     {
-        StopAllCoroutines(); // Stop any ongoing fades
-        if (!megaLaserAudioSource.isPlaying)
+        
+        megaLaserEventInstance.getPlaybackState(out var playbackState);
+
+        if (playbackState != PLAYBACK_STATE.PLAYING)
         {
-            megaLaserAudioSource.Play();
+            megaLaserEventInstance.start();
         }
-        StartCoroutine(FadeAudio(megaLaserAudioSource, 0f, weaponVolume, audioFadeTime));
     }
 
     private void StopMegaLaserSound()
     {
-        StartCoroutine(FadeAudio(megaLaserAudioSource, megaLaserAudioSource.volume, 0f, audioFadeTime));
+        megaLaserEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); 
     }
 
     private void PlayMissileSound()
     {
-        missileAudioSource.PlayOneShot(missileSound, weaponVolume);
+        
+        //missileAudioSource.PlayOneShot(missileSound, weaponVolume);
     }
 
     private IEnumerator FadeAudio(AudioSource audioSource, float startVolume, float targetVolume, float duration)
@@ -223,6 +218,7 @@ public class UFOLaser : MonoBehaviour
                 {
                     isMegaLaserCurrentlyFiring = false;
                     megaLaserBeam.SetActive(false);
+                    StopMegaLaserSound();
                     OnMegaLaserDeactivated?.Invoke();
                 }
                 
@@ -269,6 +265,7 @@ public class UFOLaser : MonoBehaviour
             if (!isNormalLaserCurrentlyFiring)
             {
                 isNormalLaserCurrentlyFiring = true;
+                StartLaserSound();
                 OnLaserActivated?.Invoke();
             }
             
@@ -296,6 +293,7 @@ public class UFOLaser : MonoBehaviour
             if (isNormalLaserCurrentlyFiring)
             {
                 isNormalLaserCurrentlyFiring = false;
+                StopLaserSound();
                 OnLaserDeactivated?.Invoke();
             }
             laserBeam.SetActive(false);
@@ -319,6 +317,7 @@ public class UFOLaser : MonoBehaviour
                 megaLaserTimeRemainingPercent = 1f; // Start with full time remaining
                 Debug.Log("Mega laser activated! Firing continuously for " + MEGA_LASER_DURATION + " seconds. Charges remaining after this use: " + (megaLaserCharges - 1));
                 
+                StartMegaLaserSound();
                 OnMegaLaserActivated?.Invoke();
                 progressBarAnimator.SetTrigger("FadeToOne");
             }

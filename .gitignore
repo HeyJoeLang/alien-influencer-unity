@@ -63,7 +63,7 @@ sysinfo.txt
 crashlytics-build.properties
 
 # Packed Addressables
-/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+Alien Influencer/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
@@ -71,4 +71,22 @@ crashlytics-build.properties
 
 Alien Influencer/Assets/Amazing Assets/Advanced Dissolve/Example Scenes/Tutorial Scenes/Files/Materials/*
 Alien Influencer/.vscode/*
+
+# Never ignore DLLs in the FMOD subfolder.
+!/Alien Influencer/[Aa]ssets/Plugins/FMOD/**/lib/*
+
+# Don't ignore images and gizmos used by FMOD in the Unity Editor.
+!/Alien Influencer/[Aa]ssets/Gizmos/FMOD/*
+!/Alien Influencer/[Aa]ssets/Editor Default Resources/FMOD/*
+
+# Ignore the Cache folder since it is updated locally.
+/Alien Influencer/[Aa]ssets/Plugins/FMOD/Cache/*
+
+# Ignore bank files in the StreamingAssets folder.
+/Alien Influencer/[Aa]ssets/StreamingAssets/**/*.bank
+/Alien Influencer/[Aa]ssets/StreamingAssets/**/*.bank.meta
+
+# If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
+# Log files can be ignored.
+/Alien Influencer/fmod_editor.log
 

@@ -7,17 +7,14 @@ using FMOD.Studio;
 public class UfoMovement : MonoBehaviour
 {
     public float normalizedVelocity;
+    public float lerpedVelocity;
+    [Range(0.5f,3.0f)]
+    public float FModAcceleration = 1.5f;
     public float moveSpeed = 25.0f;
-    public float acceleration = 10.0f;
-    public float deceleration = 20.0f;
     public float rotationSpeed = 50.0f;
-    public float tiltAmount = 0f;
     public Terrain terrain;
     private Rigidbody rb;
-    public float targetHeight = 10f;
-    public float minHeight = 6f;
-    public float maxHeight = 15f;
-    public float heightChangeSpeed = 5f;
+    public float targetHeight = 8f;
     public float heightLerpSpeed = 3.0f;
 
     [Header("FMOD")]
@@ -103,7 +100,9 @@ public class UfoMovement : MonoBehaviour
         // Velocity from position delta for FMOD UFO Speed (0-1)
         Vector3 velocity = (newPosition - lastPosition) / Time.fixedDeltaTime;
         normalizedVelocity = moveSpeed <= 0f ? 0f : Mathf.Clamp01(velocity.magnitude / moveSpeed);
-        ufoEngineInstance.setParameterByName("UFO Speed", normalizedVelocity);
+        lerpedVelocity = Mathf.Lerp(lerpedVelocity, normalizedVelocity, Time.fixedDeltaTime * FModAcceleration);
+        lerpedVelocity = Mathf.Clamp01(lerpedVelocity);
+        ufoEngineInstance.setParameterByName("UFO Speed", lerpedVelocity);
         lastPosition = newPosition;
     }
 }
