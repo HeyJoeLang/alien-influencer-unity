@@ -1,21 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class ForceField : MonoBehaviour
 {
     private bool isOn = false;
     public Animator animator;
     public GameObject deflectMissile;
+    public GameObject BounceVFX;
+    
+    [SerializeField] private EventReference eventForceField;
+    [SerializeField] private EventReference eventBounce;
+    
+    private EventInstance forceFieldEventInstance;
+    private EventInstance bounceEventInstance;
+    
     
     // Persistent list to track homing missiles in the force field area
     private List<GameObject> homingMissilesInField = new List<GameObject>();
+
+    void Start()
+    {
+        forceFieldEventInstance = RuntimeManager.CreateInstance(eventForceField);
+        
+        RuntimeManager.AttachInstanceToGameObject(forceFieldEventInstance, transform);
+        
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            if (isOn)
+            {
+                return;
+            }
             isOn = true;
             
             // Immediately destroy all homing missiles in the field
@@ -23,6 +45,7 @@ public class ForceField : MonoBehaviour
             
             StartCoroutine(ForceFieldEffect());
             animator.SetTrigger("On");
+            forceFieldEventInstance.start();
         }
     }
     
@@ -71,10 +94,14 @@ public class ForceField : MonoBehaviour
             if (missile != null) // Check if the object still exists
             {
                 missile.SetActive(false);
-                Destroy(missile);
                 Vector3 direction = (missile.transform.position - transform.position).normalized;
                 Instantiate(deflectMissile, missile.transform.position, Quaternion.LookRotation(direction+ new Vector3(0,-.2f,0)) );
-
+                GameObject bounceVFX = Instantiate(BounceVFX, missile.transform.position, Quaternion.LookRotation(direction));
+                Destroy(bounceVFX, 1f);
+                bounceEventInstance = RuntimeManager.CreateInstance(eventBounce);
+                RuntimeManager.AttachInstanceToGameObject(bounceEventInstance, deflectMissile.transform);
+                bounceEventInstance.start();
+                Destroy(missile);
             }
         }
         

@@ -69,7 +69,7 @@ MonoBehaviour:
   Path: Assets/Audio/Alien Siege_FMOD_V2/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639084157381379979
+  lastModified: 639086670944018004
   FileSizes:
   - Name: Desktop
     Value: 1632
@@ -89,7 +89,7 @@ MonoBehaviour:
   Path: Assets/Audio/Alien Siege_FMOD_V2/Build/Desktop/Sound Design.bank
   Name: Sound Design
   StudioPath: bank:/Sound Design
-  lastModified: 639084157385747978
+  lastModified: 639086670944054224
   FileSizes:
   - Name: Desktop
     Value: 2163488
@@ -245,7 +245,7 @@ MonoBehaviour:
   Path: Assets/Audio/Alien Siege_FMOD_V2/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639084157381390364
+  lastModified: 639086670944028901
   FileSizes:
   - Name: Desktop
     Value: 1494
@@ -280,7 +280,7 @@ MonoBehaviour:
   - {fileID: -6146147713119026302}
   StringsBanks:
   - {fileID: -875717417328539969}
-  cacheTime: 639084157385747978
+  cacheTime: 639086670944054224
   cacheVersion: 131635
 --- !u!114 &908141188493268945
 MonoBehaviour:

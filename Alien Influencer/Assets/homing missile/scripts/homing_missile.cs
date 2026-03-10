@@ -1,15 +1,25 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using FMODUnity;
+using FMOD.Studio;
 using UnityEngine;
+
 namespace HomingMissile
 {
 public class homing_missile : MonoBehaviour
 {
+    private enum MissileState
+    {
+        Idle,
+        Launching,
+        Armed,
+        Homing,
+        Destroyed
+    }
+
     public int speed = 60;
     public int downspeed = 30;
     public int damage = 35;
-    public bool fully_active = false;
     public int timebeforeactivition = 20;
     public int timebeforebursting = 40;
     public int timebeforedestruction = 450;
@@ -17,87 +27,216 @@ public class homing_missile : MonoBehaviour
     public GameObject target;
     public GameObject shooter;
     public Rigidbody projectilerb;
-    public bool isactive = false;
     public Vector3 sleepposition;
     public GameObject targetpointer;
     public float turnSpeed = 0.035f;
-    //public AudioSource launch_sound;
-    //public AudioSource thrust_sound;
     public GameObject smoke_obj;
     public ParticleSystem smoke;
     public GameObject smoke_position;
     public GameObject destroy_effect;
-    public event Action <GameObject> MissileDestroyed;
+
+    [SerializeField] private EventReference eventFly;
+    [SerializeField] private EventReference eventLaunch;
+
+    private EventInstance flyEventInstance;
+    private EventInstance launchEventInstance;
+    private MissileState state = MissileState.Idle;
+
+    public event Action<GameObject> MissileDestroyed;
+
     private void Start()
     {
-        projectilerb = this.GetComponent<Rigidbody>();
+        projectilerb = GetComponent<Rigidbody>();
     }
+
     public void call_destroy_effects()
     {
-        Instantiate(destroy_effect, transform.position, transform.rotation);
+        if (destroy_effect != null)
+        {
+            Instantiate(destroy_effect, transform.position, transform.rotation);
+        }
     }
+
     public void setmissile()
     {
         timealive = 0;
-        transform.position = shooter.transform.position;
+        state = MissileState.Launching;
+
+        if (shooter != null)
+        {
+            transform.position = shooter.transform.position;
+        }
+
+        launchEventInstance = RuntimeManager.CreateInstance(eventLaunch);
+        RuntimeManager.AttachInstanceToGameObject(launchEventInstance, transform);
+        launchEventInstance.start();
+
+        Debug.Log("Launching!");
     }
+
     public void DestroyMe()
     {
-        MissileDestroyed?.Invoke(this.gameObject);
-        isactive = false;
-        fully_active = false;
+        if (state == MissileState.Destroyed)
+        {
+            return;
+        }
+
+        state = MissileState.Destroyed;
         timealive = 0;
-        smoke.transform.SetParent(null);
-        smoke.Pause();
-        smoke.transform.position =sleepposition;
-        smoke.Play();
-        projectilerb.linearVelocity = Vector3.zero;
-        //thrust_sound.Pause();
+
+        MissileDestroyed?.Invoke(gameObject);
+
+        if (smoke != null)
+        {
+            smoke.transform.SetParent(null);
+            smoke.Pause();
+            smoke.transform.position = sleepposition;
+            smoke.Play();
+            Destroy(smoke.gameObject, 3f);
+        }
+
+        if (projectilerb != null)
+        {
+            projectilerb.linearVelocity = Vector3.zero;
+        }
+
         call_destroy_effects();
         transform.position = sleepposition;
-        Destroy(smoke.gameObject,3);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
+
     public void usemissile()
     {
-        //launch_sound.Play();
-        isactive = true;
         setmissile();
-
     }
-    void FixedUpdate()
+
+    private void FixedUpdate()
     {
-        if (isactive)
+        if (state == MissileState.Idle || state == MissileState.Destroyed)
         {
-            if (!target.activeInHierarchy)
-            {
-                DestroyMe();
-            }
-            if (timealive == timebeforeactivition)
-            {
-                fully_active = true;
-                //thrust_sound.Play();
-            }
-            timealive++;
-            if (timealive < timebeforebursting)
-            {
-                projectilerb.linearVelocity = transform.up * -1 * downspeed;
-            }
-            if (timealive == timebeforebursting)
-            {
-                smoke=(Instantiate(smoke_obj,smoke_position.transform.position,smoke_position.transform.rotation)).GetComponent<ParticleSystem>();
-                smoke.Play();
-                smoke.transform.SetParent(this.transform);
-            }
-            if (timealive == timebeforedestruction)
-            {
-                DestroyMe();
-            }
-            if (timealive >= timebeforebursting && timealive < timebeforedestruction)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetpointer.transform.rotation, turnSpeed);
-                projectilerb.linearVelocity = transform.forward * speed;
-            }
+            return;
+        }
+
+        if (target == null || !target.activeInHierarchy)
+        {
+            DestroyMe();
+            return;
+        }
+
+        timealive++;
+
+        if (timealive >= timebeforedestruction)
+        {
+            DestroyMe();
+            return;
+        }
+
+        switch (state)
+        {
+            case MissileState.Launching:
+                HandleLaunching();
+                break;
+            case MissileState.Armed:
+                HandleArmed();
+                break;
+            case MissileState.Homing:
+                HandleHoming();
+                break;
+        }
+    }
+
+    private void HandleLaunching()
+    {
+        if (projectilerb != null)
+        {
+            projectilerb.linearVelocity = -transform.up * downspeed;
+        }
+
+        if (timealive > timebeforeactivition)
+        {
+            EnterArmedState();
+        }
+    }
+
+    private void HandleArmed()
+    {
+        if (projectilerb != null)
+        {
+            projectilerb.linearVelocity = -transform.up * downspeed;
+        }
+
+        if (timealive >= timebeforebursting)
+        {
+            SpawnSmoke();
+            EnterHomingState();
+        }
+    }
+
+    private void HandleHoming()
+    {
+        if (targetpointer != null)
+        {
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetpointer.transform.rotation,
+                turnSpeed);
+        }
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+        FMOD.RESULT result = flyEventInstance.setParameterByName("Distance", distance);
+        if (result != FMOD.RESULT.OK)
+        {
+            Debug.LogWarning($"[FMODLoopedSound] Could not set parameter '{"Distance"}': {result}");
+        }
+
+        if (projectilerb != null)
+        {
+            projectilerb.linearVelocity = transform.forward * speed;
+        }
+    }
+
+    private void EnterArmedState()
+    {
+        if (state != MissileState.Launching)
+        {
+            return;
+        }
+
+        state = MissileState.Armed;
+        Debug.Log("Armed!");
+    }
+
+    private void EnterHomingState()
+    {
+        if (state == MissileState.Homing)
+        {
+            return;
+        }
+
+        state = MissileState.Homing;
+
+        Debug.Log("Flying!");
+        flyEventInstance = RuntimeManager.CreateInstance(eventFly);
+        RuntimeManager.AttachInstanceToGameObject(flyEventInstance, transform);
+        flyEventInstance.start();
+    }
+
+    private void SpawnSmoke()
+    {
+        if (smoke_obj == null || smoke_position == null || smoke != null)
+        {
+            return;
+        }
+
+        smoke = Instantiate(
+            smoke_obj,
+            smoke_position.transform.position,
+            smoke_position.transform.rotation)
+            .GetComponent<ParticleSystem>();
+
+        if (smoke != null)
+        {
+            smoke.Play();
+            smoke.transform.SetParent(transform);
         }
     }
 }

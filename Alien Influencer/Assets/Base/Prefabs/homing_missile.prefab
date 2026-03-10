@@ -89,7 +89,6 @@ GameObject:
   - component: {fileID: 6573806827650273692}
   - component: {fileID: 6573806827650273689}
   - component: {fileID: 1858012472242831238}
-  - component: {fileID: -4110588587534030881}
   m_Layer: 6
   m_Name: homing_missile
   m_TagString: homing_missile
@@ -192,12 +191,24 @@ MonoBehaviour:
   sleepposition: {x: 200, y: 200, z: 200}
   targetpointer: {fileID: 6573806826466953269}
   turnSpeed: 0.05
-  launch_sound: {fileID: 0}
-  thrust_sound: {fileID: 0}
   smoke_obj: {fileID: 193902, guid: 9b967c5de3c01184889d94aa4f20fd19, type: 3}
   smoke: {fileID: 19894922, guid: 9b967c5de3c01184889d94aa4f20fd19, type: 3}
   smoke_position: {fileID: 6573806826555785937}
   destroy_effect: {fileID: 4868538168526089871, guid: 7bcf29c8fbb433f4cbc27a4ae6ac2b79, type: 3}
+  eventFly:
+    Guid:
+      Data1: 618988034
+      Data2: 1185777851
+      Data3: 1250045851
+      Data4: -78027969
+    Path: event:/Sound Design/Weapons/City Missile Flight
+  eventLaunch:
+    Guid:
+      Data1: -1786157305
+      Data2: 1080776382
+      Data3: -103655292
+      Data4: 940400377
+    Path: event:/Sound Design/Weapons/City Missile Launch
 --- !u!114 &1858012472242831238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,37 +267,6 @@ MonoBehaviour:
   target4Size: {x: 1, y: 1, z: 1}
   invert: 0
   noise: 0
---- !u!114 &-4110588587534030881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6573806827650273376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
 --- !u!1001 &6471604475035556520
 PrefabInstance:
   m_ObjectHideFlags: 0
