@@ -34,6 +34,7 @@ public class homing_missile : MonoBehaviour
     public ParticleSystem smoke;
     public GameObject smoke_position;
     public GameObject destroy_effect;
+    public float distanceToUFO = 10;
 
     [SerializeField] private EventReference eventFly;
     [SerializeField] private EventReference eventLaunch;
@@ -181,8 +182,8 @@ public class homing_missile : MonoBehaviour
                 targetpointer.transform.rotation,
                 turnSpeed);
         }
-        float distance = Vector3.Distance(transform.position, target.transform.position);
-        FMOD.RESULT result = flyEventInstance.setParameterByName("Distance", distance);
+        distanceToUFO = Vector3.Distance(transform.position, target.transform.position);
+        FMOD.RESULT result = flyEventInstance.setParameterByName("Distance", distanceToUFO);
         if (result != FMOD.RESULT.OK)
         {
             Debug.LogWarning($"[FMODLoopedSound] Could not set parameter '{"Distance"}': {result}");
