@@ -162,7 +162,12 @@ public class UFOLaser : MonoBehaviour
     private void PlayMissileSound()
     {
         
-        //missileAudioSource.PlayOneShot(missileSound, weaponVolume);
+        missileEventInstance.getPlaybackState(out var playbackState);
+
+        if (playbackState != PLAYBACK_STATE.PLAYING)
+        {
+            missileEventInstance.start();
+        }
     }
 
     private IEnumerator FadeAudio(AudioSource audioSource, float startVolume, float targetVolume, float duration)

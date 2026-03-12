@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 public class Building : MonoBehaviour
 {
     #region Variables
@@ -28,6 +30,11 @@ public class Building : MonoBehaviour
     public FMODUnity.EventReference damagedSoundEvent;
     FMODUnity.EmitterGameEvent audioSource;
     */
+    [SerializeField] private EventReference eventBuildingDestroyedRouble3D;
+    [SerializeField] private EventReference eventBuildingDestrouyed2D;
+    [SerializeField] private EventReference eventDamaged;
+    private EventInstance buildingDestroyedRouble3DEventInstance;   
+    private EventInstance buildingDestroyed2DEventInstance;
     ParticleSystem sparksParticles;
 
     #endregion
@@ -46,7 +53,8 @@ public class Building : MonoBehaviour
         {
             sparksParticles = damagedParticles.transform.GetChild(0).GetComponent<ParticleSystem>();
         }
-
+        buildingDestroyedRouble3DEventInstance = RuntimeManager.CreateInstance(eventBuildingDestroyedRouble3D);
+        buildingDestroyed2DEventInstance = RuntimeManager.CreateInstance(eventBuildingDestrouyed2D);
     }
     void Update()
     {
@@ -96,8 +104,8 @@ public class Building : MonoBehaviour
     }
     void StartDestroyed()
     {
-        //FMODUnity.RuntimeManager.PlayOneShot(buildingDestroyedSoundEvent, transform.position);
-        //audioSource.PlayEvent..(buildingDestroyedSound);
+        buildingDestroyedRouble3DEventInstance.start();
+        buildingDestroyed2DEventInstance.start();
         damageBarAnimator.SetTrigger("Close");
 
         destroyedParticles.gameObject.SetActive(true);
@@ -118,7 +126,6 @@ public class Building : MonoBehaviour
 
     public void AddDamage(float amount)
     {
-        //audioSource.PlayOneShot(damagedSound,.1f);
         if (CurrentState == BuildingState.IsDestroyed)
         {
             return;

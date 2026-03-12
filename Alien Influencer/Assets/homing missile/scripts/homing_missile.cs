@@ -35,6 +35,7 @@ public class homing_missile : MonoBehaviour
     public GameObject smoke_position;
     public GameObject destroy_effect;
     public float distanceToUFO = 10;
+    public float parameterMaxDistance = 10;
 
     [SerializeField] private EventReference eventFly;
     [SerializeField] private EventReference eventLaunch;
@@ -48,6 +49,7 @@ public class homing_missile : MonoBehaviour
     private void Start()
     {
         projectilerb = GetComponent<Rigidbody>();
+        flyEventInstance.getParameterByName("Distance", out parameterMaxDistance);
     }
 
     public void call_destroy_effects()
@@ -75,8 +77,13 @@ public class homing_missile : MonoBehaviour
         Debug.Log("Launching!");
     }
 
+    public void StopFlySound()
+    {
+        flyEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); 
+    }
     public void DestroyMe()
     {
+        flyEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); 
         if (state == MissileState.Destroyed)
         {
             return;
@@ -89,11 +96,11 @@ public class homing_missile : MonoBehaviour
 
         if (smoke != null)
         {
-            smoke.transform.SetParent(null);
+            //smoke.transform.SetParent(null);
             smoke.Pause();
             smoke.transform.position = sleepposition;
-            smoke.Play();
-            Destroy(smoke.gameObject, 3f);
+            //smoke.Play();
+            Destroy(smoke.gameObject, 1f);
         }
 
         if (projectilerb != null)
@@ -183,6 +190,11 @@ public class homing_missile : MonoBehaviour
                 turnSpeed);
         }
         distanceToUFO = Vector3.Distance(transform.position, target.transform.position);
+        
+        if(distanceToUFO < parameterMaxDistance)
+        {
+            flyEventInstance.setParameterByName("Distance", distanceToUFO);
+        }
         FMOD.RESULT result = flyEventInstance.setParameterByName("Distance", distanceToUFO);
         if (result != FMOD.RESULT.OK)
         {

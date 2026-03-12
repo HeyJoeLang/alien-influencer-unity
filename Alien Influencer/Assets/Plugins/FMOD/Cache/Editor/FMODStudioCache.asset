@@ -1,5 +1,25 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9117698157952175454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Sound Design.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Alien Siege_FMOD_V2/Build/Desktop/Sound Design.bank
+  Name: Sound Design
+  StudioPath: bank:/Sound Design
+  lastModified: 639089133285741365
+  FileSizes:
+  - Name: Desktop
+    Value: 2661152
+  Exists: 1
 --- !u!114 &-9047082341873802515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19,7 +39,7 @@ MonoBehaviour:
     Data3: -852824134
     Data4: 679680606
   Banks:
-  - {fileID: 7670831515567984195}
+  - {fileID: -9117698157952175454}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -46,7 +66,7 @@ MonoBehaviour:
     Data3: 1250045851
     Data4: -78027969
   Banks:
-  - {fileID: 7670831515567984195}
+  - {fileID: -9117698157952175454}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -74,7 +94,7 @@ MonoBehaviour:
     Data3: -1544257861
     Data4: -1913715414
   Banks:
-  - {fileID: 7670831515567984195}
+  - {fileID: -9117698157952175454}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -102,7 +122,7 @@ MonoBehaviour:
     Data3: -207213133
     Data4: 717380845
   Banks:
-  - {fileID: 7670831515567984195}
+  - {fileID: -9117698157952175454}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -177,7 +197,7 @@ MonoBehaviour:
     Data3: 1483338899
     Data4: 1460919081
   Banks:
-  - {fileID: 7670831515567984195}
+  - {fileID: -9117698157952175454}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -204,7 +224,7 @@ MonoBehaviour:
     Data3: -1797160011
     Data4: -1600001449
   Banks:
-  - {fileID: 7670831515567984195}
+  - {fileID: -9117698157952175454}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -212,6 +232,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 27820
+--- !u!114 &-3978771951026605887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Alien Siege_FMOD_V2/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 639089133285601340
+  FileSizes:
+  - Name: Desktop
+    Value: 2434
+  Exists: 1
 --- !u!114 &-3885535777988886655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +271,7 @@ MonoBehaviour:
     Data3: -1699624537
     Data4: 88984833
   Banks:
-  - {fileID: 7670831515567984195}
+  - {fileID: -9117698157952175454}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -258,7 +298,7 @@ MonoBehaviour:
     Data3: -1681583715
     Data4: 1233793444
   Banks:
-  - {fileID: 7670831515567984195}
+  - {fileID: -9117698157952175454}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -267,6 +307,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 29385
+--- !u!114 &-3432828339527208550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Alien Siege_FMOD_V2/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 639089133285611366
+  FileSizes:
+  - Name: Desktop
+    Value: 1712
+  Exists: 1
 --- !u!114 &-2151460126904427357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,9 +364,9 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 7375552323367971767}
-  - {fileID: 316116980464704033}
-  - {fileID: 7670831515567984195}
+  - {fileID: -3432828339527208550}
+  - {fileID: -3978771951026605887}
+  - {fileID: -9117698157952175454}
   EditorEvents:
   - {fileID: -3697523811228452049}
   - {fileID: -5064993966331094638}
@@ -321,31 +381,11 @@ MonoBehaviour:
   - {fileID: 6570877420859791548}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 316116980464704033}
+  - {fileID: -3978771951026605887}
   StringsBanks:
-  - {fileID: 7375552323367971767}
-  cacheTime: 639088599314289228
+  - {fileID: -3432828339527208550}
+  cacheTime: 639089133285741365
   cacheVersion: 131635
---- !u!114 &316116980464704033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../../Desktop/Alien Siege_FMOD_V2/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 639088465032974030
-  FileSizes:
-  - Name: Desktop
-    Value: 2434
-  Exists: 1
 --- !u!114 &908141188493268945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +453,7 @@ MonoBehaviour:
     Data3: -1779625596
     Data4: 2090859158
   Banks:
-  - {fileID: 7670831515567984195}
+  - {fileID: -9117698157952175454}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -422,46 +462,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 14500
---- !u!114 &7375552323367971767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../../Desktop/Alien Siege_FMOD_V2/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 639088465032983158
-  FileSizes:
-  - Name: Desktop
-    Value: 1712
-  Exists: 1
---- !u!114 &7670831515567984195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Sound Design.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../../Desktop/Alien Siege_FMOD_V2/Build/Desktop/Sound Design.bank
-  Name: Sound Design
-  StudioPath: bank:/Sound Design
-  lastModified: 639088599314289228
-  FileSizes:
-  - Name: Desktop
-    Value: 2661152
-  Exists: 1
 --- !u!114 &8303841093537700330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,7 +481,7 @@ MonoBehaviour:
     Data3: 799222679
     Data4: -554873431
   Banks:
-  - {fileID: 7670831515567984195}
+  - {fileID: -9117698157952175454}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -508,7 +508,7 @@ MonoBehaviour:
     Data3: -1099604567
     Data4: -1252222320
   Banks:
-  - {fileID: 7670831515567984195}
+  - {fileID: -9117698157952175454}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1

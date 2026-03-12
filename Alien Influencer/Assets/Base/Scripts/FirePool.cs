@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class FirePool : MonoBehaviour
 {
     [Header("Fire Pool Settings")]
@@ -12,7 +11,7 @@ public class FirePool : MonoBehaviour
     private List<GameObject> activeFires;
     private int currentIndex = 0;
     private GameObject firePoolContainer;
-    
+
     void Start()
     {
         InitializePool();
@@ -64,9 +63,12 @@ public class FirePool : MonoBehaviour
         }
         
         // Position and activate the fire object
+        
+        fireToActivate.GetComponent<Fire>().StartFire();
         fireToActivate.transform.position = location;
         fireToActivate.transform.SetParent(parent);
         fireToActivate.SetActive(true);
+
         
         // Add to active fires list
         activeFires.Add(fireToActivate);
@@ -75,7 +77,32 @@ public class FirePool : MonoBehaviour
     // Called by FireObjectCallback when a fire object is disabled
     public void OnFireObjectDisabled(GameObject fireObject)
     {
+        // If activeSelf is still true, this OnDisable was triggered by a parent being
+        // deactivated rather than an explicit SetActive(false) on the fire itself.
+        // Unity forbids SetParent while a parent is mid-activation/deactivation, so defer.
+        if (fireObject.activeSelf)
+        {
+            StartCoroutine(ReturnToPoolNextFrame(fireObject));
+            return;
+        }
+
         fireObject.transform.SetParent(firePoolContainer.transform);
+        activeFires.Remove(fireObject);
+        firePool.Enqueue(fireObject);
+    }
+
+    private IEnumerator ReturnToPoolNextFrame(GameObject fireObject)
+    {
+        yield return null;
+
+        if (fireObject == null) yield break;
+
+        // Suppress the recursive OnDisable callback triggered by SetActive(false) below
+        FireObjectCallback callback = fireObject.GetComponent<FireObjectCallback>();
+        if (callback != null) callback.returningToPool = true;
+
+        fireObject.transform.SetParent(firePoolContainer.transform);
+        fireObject.SetActive(false);
         activeFires.Remove(fireObject);
         firePool.Enqueue(fireObject);
     }
@@ -83,6 +110,7 @@ public class FirePool : MonoBehaviour
     // Optional: Method to return a fire object to the pool manually if needed
     private void ReturnFireToPool(GameObject fireObject)
     {
+        fireObject.GetComponent<Fire>().StopFire();
         fireObject.SetActive(false);
         // OnFireObjectDisabled will be called automatically when SetActive(false) is called
     }
@@ -102,14 +130,24 @@ public class FirePool : MonoBehaviour
 public class FireObjectCallback : MonoBehaviour
 {
     private FirePool parentPool;
-    
+
+    // Set to true before an intentional SetActive(false) during deferred pool return
+    // so OnDisable doesn't re-enter pool logic for that call.
+    [HideInInspector] public bool returningToPool = false;
+
     public void Initialize(FirePool pool)
     {
         parentPool = pool;
     }
-    
+
     void OnDisable()
     {
+        if (returningToPool)
+        {
+            returningToPool = false;
+            return;
+        }
+
         if (parentPool != null)
         {
             parentPool.OnFireObjectDisabled(gameObject);

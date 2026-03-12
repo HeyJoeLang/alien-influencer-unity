@@ -60,8 +60,27 @@ MonoBehaviour:
   destroyedParticles: {fileID: 8281489246298987465}
   damageBarAnimator: {fileID: 2898087470032890657}
   damageProgressBar: {fileID: 1075496719375530877}
-  buildingDestroyedSound: {fileID: 8300000, guid: 5ff823f546b52574a931e1d9b44290a6, type: 3}
-  damagedSound: {fileID: 8300000, guid: 5b049947d7d290341bb48b254822a730, type: 3}
+  eventBuildingDestroyedRouble3D:
+    Guid:
+      Data1: 803405029
+      Data2: 1328070485
+      Data3: -1099604567
+      Data4: -1252222320
+    Path: event:/Sound Design/Destruction/Building Debris
+  eventBuildingDestrouyed2D:
+    Guid:
+      Data1: -2002372430
+      Data2: 1118255239
+      Data3: -1699624537
+      Data4: 88984833
+    Path: event:/Sound Design/Destruction/Building Explosion
+  eventDamaged:
+    Guid:
+      Data1: 1644149843
+      Data2: 1303272628
+      Data3: -1779625596
+      Data4: 2090859158
+    Path: event:/Sound Design/Destruction/Fire
 --- !u!114 &1055423845013398243
 MonoBehaviour:
   m_ObjectHideFlags: 0

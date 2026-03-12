@@ -93,6 +93,7 @@ public class ForceField : MonoBehaviour
         {
             if (missile != null) // Check if the object still exists
             {
+                missile.GetComponent<HomingMissile.homing_missile>().StopFlySound();
                 missile.SetActive(false);
                 Vector3 direction = (missile.transform.position - transform.position).normalized;
                 Instantiate(deflectMissile, missile.transform.position, Quaternion.LookRotation(direction+ new Vector3(0,-.2f,0)) );
