@@ -90,3 +90,7 @@ Alien Influencer/.vscode/*
 # Log files can be ignored.
 /Alien Influencer/fmod_editor.log
 
+
+#Advance Dissolve Materials 
+/Alien Influencer/Assets/Amazing Assets/Advanced Dissolve/Example Scenes/Tutorial Scenes/Files/Materials/*.mat
+/Alien Influencer/Assets/Polygon-City Megapolis/Materials/*.mat
