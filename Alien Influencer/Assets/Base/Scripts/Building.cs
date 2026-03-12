@@ -35,8 +35,9 @@ public class Building : MonoBehaviour
     [SerializeField] private EventReference eventDamaged;
     private EventInstance buildingDestroyedRouble3DEventInstance;   
     private EventInstance buildingDestroyed2DEventInstance;
+    private EventInstance damagedEventInstance;
     ParticleSystem sparksParticles;
-
+    float distance = 0f;
     #endregion
     #region Unity Methods
 
@@ -55,6 +56,7 @@ public class Building : MonoBehaviour
         }
         buildingDestroyedRouble3DEventInstance = RuntimeManager.CreateInstance(eventBuildingDestroyedRouble3D);
         buildingDestroyed2DEventInstance = RuntimeManager.CreateInstance(eventBuildingDestrouyed2D);
+        damagedEventInstance = RuntimeManager.CreateInstance(eventDamaged);
     }
     void Update()
     {
@@ -98,9 +100,15 @@ public class Building : MonoBehaviour
         UpdateParticleEmissionRate();
 
         CurrentState = BuildingState.IsDamaged;
+        damagedEventInstance.start();
     }
     void IsDamaged()
     {
+        distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+        if(distance < 10f)
+        {
+            damagedEventInstance.setParameterByName("Distance", distance);
+        }
     }
     void StartDestroyed()
     {

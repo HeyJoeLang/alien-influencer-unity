@@ -10,6 +10,8 @@ public class MissileSpawner : MonoBehaviour
     public float minimumFiringInterval = 0.5f; // Fastest possible firing rate
     public float initialTimeAmount = 100f; // Set this to match your initial game time
     public DifficultyType difficultyType = DifficultyType.Exponential;
+    public GameObject launch_effect_prefab;
+    private ParticleSystem launch_effect;
     
     private float nextMissileTime;
     
@@ -33,6 +35,8 @@ public class MissileSpawner : MonoBehaviour
         {
             initialTimeAmount = GameManager.Instance.timeRemaining;
         }
+        launch_effect_prefab = Instantiate(launch_effect_prefab, transform.position, transform.rotation);
+        launch_effect = launch_effect_prefab.GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -141,6 +145,8 @@ public class MissileSpawner : MonoBehaviour
         
         if (closestLauncher != null)
         {
+            launch_effect_prefab.transform.position = closestLauncher.transform.position;
+            launch_effect.Play();
             closestLauncher.shoot_missile();
             Debug.Log($"Fired missile from launcher at position: {closestLauncher.transform.position} | Time Progress: {GetTimeProgress():P1}");
         }
