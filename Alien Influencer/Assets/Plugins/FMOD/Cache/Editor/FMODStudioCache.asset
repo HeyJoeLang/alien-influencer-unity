@@ -19,7 +19,7 @@ MonoBehaviour:
     Data3: -852824134
     Data4: 679680606
   Banks:
-  - {fileID: -5642201395243091220}
+  - {fileID: 7670831515567984195}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -46,54 +46,15 @@ MonoBehaviour:
     Data3: 1250045851
     Data4: -78027969
   Banks:
-  - {fileID: -5642201395243091220}
+  - {fileID: 7670831515567984195}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 5635825436852434242}
   MinDistance: 1
   MaxDistance: 20
   Length: 12000
---- !u!114 &-6146147713119026302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/Alien Siege_FMOD_V2/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 639086670944018004
-  FileSizes:
-  - Name: Desktop
-    Value: 1632
-  Exists: 1
---- !u!114 &-5642201395243091220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Sound Design.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/Alien Siege_FMOD_V2/Build/Desktop/Sound Design.bank
-  Name: Sound Design
-  StudioPath: bank:/Sound Design
-  lastModified: 639086670944054224
-  FileSizes:
-  - Name: Desktop
-    Value: 2163488
-  Exists: 1
 --- !u!114 &-5332997634111283545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,19 +69,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Sound Design/Weapons/City Missile Launch
   Guid:
-    Data1: -1786157305
-    Data2: 1080776382
-    Data3: -103655292
-    Data4: 940400377
+    Data1: -1305765418
+    Data2: 1165011075
+    Data3: -1544257861
+    Data4: -1913715414
   Banks:
-  - {fileID: -5642201395243091220}
+  - {fileID: 7670831515567984195}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -2151460126904427357}
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 1903
 --- !u!114 &-5064993966331094638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +102,7 @@ MonoBehaviour:
     Data3: -207213133
     Data4: 717380845
   Banks:
-  - {fileID: -5642201395243091220}
+  - {fileID: 7670831515567984195}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -148,6 +110,54 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-4749284562964860562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Building Debris/Distance
+  m_EditorClassIdentifier: 
+  Name: Distance
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 2303154948
+    data2: 1993089190
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-4490682224429994942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fire/Distance
+  m_EditorClassIdentifier: 
+  Name: Distance
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 2303154948
+    data2: 1993089190
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-4402694003248165327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +177,7 @@ MonoBehaviour:
     Data3: 1483338899
     Data4: 1460919081
   Banks:
-  - {fileID: -5642201395243091220}
+  - {fileID: 7670831515567984195}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -194,7 +204,7 @@ MonoBehaviour:
     Data3: -1797160011
     Data4: -1600001449
   Banks:
-  - {fileID: -5642201395243091220}
+  - {fileID: 7670831515567984195}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -202,6 +212,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 27820
+--- !u!114 &-3885535777988886655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/Destruction/Building Explosion
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/Destruction/Building Explosion
+  Guid:
+    Data1: -2002372430
+    Data2: 1118255239
+    Data3: -1699624537
+    Data4: 88984833
+  Banks:
+  - {fileID: 7670831515567984195}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-3697523811228452049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +258,7 @@ MonoBehaviour:
     Data3: -1681583715
     Data4: 1233793444
   Banks:
-  - {fileID: -5642201395243091220}
+  - {fileID: 7670831515567984195}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -229,8 +266,8 @@ MonoBehaviour:
   - {fileID: 908141188493268945}
   MinDistance: 1
   MaxDistance: 20
-  Length: 29760
---- !u!114 &-875717417328539969
+  Length: 29385
+--- !u!114 &-2151460126904427357
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,16 +276,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/City Missile Launch/Distance
   m_EditorClassIdentifier: 
-  Path: Assets/Audio/Alien Siege_FMOD_V2/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 639086670944028901
-  FileSizes:
-  - Name: Desktop
-    Value: 1494
+  Name: Distance
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 2303154948
+    data2: 1993089190
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -263,9 +304,9 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -875717417328539969}
-  - {fileID: -6146147713119026302}
-  - {fileID: -5642201395243091220}
+  - {fileID: 7375552323367971767}
+  - {fileID: 316116980464704033}
+  - {fileID: 7670831515567984195}
   EditorEvents:
   - {fileID: -3697523811228452049}
   - {fileID: -5064993966331094638}
@@ -275,13 +316,36 @@ MonoBehaviour:
   - {fileID: -9047082341873802515}
   - {fileID: -4272922718277114946}
   - {fileID: -4402694003248165327}
+  - {fileID: -3885535777988886655}
+  - {fileID: 8579368430094485070}
+  - {fileID: 6570877420859791548}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -6146147713119026302}
+  - {fileID: 316116980464704033}
   StringsBanks:
-  - {fileID: -875717417328539969}
-  cacheTime: 639086670944054224
+  - {fileID: 7375552323367971767}
+  cacheTime: 639088599314289228
   cacheVersion: 131635
+--- !u!114 &316116980464704033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../Desktop/Alien Siege_FMOD_V2/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 639088465032974030
+  FileSizes:
+  - Name: Desktop
+    Value: 2434
+  Exists: 1
 --- !u!114 &908141188493268945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +370,98 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &5635825436852434242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/City Missile Flight/Distance
+  m_EditorClassIdentifier: 
+  Name: Distance
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 2303154948
+    data2: 1993089190
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &6570877420859791548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/Destruction/Fire
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/Destruction/Fire
+  Guid:
+    Data1: 1644149843
+    Data2: 1303272628
+    Data3: -1779625596
+    Data4: 2090859158
+  Banks:
+  - {fileID: 7670831515567984195}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -4490682224429994942}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 14500
+--- !u!114 &7375552323367971767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../Desktop/Alien Siege_FMOD_V2/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 639088465032983158
+  FileSizes:
+  - Name: Desktop
+    Value: 1712
+  Exists: 1
+--- !u!114 &7670831515567984195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Sound Design.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../Desktop/Alien Siege_FMOD_V2/Build/Desktop/Sound Design.bank
+  Name: Sound Design
+  StudioPath: bank:/Sound Design
+  lastModified: 639088599314289228
+  FileSizes:
+  - Name: Desktop
+    Value: 2661152
+  Exists: 1
 --- !u!114 &8303841093537700330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,11 +481,39 @@ MonoBehaviour:
     Data3: 799222679
     Data4: -554873431
   Banks:
-  - {fileID: -5642201395243091220}
+  - {fileID: 7670831515567984195}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8579368430094485070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/Destruction/Building Debris
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/Destruction/Building Debris
+  Guid:
+    Data1: 803405029
+    Data2: 1328070485
+    Data3: -1099604567
+    Data4: -1252222320
+  Banks:
+  - {fileID: 7670831515567984195}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -4749284562964860562}
   MinDistance: 1
   MaxDistance: 20
   Length: 0

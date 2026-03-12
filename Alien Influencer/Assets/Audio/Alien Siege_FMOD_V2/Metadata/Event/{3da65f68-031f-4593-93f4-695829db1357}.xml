@@ -72,6 +72,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{2352aca5-19d8-4aef-ab58-f702b3d97adc}">
+		<property name="volume">
+			<value>-16.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{64ab863e-e32d-4d55-82a8-a8c097671abf}</destination>
 		</relationship>
@@ -100,6 +103,8 @@
 	<object class="MixerBusEffectChain" id="{64ab863e-e32d-4d55-82a8-a8c097671abf}">
 		<relationship name="effects">
 			<destination>{7c08b070-17b5-4f51-a9e3-caf214b26db9}</destination>
+			<destination>{7bfaf283-fdad-4a82-b70f-e01f1e480107}</destination>
+			<destination>{3aa16291-c088-46c2-83d0-4db62e963b7f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{9464ea73-7cc0-483e-9a5f-53289b066a7c}" />
@@ -109,9 +114,6 @@
 		</relationship>
 	</object>
 	<object class="MultiSound" id="{29fd4a0b-43bd-488b-8784-e9d4428e3937}">
-		<property name="volume">
-			<value>-3.5</value>
-		</property>
 		<property name="pitch">
 			<value>-1.20000005</value>
 		</property>
@@ -126,6 +128,30 @@
 	</object>
 	<object class="MixerBusFader" id="{12bc3a32-f5d9-459d-9bf8-67692066c042}" />
 	<object class="MixerBusFader" id="{7c08b070-17b5-4f51-a9e3-caf214b26db9}" />
+	<object class="MultibandEqEffect" id="{7bfaf283-fdad-4a82-b70f-e01f1e480107}">
+		<property name="filterTypeA">
+			<value>6</value>
+		</property>
+		<property name="filterTypeC">
+			<value>9</value>
+		</property>
+		<property name="frequencyA">
+			<value>69.3301544</value>
+		</property>
+		<property name="frequencyC">
+			<value>140.236496</value>
+		</property>
+		<property name="qualityA">
+			<value>0.486691207</value>
+		</property>
+		<property name="qualityC">
+			<value>1.10000002</value>
+		</property>
+		<property name="gainC">
+			<value>-4.84290314</value>
+		</property>
+	</object>
+	<object class="LoudnessMeter" id="{3aa16291-c088-46c2-83d0-4db62e963b7f}" />
 	<object class="RandomizerModulator" id="{99c550ea-cc38-47ea-bb35-46cd749f8a54}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>pitch</value>

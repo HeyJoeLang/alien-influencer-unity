@@ -179,7 +179,6 @@ MonoBehaviour:
   speed: 10
   downspeed: -8
   damage: 10
-  fully_active: 0
   timebeforeactivition: 20
   timebeforebursting: 40
   timebeforedestruction: 1000
@@ -187,7 +186,6 @@ MonoBehaviour:
   target: {fileID: 0}
   shooter: {fileID: 0}
   projectilerb: {fileID: 6573806827650273691}
-  isactive: 0
   sleepposition: {x: 200, y: 200, z: 200}
   targetpointer: {fileID: 6573806826466953269}
   turnSpeed: 0.05
@@ -195,6 +193,7 @@ MonoBehaviour:
   smoke: {fileID: 19894922, guid: 9b967c5de3c01184889d94aa4f20fd19, type: 3}
   smoke_position: {fileID: 6573806826555785937}
   destroy_effect: {fileID: 4868538168526089871, guid: 7bcf29c8fbb433f4cbc27a4ae6ac2b79, type: 3}
+  distanceToUFO: 10
   eventFly:
     Guid:
       Data1: 618988034
@@ -204,10 +203,10 @@ MonoBehaviour:
     Path: event:/Sound Design/Weapons/City Missile Flight
   eventLaunch:
     Guid:
-      Data1: -1786157305
-      Data2: 1080776382
-      Data3: -103655292
-      Data4: 940400377
+      Data1: -1305765418
+      Data2: 1165011075
+      Data3: -1544257861
+      Data4: -1913715414
     Path: event:/Sound Design/Weapons/City Missile Launch
 --- !u!114 &1858012472242831238
 MonoBehaviour:
