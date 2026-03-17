@@ -64,7 +64,7 @@ public class FirePool : MonoBehaviour
         
         // Position and activate the fire object
         
-        fireToActivate.GetComponent<Fire>().StartFire();
+        //fireToActivate.GetComponent<Fire>().StartFire();
         fireToActivate.transform.position = location;
         fireToActivate.transform.SetParent(parent);
         fireToActivate.SetActive(true);
@@ -110,7 +110,7 @@ public class FirePool : MonoBehaviour
     // Optional: Method to return a fire object to the pool manually if needed
     private void ReturnFireToPool(GameObject fireObject)
     {
-        fireObject.GetComponent<Fire>().StopFire();
+        //fireObject.GetComponent<Fire>().StopFire();
         fireObject.SetActive(false);
         // OnFireObjectDisabled will be called automatically when SetActive(false) is called
     }

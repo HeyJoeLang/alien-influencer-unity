@@ -9677,7 +9677,6 @@ GameObject:
   - component: {fileID: 98607434084238287}
   - component: {fileID: 686306083764514543}
   - component: {fileID: 5351176799301030862}
-  - component: {fileID: 3571399278874848694}
   m_Layer: 0
   m_Name: Aura Burn
   m_TagString: Untagged
@@ -14502,22 +14501,3 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &3571399278874848694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7455372202216957759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6426e844d26bda348bc264e772ca1e43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventFire:
-    Guid:
-      Data1: 1644149843
-      Data2: 1303272628
-      Data3: -1779625596
-      Data4: 2090859158
-    Path: event:/Sound Design/Destruction/Fire
