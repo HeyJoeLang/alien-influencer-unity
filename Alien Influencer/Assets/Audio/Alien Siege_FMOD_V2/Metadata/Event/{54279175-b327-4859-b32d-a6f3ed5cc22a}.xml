@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{54279175-b327-4859-b32d-a6f3ed5cc22a}">
+		<property name="color">
+			<value>Green</value>
+		</property>
 		<property name="name">
 			<value>UFO Force Field Activation</value>
 		</property>
@@ -104,6 +107,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{70c04f66-ddf5-4be5-b1a2-3407e41ebc22}" />
 	<object class="MultiSound" id="{41596dc3-e453-495c-b752-0a8758582e52}">
+		<relationship name="modulators">
+			<destination>{1f075e1c-69a7-4564-8abd-076b157e78b0}</destination>
+		</relationship>
 		<relationship name="sounds">
 			<destination>{811a7cf5-e3ab-44b7-930c-6d4d7e51de73}</destination>
 			<destination>{e180f669-c129-4a0c-93b1-771a72995d90}</destination>
@@ -114,10 +120,21 @@
 	<object class="MixerBusFader" id="{4f0a3c33-80bd-4cbb-b091-83acf1be28dd}" />
 	<object class="DelayEffect" id="{009c1165-8820-4f9f-a4d7-116870131e4d}">
 		<property name="delay">
-			<value>22</value>
+			<value>50</value>
+		</property>
+		<property name="feedback">
+			<value>67.5</value>
 		</property>
 		<property name="level">
 			<value>-13</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{1f075e1c-69a7-4564-8abd-076b157e78b0}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>6</value>
 		</property>
 	</object>
 	<object class="SingleSound" id="{811a7cf5-e3ab-44b7-930c-6d4d7e51de73}">

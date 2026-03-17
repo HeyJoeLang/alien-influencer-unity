@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{24e50202-88bb-46ad-9b2f-824a3f6359fb}">
+		<property name="color">
+			<value>Red</value>
+		</property>
 		<property name="name">
 			<value>City Missile Flight</value>
 		</property>
@@ -261,7 +264,6 @@
 		<relationship name="effects">
 			<destination>{a3813e73-a0b5-463a-9392-28b5b500ac1e}</destination>
 			<destination>{9d67ffc5-3a9b-4cb2-a3f1-4f5626d7532a}</destination>
-			<destination>{5c7b7167-f4c7-47ca-b275-bb54622991ce}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{b198b8f8-13a5-462c-a31f-9f46b42af7ff}" />
@@ -320,7 +322,6 @@
 			<value>16</value>
 		</property>
 	</object>
-	<object class="LoudnessMeter" id="{5c7b7167-f4c7-47ca-b275-bb54622991ce}" />
 	<object class="AutomationCurve" id="{71386374-a97c-4da7-a368-7fbb78e9794b}">
 		<relationship name="parameter">
 			<destination>{627ae738-87b9-40a6-96ab-83a9bc06c0f3}</destination>

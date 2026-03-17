@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{26cd5a91-5a53-436a-972b-a32fa94dedde}">
+		<property name="color">
+			<value>Red</value>
+		</property>
 		<property name="name">
 			<value>UFO Missiles Launch</value>
 		</property>
@@ -104,7 +107,6 @@
 		<relationship name="effects">
 			<destination>{1277cc7e-ae7c-4d42-adf0-75054500f65d}</destination>
 			<destination>{3a9a2bad-ef35-4655-bc50-767928bc4f56}</destination>
-			<destination>{f2953d8a-dd0d-4223-804b-23e4f0420524}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{83aaed5e-1649-4cdd-b7bd-4cd049acc1c6}" />
@@ -139,7 +141,6 @@
 			<value>0.459999979</value>
 		</property>
 	</object>
-	<object class="LoudnessMeter" id="{f2953d8a-dd0d-4223-804b-23e4f0420524}" />
 	<object class="RandomizerModulator" id="{ab1318ad-14a6-4402-bcf5-e6e5234daa28}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>pitch</value>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{61ffbc53-5cb4-4dae-8411-ed9596fa9f7c}">
+		<property name="color">
+			<value>Red Light 1</value>
+		</property>
 		<property name="name">
 			<value>Fire</value>
 		</property>
@@ -87,6 +90,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{42eb136d-a73d-4734-b216-b55983c350aa}">
+		<property name="volume">
+			<value>-10.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{bc8e4980-5b16-4d10-b4a0-0f280d60f0ea}</destination>
 		</relationship>

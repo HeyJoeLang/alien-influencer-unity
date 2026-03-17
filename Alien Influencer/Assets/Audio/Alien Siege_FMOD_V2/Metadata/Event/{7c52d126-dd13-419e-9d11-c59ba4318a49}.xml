@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{7c52d126-dd13-419e-9d11-c59ba4318a49}">
+		<property name="color">
+			<value>Blue</value>
+		</property>
 		<property name="name">
 			<value>UFO Hover</value>
 		</property>
@@ -406,7 +409,6 @@
 			<destination>{d4035052-22d4-4e36-a616-bc67ee02eff0}</destination>
 			<destination>{6339405a-95ed-4c1f-9f12-398927a05fe7}</destination>
 			<destination>{9eca39ae-e740-4a02-8141-6b7713c19ac3}</destination>
-			<destination>{7edda0cc-130d-4bda-86b7-781db1ecbf79}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{15204698-8357-42eb-ac96-287ac83099a7}" />
@@ -568,7 +570,6 @@
 			<value>4</value>
 		</property>
 	</object>
-	<object class="LoudnessMeter" id="{7edda0cc-130d-4bda-86b7-781db1ecbf79}" />
 	<object class="AutomationCurve" id="{569ed6cb-1491-44c8-9103-f8ec8772a005}">
 		<relationship name="parameter">
 			<destination>{226ba3fa-ce99-4fb4-9b01-d9c869a2cd69}</destination>

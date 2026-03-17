@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{3da65f68-031f-4593-93f4-695829db1357}">
+		<property name="color">
+			<value>Green</value>
+		</property>
 		<property name="name">
 			<value>UFO Force Field Bounce</value>
 		</property>
