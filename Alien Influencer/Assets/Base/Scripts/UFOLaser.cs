@@ -282,7 +282,7 @@ public class UFOLaser : MonoBehaviour
                 if (building)
                 {
                     didHitBuilding = true;
-                    building.AddDamage(laserDamage * Time.fixedDeltaTime); // Apply normal laser damage
+                    building.AddDamage(laserDamage * Time.fixedDeltaTime, false); // Apply normal laser damage
                     
                     // Create fire effect at hit location with cooldown
                     if (firePool != null && Time.time >= fireNextSpawnTime)
@@ -343,7 +343,7 @@ public class UFOLaser : MonoBehaviour
                 if (building)
                 {
                     didHitBuilding = true;
-                    building.AddDamage(laserDamage * 10f * Time.fixedDeltaTime); // Apply mega laser damage (10x normal)
+                    building.AddDamage(laserDamage * 10f * Time.fixedDeltaTime, false); // Apply mega laser damage (10x normal)
                     
                     // Create fire effect at hit location with cooldown
                     if (firePool != null && Time.time >= fireNextSpawnTime)

@@ -25,6 +25,6 @@ public class MinionManager : Singleton<MinionManager>
     }
     public void AttackBuilding(int damage)
     {
-        SelectedBuilding.transform.parent.GetComponent<Building>()?.AddDamage(damage);
+        SelectedBuilding.transform.parent.GetComponent<Building>()?.AddDamage(damage, false);
     }
 }

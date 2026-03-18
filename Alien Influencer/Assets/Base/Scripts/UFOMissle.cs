@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using FMOD.Studio;
+using FMODUnity;
 
 public class UFOMissile : MonoBehaviour
 {
@@ -8,24 +10,20 @@ public class UFOMissile : MonoBehaviour
     public float explosionRadius = 10f;
     public float explosionDamage = 50f;
     public GameObject explosionEffectPrefab;
-    public AudioClip flyingSound;
-    public AudioClip explosionSound;
     
+    
+    [Header("Audio Events")]
+    [SerializeField] private EventReference eventHitNothing;
+
+    private EventInstance hitNothingEventInstance;
 
     //private AudioSource audioSource;
     private bool hasExploded = false;
 
     private void Start()
     {
-        /*
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource && flyingSound)
-        {
-            audioSource.clip = flyingSound;
-            audioSource.loop = true;
-            audioSource.Play();
-        }
-        */
+        hitNothingEventInstance = RuntimeManager.CreateInstance(eventHitNothing);
+        RuntimeManager.AttachInstanceToGameObject(hitNothingEventInstance, transform);
     }
 
     private void Update()
@@ -40,14 +38,14 @@ public class UFOMissile : MonoBehaviour
         if (Physics.Raycast(transform.position, rayDirection, out hit, moveDistance, raycastLayer))
         {
             transform.position = hit.point;
-            Explode();
+            Explode(true);
             return;
         }
         // Check for collisions with terrain
         else if (Physics.Raycast(transform.position, rayDirection, out hit, moveDistance, terrainLayer))
         {
             transform.position = hit.point;
-            Explode();
+            Explode(false);
             return;
         }
 
@@ -55,7 +53,7 @@ public class UFOMissile : MonoBehaviour
         transform.Translate(Vector3.forward * moveDistance);
     }
 
-    private void Explode()
+    private void Explode(bool hasHitBuilding)
     {
         if (hasExploded) return;
         hasExploded = true;
@@ -65,15 +63,6 @@ public class UFOMissile : MonoBehaviour
         {
             Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
         }
-        /*
-        // Play explosion sound
-        if (audioSource && explosionSound)
-        {
-            audioSource.Stop();
-            audioSource.loop = false;
-            audioSource.PlayOneShot(explosionSound);
-        }
-        */
 
         // Find all colliders within explosion radius
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, raycastLayer);
@@ -84,8 +73,13 @@ public class UFOMissile : MonoBehaviour
             if (building != null)
             {
                 float damage = explosionDamage;
-                building.AddDamage(damage);
+                building.AddDamage(damage, true);
             }
+        }
+
+        if (colliders.Length <= 0)
+        {
+            hitNothingEventInstance.start();
         }
 
         // Make missile mesh invisible but keep the object for sound
@@ -97,13 +91,14 @@ public class UFOMissile : MonoBehaviour
             transform.GetChild(i).gameObject.SetActive(false);
         }
         // Destroy the missile after sound plays
-        Destroy(gameObject, explosionSound ? explosionSound.length : 0.1f);
+        //Destroy(gameObject, explosionSound ? explosionSound.length : 0.1f);
     }
-
-    private void OnDrawGizmos()
+    private void OnDestroy()
     {
-        // Visualize explosion radius in editor
-        Gizmos.color = new Color(1f, 0f, 0f, 0.3f);
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+        if (hitNothingEventInstance.isValid())
+        {
+            hitNothingEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            hitNothingEventInstance.release();
+        }
     }
 }

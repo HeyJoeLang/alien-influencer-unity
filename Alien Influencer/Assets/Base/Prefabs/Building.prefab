@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 548086957725748872}
   - component: {fileID: 3007207610457885947}
-  - component: {fileID: 1055423845013398243}
   m_Layer: 8
   m_Name: Building
   m_TagString: Untagged
@@ -81,37 +80,13 @@ MonoBehaviour:
       Data3: -1779625596
       Data4: 2090859158
     Path: event:/Sound Design/Destruction/Fire
---- !u!114 &1055423845013398243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658290059559405089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
+  eventBuildingMissileHitStillStanding:
     Guid:
-      Data1: 1644149843
-      Data2: 1303272628
-      Data3: -1779625596
-      Data4: 2090859158
-    Path: event:/Sound Design/Destruction/Fire
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+      Data1: 58993824
+      Data2: 1250621019
+      Data3: 391468983
+      Data4: 1751700222
+    Path: event:/Sound Design/Destruction/Missile Impact Explosion
 --- !u!1 &6153568526655568146
 GameObject:
   m_ObjectHideFlags: 0

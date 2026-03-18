@@ -9496,7 +9496,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     shakesDelay: 0
   animatedLights: []
-  fadeOutReference: {fileID: 0}
+  fadeOutReference: {fileID: 9157105887693468085}
 --- !u!1 &9157105887711914199
 GameObject:
   m_ObjectHideFlags: 0

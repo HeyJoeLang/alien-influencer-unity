@@ -5245,7 +5245,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.636079, b: 0.33333337, a: 1}
+      maxColor: {r: 1, g: 0.33333337, b: 0.35281503, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10136,7 +10136,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.8621718, b: 0.48627448, a: 0.3764706}
+      maxColor: {r: 1, g: 0.48627448, b: 0.49164677, a: 0.3764706}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14873,9 +14873,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3ab08a8b0d96447893bceaf8e1a9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionParticles: {fileID: 4757758216656374066}
-  Orb: {fileID: 1422711506898354418}
   type: 1
+  explosionParticles: {fileID: 4757758216656374066}
+  orb: {fileID: 1422711506898354418}
+  eventMegaLaserPickup:
+    Guid:
+      Data1: 55237455
+      Data2: 1287668998
+      Data3: -1856062572
+      Data4: -868659559
+    Path: event:/Sound Design/Power-Ups/Collect Mega Laser Charge
+  eventMissilePickup:
+    Guid:
+      Data1: 1218879503
+      Data2: 1295631687
+      Data3: -1341917528
+      Data4: -549942013
+    Path: event:/Sound Design/Power-Ups/Collect UFO Missile Charge
 --- !u!1 &4884628858496715042
 GameObject:
   m_ObjectHideFlags: 0
@@ -15013,7 +15027,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1725547583308281386}
@@ -15211,7 +15225,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.7139466, b: 0.36470592, a: 1}
+      maxColor: {r: 1, g: 0.3974078, b: 0.36470592, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

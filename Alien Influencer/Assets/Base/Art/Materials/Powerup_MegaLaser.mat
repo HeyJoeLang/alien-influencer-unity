@@ -46,8 +46,8 @@ Material:
     - _SrcBlend: 5
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 1, g: 0.9190924, b: 0, a: 0.12156863}
-    - _GlowColor: {r: 0.9837489, g: 1, b: 0, a: 0.29803923}
-    - _RimColor: {r: 1, g: 0, b: 0.047468662, a: 1}
+    - _Color: {r: 1, g: 0.13178597, b: 0, a: 0.12156863}
+    - _GlowColor: {r: 1, g: 0, b: 0.04975176, a: 0.29803923}
+    - _RimColor: {r: 1, g: 0, b: 0.8226757, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

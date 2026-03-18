@@ -23,25 +23,21 @@ public class Building : MonoBehaviour
     public ParticleSystem damagedParticles, destroyedParticles;
     public Animator damageBarAnimator;
     public ProgressBarPro damageProgressBar;
-    /*
-    public AudioClip buildingDestroyedSound;
-    public AudioClip damagedSound;
-    public FMODUnity.EventReference buildingDestroyedSoundEvent;
-    public FMODUnity.EventReference damagedSoundEvent;
-    FMODUnity.EmitterGameEvent audioSource;
-    */
     [SerializeField] private EventReference eventBuildingDestroyedRouble3D;
     [SerializeField] private EventReference eventBuildingDestrouyed2D;
     [SerializeField] private EventReference eventDamaged;
+    [SerializeField] private EventReference eventBuildingMissileHitStillStanding;
     private EventInstance buildingDestroyedRouble3DEventInstance;   
     private EventInstance buildingDestroyed2DEventInstance;
     private EventInstance damagedEventInstance;
+    private EventInstance missileHitStillStandingEventInstance;
     ParticleSystem sparksParticles;
     float distance = 0f;
+    private Transform mainCameraTransform;
     #endregion
     #region Unity Methods
 
-    void Start()
+    private void Start()
     {
         buildingStanding.SetActive(true);
         buildingDestroyed.SetActive(false);
@@ -57,14 +53,17 @@ public class Building : MonoBehaviour
         buildingDestroyedRouble3DEventInstance = RuntimeManager.CreateInstance(eventBuildingDestroyedRouble3D);
         buildingDestroyed2DEventInstance = RuntimeManager.CreateInstance(eventBuildingDestrouyed2D);
         damagedEventInstance = RuntimeManager.CreateInstance(eventDamaged);
+        missileHitStillStandingEventInstance = RuntimeManager.CreateInstance(eventBuildingMissileHitStillStanding);
+        RuntimeManager.AttachInstanceToGameObject(damagedEventInstance, transform);
+        RuntimeManager.AttachInstanceToGameObject(missileHitStillStandingEventInstance, transform);
+        RuntimeManager.AttachInstanceToGameObject(buildingDestroyedRouble3DEventInstance, transform);
+
+        mainCameraTransform = Camera.main.transform;
     }
-    void Update()
+    private void Update()
     {
         switch (CurrentState)
         {
-            case BuildingState.Untouched:
-                Untouched();
-                break;
             case BuildingState.StartDamaged:
                 StartDamaged();
                 break;
@@ -74,65 +73,77 @@ public class Building : MonoBehaviour
             case BuildingState.StartDestroyed:
                 StartDestroyed();
                 break;
-            case BuildingState.IsDestroyed:
-                IsDestroyed();
-                break;
         }
     }
 
     #endregion
     #region State Functions
 
-    void Untouched()
-    {
-
-    }
-    void StartDamaged()
+    private void StartDamaged()
     { 
+        InitializeDamageVisuals();
+        CurrentState = BuildingState.IsDamaged;
+        damagedEventInstance.start();
+    }
+
+    private void InitializeDamageVisuals()
+    {
         damageBarAnimator.gameObject.SetActive(true);
         damageBarAnimator.SetTrigger("Open");
-
+        
         damagedParticles.gameObject.SetActive(true);
         damagedParticles.Play();
         damageProgressBar.SetValue(0);
         
-        // Set initial emission rate based on current damage
         UpdateParticleEmissionRate();
-
-        CurrentState = BuildingState.IsDamaged;
-        damagedEventInstance.start();
     }
-    void IsDamaged()
+    private void IsDamaged()
     {
-        distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-        if(distance < 10f)
+        if (mainCameraTransform == null) return;
+        
+        distance = Vector3.Distance(transform.position, mainCameraTransform.position);
+        if (distance < 10f)
         {
             damagedEventInstance.setParameterByName("Distance", distance);
         }
     }
-    void StartDestroyed()
+
+    private void StartDestroyed()
     {
         buildingDestroyedRouble3DEventInstance.start();
         buildingDestroyed2DEventInstance.start();
-        damageBarAnimator.SetTrigger("Close");
-
-        destroyedParticles.gameObject.SetActive(true);
-        destroyedParticles.Play();
+        
+        if (damageBarAnimator)
+        {
+            damageBarAnimator.SetTrigger("Close");
+        }
+        
+        if (destroyedParticles)
+        {
+            destroyedParticles.gameObject.SetActive(true);
+            destroyedParticles.Play();
+        }
+        
         StartCoroutine(StallDisableStandingBuildingObjects());
-        buildingDestroyed.SetActive(true);
+        
+        if (buildingDestroyed)
+            buildingDestroyed.SetActive(true);
+        if (buildingStanding)
+            buildingStanding.SetActive(false);
+        
         CurrentState = BuildingState.IsDestroyed;
-        GameManager.Instance.AddScore(scoreValue);
-        buildingStanding.SetActive(false);
-        PowerupSpawner.Instance.SpawnAtLocation(new Vector3(transform.position.x, 8, transform.position.z));
-    }
-    void IsDestroyed()
-    {
+        
+        if (GameManager.Instance)
+            GameManager.Instance.AddScore(scoreValue);
+        
+        if (PowerupSpawner.Instance)
+            PowerupSpawner.Instance.SpawnAtLocation(new Vector3(transform.position.x, 8, transform.position.z));
     }
 
     #endregion
     #region Public Methods
 
-    public void AddDamage(float amount)
+    public void AddDamage(float amount, bool isMissile)
     {
         if (CurrentState == BuildingState.IsDestroyed)
         {
@@ -152,32 +163,44 @@ public class Building : MonoBehaviour
         {
             CurrentState = BuildingState.StartDestroyed;
         }
+        else
+        {
+            if (isMissile)
+            {
+                missileHitStillStandingEventInstance.start();
+            }
+        }
     }
 
     #endregion
     #region Utility Functions
 
+    private const float MIN_EMISSION_RATE = 10f;
+    private const float MAX_EMISSION_RATE = 200f;
+    private const float MIN_SPARKS_RATE = 1f;
+    private const float MAX_SPARKS_RATE = 30f;
+
     void UpdateParticleEmissionRate()
     {
-        if (damagedParticles != null && CurrentState != BuildingState.Untouched && CurrentState != BuildingState.IsDestroyed)
-        {
-            float normalizedDamage = Mathf.Clamp(currentDamage, 1f, maxDamage);
-            
-            // Scale main particle emission rate: damage 1 = rate 10, damage 100 = rate 200
-            float mainEmissionRate = 10f + (normalizedDamage - 1f) * 190f / 99f;
-            var mainEmission = damagedParticles.emission;
-            mainEmission.rateOverTime = mainEmissionRate;
-            
-            // Scale sparks particle emission rate: damage 1 = rate 1, damage 100 = rate 30
-            if (!sparksParticles)
-                return;
-            float sparksEmissionRate = 1f + (normalizedDamage - 1f) * 29f / 99f;
-            var sparksEmission = sparksParticles.emission;
-            sparksEmission.rateOverTime = sparksEmissionRate;
-        }
+        if (damagedParticles || CurrentState == BuildingState.Untouched || CurrentState == BuildingState.IsDestroyed)
+            return;
+    
+        float normalizedDamage = Mathf.Clamp(currentDamage, 1f, maxDamage);
+        float damagePercent = (normalizedDamage - 1f) / (maxDamage - 1f);
+    
+        // Scale main particle emission
+        float mainEmissionRate = Mathf.Lerp(MIN_EMISSION_RATE, MAX_EMISSION_RATE, damagePercent);
+        var mainEmission = damagedParticles.emission;
+        mainEmission.rateOverTime = mainEmissionRate;
+    
+        // Scale sparks particle emission
+        if (!sparksParticles) return;
+        var sparksEmissionRate = Mathf.Lerp(MIN_SPARKS_RATE, MAX_SPARKS_RATE, damagePercent);
+        var sparksEmission = sparksParticles.emission;
+        sparksEmission.rateOverTime = sparksEmissionRate;
     }
 
-    IEnumerator StallDisableStandingBuildingObjects()
+    private IEnumerator StallDisableStandingBuildingObjects()
     {
         yield return new WaitForSeconds(1f);
         damagedParticles.gameObject.SetActive(false);
@@ -185,5 +208,30 @@ public class Building : MonoBehaviour
     }
 
     #endregion
-
+    private void OnDestroy()
+    {
+        if (buildingDestroyedRouble3DEventInstance.isValid())
+        {
+            buildingDestroyedRouble3DEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            buildingDestroyedRouble3DEventInstance.release();
+        }
+        
+        if (buildingDestroyed2DEventInstance.isValid())
+        {
+            buildingDestroyed2DEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            buildingDestroyed2DEventInstance.release();
+        }
+        
+        if (damagedEventInstance.isValid())
+        {
+            damagedEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            damagedEventInstance.release();
+        }
+        
+        if (missileHitStillStandingEventInstance.isValid())
+        {
+            missileHitStillStandingEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            missileHitStillStandingEventInstance.release();
+        }
+    }
 }
