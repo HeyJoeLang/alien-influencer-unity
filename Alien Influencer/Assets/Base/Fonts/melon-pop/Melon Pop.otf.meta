@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: d3731b87fa622aa41957ebe9ed73a837
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Melon Pop
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e428c8d5d0c4b824a87b2a75d165a168, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

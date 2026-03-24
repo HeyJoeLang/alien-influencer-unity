@@ -17,7 +17,7 @@ public class CoinManager : MonoBehaviour
         {
             Screen.fullScreen = true;
         }
-        coinCount = PlayerPrefs.GetInt(CoinKey, 1);
+        coinCount = PlayerPrefs.GetInt(CoinKey, 0);
         UpdateCoinDisplay();
     }
 
@@ -54,7 +54,7 @@ public class CoinManager : MonoBehaviour
     }
     void ResetCredits()
     {
-        coinCount = 1;
+        coinCount = 0;
         PlayerPrefs.SetInt(CoinKey, coinCount);
         UpdateCoinDisplay();
     }
