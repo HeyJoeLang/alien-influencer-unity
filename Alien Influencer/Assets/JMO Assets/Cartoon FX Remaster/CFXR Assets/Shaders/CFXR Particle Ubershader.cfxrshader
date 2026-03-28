@@ -170,7 +170,7 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 	{
 		Tags
 		{
-			"Queue"="Transparent"
+			"Queue"="Overlay"
 			"IgnoreProjector"="True"
 			"RenderType"="Transparent"
 			"PreviewType"="Plane"
@@ -178,6 +178,7 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 
 		Blend [_SrcBlend] [_DstBlend], One One
 		ZWrite [_ZWrite]
+		ZTest Always
 		Cull  Off
 
 /*** URP ***/

@@ -29,7 +29,7 @@ public class UFOLaser : MonoBehaviour
     public float rayLength = 10f;
     public Color hitColor = Color.green;
     public Color missColor = Color.yellow;
-    private float laserDamage = 20f;
+    private float laserDamage = 50f;
     public GameObject laserBeam;
     public GameObject LaserBeamImpactFlames;
     public GameObject megaLaserBeam;
@@ -343,7 +343,7 @@ public class UFOLaser : MonoBehaviour
                 if (building)
                 {
                     didHitBuilding = true;
-                    building.AddDamage(laserDamage * 10f * Time.fixedDeltaTime, false); // Apply mega laser damage (10x normal)
+                    building.AddDamage(laserDamage * 5f * Time.fixedDeltaTime, false); // Apply mega laser damage (10x normal)
                     
                     // Create fire effect at hit location with cooldown
                     if (firePool != null && Time.time >= fireNextSpawnTime)

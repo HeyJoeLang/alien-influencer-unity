@@ -36,7 +36,8 @@ public class GameManager : Singleton<GameManager>
         timeRemaining = 181f;
         PositionDeltaManager.Reset();
         Debug.Log("Starting Game...");
-        //StartGame();
+        StartGame();
+        StartTimer();
     }
 
     public void StartGame()
