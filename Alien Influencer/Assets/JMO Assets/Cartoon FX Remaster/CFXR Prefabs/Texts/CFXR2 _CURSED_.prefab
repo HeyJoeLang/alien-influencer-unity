@@ -14872,9 +14872,9 @@ MonoBehaviour:
   text: '{CURSED}'
   size: 0.5
   letterSpacing: 0.35
-  backgroundColor: {r: 0.18115875, g: 0.18950137, b: 0.21698111, a: 1}
-  color1: {r: 0.34393916, g: 0.45027146, b: 0.5566038, a: 1}
-  color2: {r: 0.10359559, g: 0.18035778, b: 0.2264151, a: 1}
+  backgroundColor: {r: 0.1, g: 0.05, b: 0.14, a: 1}
+  color1: {r: 0.58, g: 0.32, b: 0.76, a: 1}
+  color2: {r: 0.28, g: 0.52, b: 0.34, a: 1}
   delay: 0.02
   cumulativeDelay: 1
   compensateLifetime: 0

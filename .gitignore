@@ -95,3 +95,5 @@ Alien Influencer/.vscode/*
 /Alien Influencer/Assets/Amazing Assets/Advanced Dissolve/Example Scenes/Tutorial Scenes/Files/Materials/*.mat
 /Alien Influencer/Assets/Polygon-City Megapolis/Materials/*.mat
 /Alien Influencer/Assets/Piloto Studio/
+Alien Influencer/fmod_editor.log
+Alien Influencer/Assets/Plugins/FMOD/platforms/mac/lib/fmod_haptics.bundle.meta

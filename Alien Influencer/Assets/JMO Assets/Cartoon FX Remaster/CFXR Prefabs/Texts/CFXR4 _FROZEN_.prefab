@@ -24870,9 +24870,9 @@ MonoBehaviour:
   text: FROZEN
   size: 0.5
   letterSpacing: 0.35
-  backgroundColor: {r: 0, g: 0.20892125, b: 0.404, a: 1}
-  color1: {r: 0.4198113, g: 0.7881181, b: 1, a: 1}
-  color2: {r: 0, g: 0.44439903, b: 0.764151, a: 1}
+  backgroundColor: {r: 0.02, g: 0.11, b: 0.2, a: 1}
+  color1: {r: 0.62, g: 0.86, b: 1, a: 1}
+  color2: {r: 0.3, g: 0.62, b: 0.9, a: 1}
   delay: 0
   cumulativeDelay: 1
   compensateLifetime: 1

@@ -4909,9 +4909,9 @@ MonoBehaviour:
   text: POW
   size: 1
   letterSpacing: 0.35
-  backgroundColor: {r: 0.4433962, g: 0, b: 0, a: 1}
-  color1: {r: 1, g: 0, b: 0, a: 1}
-  color2: {r: 1, g: 0, b: 0, a: 1}
+  backgroundColor: {r: 0.14, g: 0.06, b: 0.22, a: 1}
+  color1: {r: 0.94, g: 0.56, b: 1, a: 1}
+  color2: {r: 0.52, g: 0.28, b: 1, a: 1}
   delay: 0
   cumulativeDelay: 0
   compensateLifetime: 0

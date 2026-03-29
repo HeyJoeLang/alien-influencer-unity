@@ -4912,9 +4912,9 @@ MonoBehaviour:
   text: SLASH!
   size: 1
   letterSpacing: 0.35
-  backgroundColor: {r: 0, g: 0, b: 0, a: 1}
-  color1: {r: 1, g: 0.9744275, b: 0.654902, a: 1}
-  color2: {r: 1, g: 0.52179044, b: 0, a: 1}
+  backgroundColor: {r: 0.12, g: 0.04, b: 0.06, a: 1}
+  color1: {r: 0.9, g: 0.9, b: 0.94, a: 1}
+  color2: {r: 0.82, g: 0.12, b: 0.2, a: 1}
   delay: 0.03
   cumulativeDelay: 1
   compensateLifetime: 0

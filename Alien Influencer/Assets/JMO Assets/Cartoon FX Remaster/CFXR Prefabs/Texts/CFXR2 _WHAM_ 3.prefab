@@ -29742,9 +29742,9 @@ MonoBehaviour:
   text: WHAM!
   size: 1
   letterSpacing: 0.35
-  backgroundColor: {r: 0, g: 0, b: 0, a: 1}
-  color1: {r: 1, g: 0.15351725, b: 0, a: 1}
-  color2: {r: 1, g: 0.15294118, b: 0, a: 1}
+  backgroundColor: {r: 0.14, g: 0.07, b: 0.12, a: 1}
+  color1: {r: 1, g: 0.44, b: 0.54, a: 1}
+  color2: {r: 0.82, g: 0.52, b: 1, a: 1}
   delay: 0
   cumulativeDelay: 0
   compensateLifetime: 0

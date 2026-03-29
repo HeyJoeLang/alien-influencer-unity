@@ -192,6 +192,11 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 				Name "BASE_URP"
 				Tags { "LightMode"="UniversalForward" }
 
+				ZTest Always
+				ZWrite [_ZWrite]
+				Blend [_SrcBlend] [_DstBlend], One One
+				Cull Off
+
 				CGPROGRAM
 
 				#pragma vertex vertex_program
@@ -242,6 +247,11 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 			{
 				Name "BASE_URP"
 				Tags { "LightMode"="Universal2D" }
+
+				ZTest Always
+				ZWrite [_ZWrite]
+				Blend [_SrcBlend] [_DstBlend], One One
+				Cull Off
 
 				CGPROGRAM
 
@@ -299,6 +309,7 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 				BlendOp Add
 				Blend One Zero
 				ZWrite On
+				ZTest LEqual
 				Cull Off
 
 				CGPROGRAM
@@ -346,6 +357,11 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 			{
 				Name "BASE"
 				Tags { "LightMode"="ForwardBase" }
+
+				ZTest Always
+				ZWrite [_ZWrite]
+				Blend [_SrcBlend] [_DstBlend], One One
+				Cull Off
 
 				CGPROGRAM
 
@@ -404,6 +420,7 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 				BlendOp Add
 				Blend One Zero
 				ZWrite On
+				ZTest LEqual
 				Cull Off
 
 				CGPROGRAM

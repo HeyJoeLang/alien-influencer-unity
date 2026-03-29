@@ -29742,9 +29742,9 @@ MonoBehaviour:
   text: BLAMMO
   size: 1
   letterSpacing: 0.35
-  backgroundColor: {r: 0, g: 0, b: 0, a: 1}
-  color1: {r: 1, g: 0.15351725, b: 0, a: 1}
-  color2: {r: 1, g: 0.15294118, b: 0, a: 1}
+  backgroundColor: {r: 0.03, g: 0.2, b: 0.08, a: 1}
+  color1: {r: 0.38, g: 1, b: 0.44, a: 1}
+  color2: {r: 0.88, g: 1, b: 0.34, a: 1}
   delay: 0
   cumulativeDelay: 0
   compensateLifetime: 0

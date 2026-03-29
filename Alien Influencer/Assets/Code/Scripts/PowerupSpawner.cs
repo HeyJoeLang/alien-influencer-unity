@@ -65,6 +65,7 @@ public class PowerupSpawner : Singleton<PowerupSpawner>
         // Set position and activate
         powerup.transform.position = locationToSpawn;
         powerup.SetActive(true);
+        CelebrationVisualsManager.Instance.PlayAt(locationToSpawn);
 
         // Get the powerup component and trigger startup animation
         //if (powerup.TryGetComponent<PowerupBase>(out var powerupComponent))

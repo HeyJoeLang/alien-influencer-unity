@@ -29742,9 +29742,9 @@ MonoBehaviour:
   text: ZORCH
   size: 1
   letterSpacing: 0.35
-  backgroundColor: {r: 0, g: 0, b: 0, a: 1}
-  color1: {r: 1, g: 0.15351725, b: 0, a: 1}
-  color2: {r: 1, g: 0.15294118, b: 0, a: 1}
+  backgroundColor: {r: 0.22, g: 0.04, b: 0.07, a: 1}
+  color1: {r: 1, g: 0.36, b: 0.52, a: 1}
+  color2: {r: 1, g: 0.62, b: 0.18, a: 1}
   delay: 0
   cumulativeDelay: 0
   compensateLifetime: 0

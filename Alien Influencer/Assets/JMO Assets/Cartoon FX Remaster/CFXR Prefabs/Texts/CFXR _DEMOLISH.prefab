@@ -19812,9 +19812,9 @@ MonoBehaviour:
   text: DEMOLISH
   size: 1
   letterSpacing: 0.35
-  backgroundColor: {r: 0.58, g: 0.11796609, b: 0.11796609, a: 1}
-  color1: {r: 1, g: 0.8275956, b: 0.15566039, a: 1}
-  color2: {r: 0.9137255, g: 0.15126179, b: 0, a: 1}
+  backgroundColor: {r: 0.16, g: 0.12, b: 0.09, a: 1}
+  color1: {r: 0.96, g: 0.56, b: 0.26, a: 1}
+  color2: {r: 0.64, g: 0.48, b: 0.38, a: 1}
   delay: 0.01
   cumulativeDelay: 1
   compensateLifetime: 0
