@@ -170,7 +170,7 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 	{
 		Tags
 		{
-			"Queue"="Overlay"
+			"Queue"="Overlay+500"
 			"IgnoreProjector"="True"
 			"RenderType"="Transparent"
 			"PreviewType"="Plane"
@@ -187,6 +187,12 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 
 		Subshader
 		{
+			Tags
+			{
+				"Queue"="Overlay+500"
+				"IgnoreProjector"="True"
+				"RenderType"="Transparent"
+			}
 			Pass
 			{
 				Name "BASE_URP"
@@ -353,6 +359,12 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 
 		SubShader
 		{
+			Tags
+			{
+				"Queue"="Overlay+500"
+				"IgnoreProjector"="True"
+				"RenderType"="Transparent"
+			}
 			Pass
 			{
 				Name "BASE"
