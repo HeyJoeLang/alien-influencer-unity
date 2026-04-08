@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{0c6ea2c5-62a2-4dc5-bd30-c4bcee90c7b4}">
+		<property name="assetPath">
+			<value>Music/Temp Music/Temp Bass.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>175.58825396825398</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e177d6c7-0c16-424f-9fae-e0015f586440}</destination>
+		</relationship>
+	</object>
+</objects>
