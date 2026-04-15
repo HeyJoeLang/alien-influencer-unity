@@ -18,13 +18,11 @@
 		<relationship name="effects">
 			<destination>{62f4b60a-c949-473b-b6c5-51743611b719}</destination>
 			<destination>{c4fe57c8-1a12-4335-a36a-557189f2ca20}</destination>
+			<destination>{12161492-49fd-44ce-bdb8-47c38d719a4b}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{197a653a-2336-4850-84f2-3e0586aa5b00}" />
 	<object class="MixerBusFader" id="{62f4b60a-c949-473b-b6c5-51743611b719}" />
-	<object class="LimiterEffect" id="{c4fe57c8-1a12-4335-a36a-557189f2ca20}">
-		<property name="ceiling">
-			<value>-1</value>
-		</property>
-	</object>
+	<object class="LimiterEffect" id="{c4fe57c8-1a12-4335-a36a-557189f2ca20}" />
+	<object class="Sidechain" id="{12161492-49fd-44ce-bdb8-47c38d719a4b}" />
 </objects>
