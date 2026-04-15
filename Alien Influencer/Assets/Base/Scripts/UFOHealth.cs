@@ -2,14 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using HomingMissile;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class UFOHealth : MonoBehaviour
 {
     float health = 1;
     public ProgressBarPro healthBar;
+    
+    [SerializeField] private EventReference eventDamage;
+    private EventInstance damageEventInstance;
+    
     void Start()
     {
         healthBar.SetValue(health);
+        
+        damageEventInstance = RuntimeManager.CreateInstance(eventDamage);
+        RuntimeManager.AttachInstanceToGameObject(damageEventInstance, transform);
     }
     void OnTriggerEnter(Collider collision)
     {
@@ -22,6 +31,12 @@ public class UFOHealth : MonoBehaviour
                 GameManager.Instance.GameOver();
             }
             healthBar.SetValue(health);
+            
+            damageEventInstance.getPlaybackState(out var playbackState);
+            if (playbackState != PLAYBACK_STATE.PLAYING)
+            {
+                damageEventInstance.start();
+            }
         }
     }
 }

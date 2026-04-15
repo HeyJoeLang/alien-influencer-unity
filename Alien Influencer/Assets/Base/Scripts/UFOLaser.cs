@@ -161,13 +161,13 @@ public class UFOLaser : MonoBehaviour
 
     private void PlayMissileSound()
     {
-        
         missileEventInstance.getPlaybackState(out var playbackState);
 
         if (playbackState != PLAYBACK_STATE.PLAYING)
         {
             missileEventInstance.start();
         }
+        
     }
 
     private IEnumerator FadeAudio(AudioSource audioSource, float startVolume, float targetVolume, float duration)
@@ -383,6 +383,7 @@ public class UFOLaser : MonoBehaviour
                 
                 // Trigger missile launched event
                 OnMissileLaunched?.Invoke();
+                PlayMissileSound();
             }
             else
             {
