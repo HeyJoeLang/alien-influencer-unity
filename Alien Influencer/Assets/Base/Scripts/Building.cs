@@ -23,6 +23,10 @@ public class Building : MonoBehaviour
     public ParticleSystem damagedParticles, destroyedParticles;
     public Animator damageBarAnimator;
     public ProgressBarPro damageProgressBar;
+    
+    public delegate void DestroyedBuilding(Building building);
+    public event DestroyedBuilding OnBuildingDestroyed;
+    
     [SerializeField] private EventReference eventBuildingDestroyedRouble3D;
     [SerializeField] private EventReference eventBuildingDestrouyed2D;
     [SerializeField] private EventReference eventDamaged;
@@ -113,6 +117,12 @@ public class Building : MonoBehaviour
         buildingDestroyedRouble3DEventInstance.start();
         buildingDestroyed2DEventInstance.start();
         
+        if (OnBuildingDestroyed != null)
+        {
+            Debug.Log($"Building: Building destroyed: {gameObject.name}");
+            OnBuildingDestroyed(this);
+        }
+        
         if (damageBarAnimator)
         {
             damageBarAnimator.SetTrigger("Close");
@@ -130,8 +140,9 @@ public class Building : MonoBehaviour
             buildingDestroyed.SetActive(true);
         if (buildingStanding)
             buildingStanding.SetActive(false);
-        
+
         CurrentState = BuildingState.IsDestroyed;
+        
         
         if (GameManager.Instance)
             GameManager.Instance.AddScore(scoreValue);
@@ -232,6 +243,58 @@ public class Building : MonoBehaviour
         {
             missileHitStillStandingEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             missileHitStillStandingEventInstance.release();
+        }
+    }
+    public void ResetBuilding()
+    {
+        // Reset state and damage
+        CurrentState = BuildingState.Untouched;
+        currentDamage = 0;
+        
+        // Reset GameObjects
+        if (buildingStanding)
+            buildingStanding.SetActive(true);
+        if (buildingDestroyed)
+            buildingDestroyed.SetActive(false);
+        
+        // Reset particles
+        if (damagedParticles)
+        {
+            damagedParticles.Stop();
+            damagedParticles.gameObject.SetActive(false);
+        }
+        if (destroyedParticles)
+        {
+            destroyedParticles.Stop();
+            destroyedParticles.gameObject.SetActive(false);
+        }
+        
+        // Reset damage bar
+        if (damageBarAnimator)
+        {
+            damageBarAnimator.gameObject.SetActive(false);
+        }
+        if (damageProgressBar)
+        {
+            damageProgressBar.SetValue(0);
+        }
+        
+        // Stop all audio events
+        if (damagedEventInstance.isValid())
+        {
+            damagedEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+        if (missileHitStillStandingEventInstance.isValid())
+        {
+            missileHitStillStandingEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+        if (buildingDestroyedRouble3DEventInstance.isValid())
+        {
+            buildingDestroyedRouble3DEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+        if (buildingDestroyed2DEventInstance.isValid())
+        {
+            buildingDestroyed2DEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         }
     }
 }
