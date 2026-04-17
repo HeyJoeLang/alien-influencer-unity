@@ -1,23 +1,32 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using UnityEditor.Profiling;
+using HomingMissile;
 
 public class BuildingManager : MonoBehaviour
 {
+    public MissileSpawner missileSpawner;
+    public Animator fadeInOutAnimator;
     [SerializeField] private List<Building> allBuildings = new List<Building>();
     private List<Building> destroyedBuildings = new List<Building>();
-    
+
     // Event that emits the percentage of destroyed buildings (0 to 1)
     public static event Action<float> BuildingsDestroyedPercentage;
-    
+
+    [Range(0, 1)]
+    public float nextPhaseDestructionPercent = .8f;
+
+    public ProgressBarPro destructionPercentageBar;
+
     void Awake()
     {
         destroyedBuildings = new List<Building>();
-        
+
         // Find all buildings in the scene at start
         RegisterAllBuildingsInScene();
     }
-    
+
     /// <summary>
     /// Registers all buildings found in the scene
     /// </summary>
@@ -29,7 +38,7 @@ public class BuildingManager : MonoBehaviour
             RegisterBuilding(building);
         }
     }
-    
+
     /// <summary>
     /// Registers a new building to be tracked
     /// </summary>
@@ -42,7 +51,7 @@ public class BuildingManager : MonoBehaviour
             building.OnBuildingDestroyed += DestroyedBuilding;
         }
     }
-    
+
     /// <summary>
     /// Unregisters a building from tracking (use when building is removed without destruction)
     /// </summary>
@@ -56,7 +65,7 @@ public class BuildingManager : MonoBehaviour
             CalculateAndEmitPercentage();
         }
     }
-    
+
     /// <summary>
     /// Called when a building is destroyed
     /// </summary>
@@ -70,7 +79,7 @@ public class BuildingManager : MonoBehaviour
             CalculateAndEmitPercentage();
         }
     }
-    
+
     /// <summary>
     /// Calculates the percentage of destroyed buildings and emits the event
     /// </summary>
@@ -81,15 +90,20 @@ public class BuildingManager : MonoBehaviour
             BuildingsDestroyedPercentage?.Invoke(0f);
             return;
         }
-        
-        float percentage = (float)destroyedBuildings.Count / (float)allBuildings.Count;
+
+        float percentage = destroyedBuildings.Count / (allBuildings.Count * nextPhaseDestructionPercent);
         percentage = Mathf.Clamp01(percentage); // Ensure value stays between 0 and 1
-        
+
         BuildingsDestroyedPercentage?.Invoke(percentage);
-        
-        Debug.Log($"Buildings destroyed: {destroyedBuildings.Count}/{allBuildings.Count} ({percentage:P1})");
+
+        Debug.Log($"Buildings destroyed: {destroyedBuildings.Count}/{allBuildings.Count * nextPhaseDestructionPercent} ({percentage:P1})");
+        destructionPercentageBar.SetValue(percentage);
+        if (percentage >= 1f)
+        {
+            GameManager.Instance.IncreaseScoreMultiplier();
+        }
     }
-    
+
     /// <summary>
     /// Gets the current destruction percentage
     /// </summary>
@@ -97,9 +111,9 @@ public class BuildingManager : MonoBehaviour
     public float GetDestructionPercentage()
     {
         if (allBuildings.Count == 0) return 0f;
-        return Mathf.Clamp01((float)destroyedBuildings.Count / (float)allBuildings.Count);
+        return Mathf.Clamp01((float)destroyedBuildings.Count / ((float)allBuildings.Count * nextPhaseDestructionPercent));
     }
-    
+
     /// <summary>
     /// Gets the total number of buildings being tracked
     /// </summary>
@@ -107,7 +121,7 @@ public class BuildingManager : MonoBehaviour
     {
         return allBuildings.Count;
     }
-    
+
     /// <summary>
     /// Gets the number of destroyed buildings
     /// </summary>
@@ -115,7 +129,7 @@ public class BuildingManager : MonoBehaviour
     {
         return destroyedBuildings.Count;
     }
-    
+
     /// <summary>
     /// Resets the building manager (useful for level resets)
     /// </summary>
@@ -129,7 +143,7 @@ public class BuildingManager : MonoBehaviour
                 building.OnBuildingDestroyed -= DestroyedBuilding;
             }
         }
-        
+
         foreach (Building building in destroyedBuildings)
         {
             if (building != null)
@@ -137,10 +151,10 @@ public class BuildingManager : MonoBehaviour
                 building.ResetBuilding();
             }
         }
-        
+
         allBuildings.Clear();
         destroyedBuildings.Clear();
-        
+
         RegisterAllBuildingsInScene();
         CalculateAndEmitPercentage();
     }

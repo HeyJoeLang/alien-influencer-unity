@@ -96,11 +96,10 @@ public class homing_missile : MonoBehaviour
 
         if (smoke != null)
         {
-            //smoke.transform.SetParent(null);
             smoke.Pause();
+            smoke.transform.SetParent(null);
             smoke.transform.position = sleepposition;
-            //smoke.Play();
-            Destroy(smoke.gameObject, 1f);
+            Destroy(smoke.gameObject, 2f);
         }
 
         if (projectilerb != null)

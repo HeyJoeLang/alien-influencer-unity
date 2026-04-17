@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
+using HomingMissile;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -16,23 +17,20 @@ public class GameManager : Singleton<GameManager>
     public TMP_Text timeLeftText;
     public float timeRemaining = 181f;
     private int score = 0;
-    public float UFOHeight = 8;
     private bool isCountingDown = false;
     public EventSystem eventSystem;
     public Button PlayAgainButton;
     public GameObject fadeInOut;
     public AlienAnimationManager alienAnimation;
-
+    private int scoreMultiplier = 1;
+    public MissileSpawner missileSpawner;
+    public BuildingManager buildingManager;
     public UFOLaser ufoLaser;
-    //UfoSuction ufoSuction;
     public UfoMovement ufoMovement;
 
     private void Start()
     {
         fadeInOut.SetActive(true);
-        //ufoLaser = FindObjectOfType<UFOLaser>().GetComponent<UFOLaser>();
-        //ufoSuction = FindObjectOfType<UfoSuction>().GetComponent<UfoSuction>();
-        //ufoMovement = FindObjectOfType<UfoMovement>().GetComponent<UfoMovement>();
         timeRemaining = 181f;
         PositionDeltaManager.Reset();
         Debug.Log("Starting Game...");
@@ -77,11 +75,9 @@ public class GameManager : Singleton<GameManager>
     public void StartTimer()
     {
         isCountingDown = true;
-        //ufoSuction.enabled = true;
         ufoMovement.enabled = true;
         ufoLaser.enabled = true;
         gameplayHUD.SetActive(true);
-        //game
     }
 
     private void FixedUpdate()
@@ -104,10 +100,32 @@ public class GameManager : Singleton<GameManager>
             GameOver();
         }
     }
+    public void IncreaseScoreMultiplier()
+    {
+        StartCoroutine(ScoreMultiplyIncrease());
+    }
 
+    IEnumerator ScoreMultiplyIncrease()
+    {
+        scoreMultiplier *= 2;
+        missileSpawner.PauseFiring();
+        foreach (homing_missile missile in FindObjectsByType<homing_missile>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            missile.DestroyMe();
+        }
+        buildingManager.Reset();
+        yield return new WaitForSeconds(2f);
+        missileSpawner.ResumeFiring();
+    }
+
+    public int GetScoreMultiplier()
+    {
+        return scoreMultiplier;
+    }
     public void AddScore(int points)
     {
-        score += points;
+        int earnedPoints = points * scoreMultiplier;
+        score += earnedPoints;
         UpdateScore(score);
         alienAnimation.AlienCelebrate();
     }
