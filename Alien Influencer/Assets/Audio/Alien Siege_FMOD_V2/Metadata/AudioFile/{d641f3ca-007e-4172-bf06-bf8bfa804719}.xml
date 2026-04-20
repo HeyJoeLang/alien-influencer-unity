@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{d641f3ca-007e-4172-bf06-bf8bfa804719}">
 		<property name="assetPath">
-			<value>Music/Temp Music/Temp Riser.wav</value>
+			<value>Music/Temp Music/Full Track/Temp Riser.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
