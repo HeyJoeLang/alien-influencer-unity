@@ -387,7 +387,7 @@ MonoBehaviour:
   - {fileID: 3899912903995137188}
   StringsBanks:
   - {fileID: 5026479497923986306}
-  cacheTime: 639122916740969367
+  cacheTime: 639122908083160938
   cacheVersion: 131635
 --- !u!114 &908141188493268945
 MonoBehaviour:
@@ -428,10 +428,10 @@ MonoBehaviour:
   Path: Assets/Audio/Alien Siege_FMOD_V2/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639122916740969367
+  lastModified: 639122908082078000
   FileSizes:
   - Name: Desktop
-    Value: 18769952
+    Value: 18769920
   Exists: 1
 --- !u!114 &1925323123757295425
 MonoBehaviour:

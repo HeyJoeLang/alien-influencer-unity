@@ -2020,9 +2020,6 @@
 		<relationship name="destination">
 			<destination>{0bcd6286-2edd-4772-b8fd-1953e55c6456}</destination>
 		</relationship>
-		<relationship name="triggerConditions">
-			<destination>{9eedd7b4-460e-4d4c-8a00-0efadba66635}</destination>
-		</relationship>
 	</object>
 	<object class="TransitionRegion" id="{1fe98973-b673-4606-8d4a-63e0f8410e26}">
 		<property name="position">
@@ -2612,17 +2609,6 @@
 			<destination>{88555e84-e78c-41af-88ca-91957dc52c91}</destination>
 		</relationship>
 	</object>
-	<object class="ParameterCondition" id="{9eedd7b4-460e-4d4c-8a00-0efadba66635}">
-		<property name="minimum">
-			<value>0</value>
-		</property>
-		<property name="maximum">
-			<value>0.89999997615814209</value>
-		</property>
-		<relationship name="parameter">
-			<destination>{19a3e445-9b72-4b25-906d-e3262c0ad1b3}</destination>
-		</relationship>
-	</object>
 	<object class="TransitionTimeline" id="{9d6759ea-b977-4b3f-8686-1b4da500340d}">
 		<property name="length">
 			<value>1.411764705882353</value>
@@ -2650,10 +2636,10 @@
 	</object>
 	<object class="ParameterCondition" id="{b7dbaa9b-05ec-4966-bab2-1d2c1118604d}">
 		<property name="minimum">
-			<value>0</value>
+			<value>4</value>
 		</property>
 		<property name="maximum">
-			<value>0.89999997615814209</value>
+			<value>4.9000000953674316</value>
 		</property>
 		<relationship name="parameter">
 			<destination>{19a3e445-9b72-4b25-906d-e3262c0ad1b3}</destination>
