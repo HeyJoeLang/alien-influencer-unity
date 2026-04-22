@@ -10,7 +10,6 @@ using FMOD.Studio;
 public class UFOLaser : MonoBehaviour
 {
     // Add these variables at the top of the UFOLaser class
-    
     [Header("FMOD Event")]
     [SerializeField] private EventReference eventLaser;
     [SerializeField] private EventReference eventMegaLaser;
@@ -113,17 +112,7 @@ public class UFOLaser : MonoBehaviour
             Debug.LogError("FirePool component not found on " + gameObject.name);
         }
         progressBar.Start();
-        // Existing code...
         SetupAudioSources();
-        
-        // Subscribe to events
-        /*
-        OnLaserActivated += StartLaserSound;
-        OnLaserDeactivated += StopLaserSound;
-        OnMegaLaserActivated += StartMegaLaserSound;
-        OnMegaLaserDeactivated += StopMegaLaserSound;
-        OnMissileLaunched += PlayMissileSound;
-        */
     }
 
     // Add these methods for handling the audio
