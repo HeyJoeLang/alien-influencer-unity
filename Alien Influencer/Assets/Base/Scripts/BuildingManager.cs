@@ -10,6 +10,7 @@ public class BuildingManager : MonoBehaviour
     public Animator fadeInOutAnimator;
     [SerializeField] private List<Building> allBuildings = new List<Building>();
     private List<Building> destroyedBuildings = new List<Building>();
+    bool canTriggerScoreMultiplierIncrease = true;
 
     // Event that emits the percentage of destroyed buildings (0 to 1)
     public static event Action<float> BuildingsDestroyedPercentage;
@@ -100,7 +101,11 @@ public class BuildingManager : MonoBehaviour
         destructionPercentageBar.SetValue(percentage);
         if (percentage >= 1f)
         {
-            GameManager.Instance.IncreaseScoreMultiplier();
+            if (canTriggerScoreMultiplierIncrease)
+            {
+                canTriggerScoreMultiplierIncrease = false;
+                GameManager.Instance.IncreaseScoreMultiplier();
+            }
         }
     }
 
@@ -157,5 +162,6 @@ public class BuildingManager : MonoBehaviour
 
         RegisterAllBuildingsInScene();
         CalculateAndEmitPercentage();
+        canTriggerScoreMultiplierIncrease = true;
     }
 }

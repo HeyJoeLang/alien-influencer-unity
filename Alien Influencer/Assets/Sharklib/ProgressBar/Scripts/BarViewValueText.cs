@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 using System.Collections;
 
 namespace Sharklib.ProgressBar {
-	[RequireComponent(typeof(Text))]
+	//[RequireComponent(typeof(TMP_Text))]
 	public class BarViewValueText : ProgressBarProView {
 
-		[SerializeField] Text text;
+		[SerializeField] TMP_Text text;
 		[SerializeField] string prefix = "";
 		[SerializeField] float minValue = 0f;
 		[SerializeField] float maxValue = 100f;
@@ -54,7 +54,7 @@ namespace Sharklib.ProgressBar {
 		#if UNITY_EDITOR
 		protected override void Reset() {
 			base.Reset();
-			text = GetComponent<Text>();
+			text = GetComponent<TMP_Text>();
 		}
 		#endif
 	}

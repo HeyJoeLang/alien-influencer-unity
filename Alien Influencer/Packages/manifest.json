@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.coffee.ui-particle": "https://github.com/mob-sakai/ParticleEffectForUGUI.git",
     "com.unity.2d.animation": "10.1.4",
     "com.unity.2d.aseprite": "1.1.10",
     "com.unity.2d.sprite": "1.0.0",

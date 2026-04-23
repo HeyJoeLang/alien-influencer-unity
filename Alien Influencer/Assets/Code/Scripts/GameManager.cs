@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 using HomingMissile;
@@ -7,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 using Unity.AI.Navigation;
+using UnityEngine.UI.Extensions;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
     public TMP_Text timeLeftText;
     public float timeRemaining = 181f;
     private int score = 0;
+    private int displayedScore = 0; // Track the currently displayed score
     private bool isCountingDown = false;
     public EventSystem eventSystem;
     public Button PlayAgainButton;
@@ -27,6 +28,12 @@ public class GameManager : Singleton<GameManager>
     public BuildingManager buildingManager;
     public UFOLaser ufoLaser;
     public UfoMovement ufoMovement;
+    public ParticleSystem scoreMultiplierParticle;
+    public TMP_Text scoreMultiplierText;
+    public Animator scoreMultiplierAnimator;
+
+    [Header("Score Animation")]
+    public float scoreLerpDuration = 0.5f; // Duration for score lerp animation
 
     private void Start()
     {
@@ -44,10 +51,12 @@ public class GameManager : Singleton<GameManager>
         gameplayHUD.SetActive(false);
         winMenu.SetActive(false);
         score = 0;
+        displayedScore = 0;
         UpdateScore(0);
         Time.timeScale = 1f;
         ufoMovement.enabled = true;
         ufoLaser.enabled = true;
+        scoreMultiplierText.text = "1";
     }
 
     public void GameOver()
@@ -113,9 +122,19 @@ public class GameManager : Singleton<GameManager>
         {
             missile.DestroyMe();
         }
+        
+        scoreMultiplierAnimator.SetTrigger("TriggerScoreMultiplierIncrease");
+
+        var emission = scoreMultiplierParticle.emission;
+        ParticleSystem.Burst burst = new ParticleSystem.Burst(0.0f, scoreMultiplier);
+        emission.SetBurst(0, burst);
+        yield return new WaitForSeconds(.75f);
+        scoreMultiplierParticle.Play();
         buildingManager.Reset();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
+        scoreMultiplierText.text = $"{scoreMultiplier}";
         missileSpawner.ResumeFiring();
+        
     }
 
     public int GetScoreMultiplier()
@@ -132,9 +151,38 @@ public class GameManager : Singleton<GameManager>
 
     private void UpdateScore(int newScore)
     {
-        foreach (TMP_Text scoreText in scoreText)
+        StartCoroutine(LerpScore(newScore));
+    }
+
+    private IEnumerator LerpScore(int newScore)
+    {
+        int startScore = displayedScore;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < scoreLerpDuration)
         {
-            scoreText.text = "Score: " + newScore;
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / scoreLerpDuration;
+
+            // Use a smooth curve for the lerp
+            t = Mathf.SmoothStep(0f, 1f, t);
+
+            displayedScore = Mathf.RoundToInt(Mathf.Lerp(startScore, newScore, t));
+
+            // Update all score text elements
+            foreach (TMP_Text scoreTextElement in scoreText)
+            {
+                scoreTextElement.text = "Score: " + displayedScore;
+            }
+
+            yield return null;
+        }
+
+        // Ensure we end exactly at the target score
+        displayedScore = newScore;
+        foreach (TMP_Text scoreTextElement in scoreText)
+        {
+            scoreTextElement.text = "Score: " + displayedScore;
         }
     }
 }
