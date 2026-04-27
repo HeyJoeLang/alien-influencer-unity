@@ -405,6 +405,7 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
+  - Dialogue
   - Music
   - Sound Design
   BanksToLoad: []

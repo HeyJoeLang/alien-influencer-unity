@@ -55,6 +55,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12000
+--- !u!114 &-5923378232878914631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/UI/PlayGame
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/UI/PlayGame
+  Guid:
+    Data1: 994879563
+    Data2: 1299276564
+    Data3: 21757318
+    Data4: -586850770
+  Banks:
+  - {fileID: -845561832847107946}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-5869853130305878441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +342,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 29385
+--- !u!114 &-2740950514805281598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/UI/ResetScore
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/UI/ResetScore
+  Guid:
+    Data1: 132447666
+    Data2: 1161110621
+    Data3: -1672125821
+    Data4: -667356724
+  Banks:
+  - {fileID: -845561832847107946}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2151460126904427357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,11 +435,85 @@ MonoBehaviour:
   Path: ../../../../Desktop/Alien Siege_FMOD_V2/Build/Desktop/Sound Design.bank
   Name: Sound Design
   StudioPath: bank:/Sound Design
-  lastModified: 639124740124627678
+  lastModified: 639127898456770176
   FileSizes:
   - Name: Desktop
-    Value: 3129824
+    Value: 3211840
   Exists: 1
+--- !u!114 &-497175090326155092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Dialogue.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../Desktop/Alien Siege_FMOD_V2/Build/Desktop/Dialogue.bank
+  Name: Dialogue
+  StudioPath: bank:/Dialogue
+  lastModified: 639127882344916193
+  FileSizes:
+  - Name: Desktop
+    Value: 170624
+  Exists: 1
+--- !u!114 &-311504557069306228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/UI/InsertCoin
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/UI/InsertCoin
+  Guid:
+    Data1: -2109066891
+    Data2: 1087943534
+    Data3: -510533461
+    Data4: 219758062
+  Banks:
+  - {fileID: -845561832847107946}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-12741794880627104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/UFO Phrases
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/UFO Phrases
+  Guid:
+    Data1: -1329760004
+    Data2: 1219409964
+    Data3: 443708033
+    Data4: -942930136
+  Banks:
+  - {fileID: -497175090326155092}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +531,7 @@ MonoBehaviour:
   - {fileID: 7859263273226017651}
   - {fileID: -5869853130305878441}
   - {fileID: -845561832847107946}
+  - {fileID: -497175090326155092}
   EditorEvents:
   - {fileID: -3697523811228452049}
   - {fileID: -5064993966331094638}
@@ -422,12 +551,18 @@ MonoBehaviour:
   - {fileID: 5309771349826898308}
   - {fileID: 3522896613364562734}
   - {fileID: 7868817924204296513}
+  - {fileID: 3256342871506520779}
+  - {fileID: -12741794880627104}
+  - {fileID: -5923378232878914631}
+  - {fileID: 2782507378740669756}
+  - {fileID: -311504557069306228}
+  - {fileID: -2740950514805281598}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7859263273226017651}
   StringsBanks:
   - {fileID: 4436051989141236404}
-  cacheTime: 639124740124627678
+  cacheTime: 639127898456770176
   cacheVersion: 131635
 --- !u!114 &908141188493268945
 MonoBehaviour:
@@ -507,6 +642,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2782507378740669756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/UI/MouseHover
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/UI/MouseHover
+  Guid:
+    Data1: 1121122123
+    Data2: 1251377096
+    Data3: -17945169
+    Data4: 1624745043
+  Banks:
+  - {fileID: -845561832847107946}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3256342871506520779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/UFO Laughter
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/UFO Laughter
+  Guid:
+    Data1: -1924136780
+    Data2: 1207681485
+    Data3: 953582508
+    Data4: -1255528747
+  Banks:
+  - {fileID: -497175090326155092}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &3500995484649526621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,10 +764,10 @@ MonoBehaviour:
   Path: ../../../../Desktop/Alien Siege_FMOD_V2/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639124729235828550
+  lastModified: 639127897672472945
   FileSizes:
   - Name: Desktop
-    Value: 2318
+    Value: 2860
   Exists: 1
 --- !u!114 &4548156906063133860
 MonoBehaviour:
@@ -747,10 +936,10 @@ MonoBehaviour:
   Path: ../../../../Desktop/Alien Siege_FMOD_V2/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639124729235817937
+  lastModified: 639127897672461729
   FileSizes:
   - Name: Desktop
-    Value: 2968
+    Value: 4424
   Exists: 1
 --- !u!114 &7868817924204296513
 MonoBehaviour:

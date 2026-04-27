@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{01c01026-a4b0-48a3-a3d8-b8528c45a8fa}">
+		<property name="name">
+			<value>Mouse</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{7d9d0f19-918d-4d1b-b6d0-e6991f5511e8}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{53e804c6-8150-4bd2-9bca-fe36c4e3c490}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{a0e99df5-de65-4885-8aa9-cccd82e7e221}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{7d9d0f19-918d-4d1b-b6d0-e6991f5511e8}">
+		<relationship name="effects">
+			<destination>{0fea2a5b-e318-499c-bbcd-c8fa3ddd2364}</destination>
+			<destination>{ac9081d4-2e39-45c5-af5b-564f23432942}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{53e804c6-8150-4bd2-9bca-fe36c4e3c490}" />
+	<object class="MixerBusFader" id="{0fea2a5b-e318-499c-bbcd-c8fa3ddd2364}" />
+	<object class="Sidechain" id="{ac9081d4-2e39-45c5-af5b-564f23432942}" />
+</objects>

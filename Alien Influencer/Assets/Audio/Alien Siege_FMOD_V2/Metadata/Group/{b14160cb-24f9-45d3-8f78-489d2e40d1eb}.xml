@@ -18,6 +18,9 @@
 		<relationship name="effects">
 			<destination>{60429448-9207-4350-8338-6a5fd8f30f81}</destination>
 			<destination>{2d2d0985-911f-4a3c-87cc-6f3c428aa397}</destination>
+			<destination>{d2cae161-7156-425b-8fa2-4aa00a75d8a7}</destination>
+			<destination>{121a62dd-b422-42ca-a5be-420c7b6e897f}</destination>
+			<destination>{69878fd5-426e-4992-a75c-62442f3ecf45}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{5ff89beb-3866-4eb1-aebb-01ddd3e1b20c}" />
@@ -37,6 +40,51 @@
 		</property>
 		<relationship name="sidechains">
 			<destination>{12161492-49fd-44ce-bdb8-47c38d719a4b}</destination>
+		</relationship>
+	</object>
+	<object class="CompressorEffect" id="{d2cae161-7156-425b-8fa2-4aa00a75d8a7}">
+		<property name="threshold">
+			<value>-60</value>
+		</property>
+		<property name="attackTime">
+			<value>0.100000001</value>
+		</property>
+		<property name="releaseTime">
+			<value>900</value>
+		</property>
+		<relationship name="sidechains">
+			<destination>{c2fc17b8-41bb-400c-91fa-085c98495f2e}</destination>
+		</relationship>
+	</object>
+	<object class="CompressorEffect" id="{121a62dd-b422-42ca-a5be-420c7b6e897f}">
+		<property name="threshold">
+			<value>-22.5</value>
+		</property>
+		<property name="ratio">
+			<value>2.79999995</value>
+		</property>
+		<property name="attackTime">
+			<value>0.100000001</value>
+		</property>
+		<property name="releaseTime">
+			<value>10</value>
+		</property>
+		<relationship name="sidechains">
+			<destination>{ac9081d4-2e39-45c5-af5b-564f23432942}</destination>
+		</relationship>
+	</object>
+	<object class="CompressorEffect" id="{69878fd5-426e-4992-a75c-62442f3ecf45}">
+		<property name="threshold">
+			<value>-17</value>
+		</property>
+		<property name="attackTime">
+			<value>0.949999988</value>
+		</property>
+		<property name="releaseTime">
+			<value>100</value>
+		</property>
+		<relationship name="sidechains">
+			<destination>{fd604b7c-645e-4720-b7cf-b9410bfbdaa1}</destination>
 		</relationship>
 	</object>
 </objects>
