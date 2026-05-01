@@ -6028,6 +6028,13 @@ MonoBehaviour:
   coinManager: {fileID: 1273158583}
   preloadOnStart: 1
   scenesToPreload: 01000000
+  eventplayButtonPressed:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &1273158583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6044,6 +6051,13 @@ MonoBehaviour:
   minCoinsForCredit: 1
   playButton: {fileID: 1825782575}
   eventSystem: {fileID: 253954863}
+  eventCoinInsert:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1001 &1309486901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9319,6 +9333,13 @@ MonoBehaviour:
   coinManager: {fileID: 1944064110}
   preloadOnStart: 1
   scenesToPreload: 01000000
+  eventplayButtonPressed:
+    Guid:
+      Data1: 994879563
+      Data2: 1299276564
+      Data3: 21757318
+      Data4: -586850770
+    Path: event:/Sound Design/UI/PlayGame
 --- !u!114 &1944064110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9335,6 +9356,13 @@ MonoBehaviour:
   minCoinsForCredit: 1
   playButton: {fileID: 1012591929}
   eventSystem: {fileID: 253954863}
+  eventCoinInsert:
+    Guid:
+      Data1: -2109066891
+      Data2: 1087943534
+      Data3: -510533461
+      Data4: 219758062
+    Path: event:/Sound Design/UI/InsertCoin
 --- !u!82 &1944064111
 AudioSource:
   m_ObjectHideFlags: 0

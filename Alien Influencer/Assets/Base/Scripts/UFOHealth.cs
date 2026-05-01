@@ -9,6 +9,7 @@ public class UFOHealth : MonoBehaviour
 {
     float health = 1;
     public ProgressBarPro healthBar;
+    public Animator hitAnimator;
     
     [SerializeField] private EventReference eventDamage;
     private EventInstance damageEventInstance;
@@ -29,6 +30,10 @@ public class UFOHealth : MonoBehaviour
             if (health <= 0)
             {
                 GameManager.Instance.GameOver();
+            }
+            else
+            {
+                hitAnimator.SetTrigger("Hit");
             }
             healthBar.SetValue(health);
             

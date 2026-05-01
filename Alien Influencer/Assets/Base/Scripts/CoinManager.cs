@@ -2,6 +2,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using FMODUnity;
+using FMOD.Studio;
+
 public class CoinManager : MonoBehaviour
 {
     public TMP_Text coinDisplay;
@@ -10,9 +13,14 @@ public class CoinManager : MonoBehaviour
     private const string CoinKey = "CoinCount";
     public Button playButton;
     public EventSystem eventSystem;
+    
+    [SerializeField] private EventReference eventCoinInsert;
+    private EventInstance coinInsertEventInstance;
 
     void Start()
     {
+        coinInsertEventInstance = RuntimeManager.CreateInstance(eventCoinInsert);
+        RuntimeManager.AttachInstanceToGameObject(coinInsertEventInstance, transform);
         if(!Screen.fullScreen)
         {
             Screen.fullScreen = true;
@@ -36,6 +44,12 @@ public class CoinManager : MonoBehaviour
 
     void InsertCoin()
     {
+        
+        coinInsertEventInstance.getPlaybackState(out var playbackState);
+        if (playbackState != PLAYBACK_STATE.PLAYING)
+        {
+            coinInsertEventInstance.start();
+        }
         coinCount++;
         PlayerPrefs.SetInt(CoinKey, coinCount);
         UpdateCoinDisplay();

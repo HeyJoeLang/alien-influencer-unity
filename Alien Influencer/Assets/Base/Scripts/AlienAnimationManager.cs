@@ -36,6 +36,14 @@ public class AlienAnimationManager : MonoBehaviour
             celebrationIterator = (celebrationIterator + 1) % celebrationClips.Length;
         }
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            AlienCelebrate();
+        }
+    }
     
     public void AlienHit()
     {

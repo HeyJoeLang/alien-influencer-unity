@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using FMODUnity;
+using FMOD.Studio;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -23,10 +25,15 @@ public class SceneLoader : MonoBehaviour
         "Level 1" 
     };
 
+    [SerializeField] private EventReference eventplayButtonPressed;
+    private EventInstance playButtonPressedEventInstance;
+
     private AsyncOperation[] preloadedScenes;
 
     private void Start()
     {
+        playButtonPressedEventInstance = RuntimeManager.CreateInstance(eventplayButtonPressed);
+        RuntimeManager.AttachInstanceToGameObject(playButtonPressedEventInstance, transform);
         if (preloadOnStart && scenesToPreload.Length > 0)
         {
             StartCoroutine(C_PreloadScenes());
@@ -67,6 +74,12 @@ public class SceneLoader : MonoBehaviour
 
     public void PlayGame()
     {
+        
+        playButtonPressedEventInstance.getPlaybackState(out var playbackState);
+        if (playbackState != PLAYBACK_STATE.PLAYING)
+        {
+            playButtonPressedEventInstance.start();
+        }
         if(coinManager)
         {
             coinManager.RemoveCredit();

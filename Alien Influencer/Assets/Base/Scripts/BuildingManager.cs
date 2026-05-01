@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System;
 using UnityEditor.Profiling;
 using HomingMissile;
+using FMODUnity;
 
 public class BuildingManager : MonoBehaviour
 {
     public MissileSpawner missileSpawner;
     public Animator fadeInOutAnimator;
+    public StudioEventEmitter studioEventEmitter;
     [SerializeField] private List<Building> allBuildings = new List<Building>();
     private List<Building> destroyedBuildings = new List<Building>();
     bool canTriggerScoreMultiplierIncrease = true;
@@ -19,6 +21,8 @@ public class BuildingManager : MonoBehaviour
     public float nextPhaseDestructionPercent = .8f;
 
     public ProgressBarPro destructionPercentageBar;
+    
+    
 
     void Awake()
     {
@@ -99,6 +103,18 @@ public class BuildingManager : MonoBehaviour
 
         Debug.Log($"Buildings destroyed: {destroyedBuildings.Count}/{allBuildings.Count * nextPhaseDestructionPercent} ({percentage:P1})");
         destructionPercentageBar.SetValue(percentage);
+
+        // Set FMOD Intensity parameter based on percentage
+        if (studioEventEmitter != null)
+        {
+            // Ensure the event is playing before setting the parameter
+            if (!studioEventEmitter.IsPlaying())
+            {
+                studioEventEmitter.Play();
+            }
+            studioEventEmitter.SetParameter("Intensity", percentage*4f);
+        }
+        
         if (percentage >= 1f)
         {
             if (canTriggerScoreMultiplierIncrease)

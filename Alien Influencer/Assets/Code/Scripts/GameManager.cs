@@ -4,9 +4,8 @@ using System.Collections;
 using HomingMissile;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
-using Unity.AI.Navigation;
-using UnityEngine.UI.Extensions;
+using FMOD.Studio;
+using FMODUnity;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -31,12 +30,16 @@ public class GameManager : Singleton<GameManager>
     public ParticleSystem scoreMultiplierParticle;
     public TMP_Text scoreMultiplierText;
     public Animator scoreMultiplierAnimator;
-
+    
+    [SerializeField] private EventReference eventScoreMultiplier;
+    private EventInstance scoreMultiplierEventInstance;
+    
     [Header("Score Animation")]
     public float scoreLerpDuration = 0.5f; // Duration for score lerp animation
 
     private void Start()
     {
+        scoreMultiplierEventInstance = RuntimeManager.CreateInstance(eventScoreMultiplier);
         fadeInOut.SetActive(true);
         timeRemaining = 181f;
         PositionDeltaManager.Reset();
@@ -130,9 +133,12 @@ public class GameManager : Singleton<GameManager>
         emission.SetBurst(0, burst);
         yield return new WaitForSeconds(.75f);
         scoreMultiplierParticle.Play();
-        buildingManager.Reset();
-        yield return new WaitForSeconds(1.5f);
+        scoreMultiplierEventInstance.start();
+        yield return new WaitForSeconds(1f);
         scoreMultiplierText.text = $"{scoreMultiplier}";
+        yield return new WaitForSeconds(1f);
+        buildingManager.Reset();
+        yield return new WaitForSeconds(.5f);
         missileSpawner.ResumeFiring();
         
     }
