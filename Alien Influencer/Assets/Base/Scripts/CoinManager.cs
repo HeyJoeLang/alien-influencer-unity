@@ -9,7 +9,7 @@ public class CoinManager : MonoBehaviour
 {
     public TMP_Text coinDisplay;
     public int minCoinsForCredit = 1;
-    private int coinCount = 1;
+    private int coinCount = 0;
     private const string CoinKey = "CoinCount";
     public Button playButton;
     public EventSystem eventSystem;
@@ -32,19 +32,25 @@ public class CoinManager : MonoBehaviour
     void Update()
     {
         // Check if the '5' key is pressed to simulate inserting a coin
-        if (Input.GetKeyDown(KeyCode.Alpha5))
+        if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Alpha6))
         {
             InsertCoin();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
+        if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             ResetCredits();
+        }
+        if (!Input.GetKeyDown(KeyCode.LeftAlt) && !Input.GetKeyDown(KeyCode.LeftControl)
+                                               && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.X) &&
+                                               !Input.GetKeyDown(KeyCode.C) && !Input.GetKeyDown(KeyCode.V)) return;
+        if (playButton.interactable)
+        {
+            playButton.onClick.Invoke();
         }
     }
 
     void InsertCoin()
     {
-        
         coinInsertEventInstance.getPlaybackState(out var playbackState);
         if (playbackState != PLAYBACK_STATE.PLAYING)
         {

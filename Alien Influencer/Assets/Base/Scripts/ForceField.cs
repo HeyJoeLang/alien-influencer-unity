@@ -32,21 +32,19 @@ public class ForceField : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (!Input.GetKeyDown(KeyCode.C)) return;
+        if (isOn)
         {
-            if (isOn)
-            {
-                return;
-            }
-            isOn = true;
-            
-            // Immediately destroy all homing missiles in the field
-            DestroyHomingMissiles();
-            
-            StartCoroutine(ForceFieldEffect());
-            animator.SetTrigger("On");
-            forceFieldEventInstance.start();
+            return;
         }
+        isOn = true;
+            
+        // Immediately destroy all homing missiles in the field
+        DestroyHomingMissiles();
+            
+        StartCoroutine(ForceFieldEffect());
+        animator.SetTrigger("On");
+        forceFieldEventInstance.start();
     }
     
     IEnumerator ForceFieldEffect()
@@ -57,27 +55,23 @@ public class ForceField : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "homing_missile")
-        {
-            Debug.Log("Missile In Force Field");
+        if (!collision.gameObject.CompareTag("homing_missile")) return;
+        Debug.Log("Missile In Force Field");
             
-            // Add to the list if not already present
-            if (!homingMissilesInField.Contains(collision.gameObject))
-            {
-                homingMissilesInField.Add(collision.gameObject);
-                Debug.Log($"Homing missile count: {homingMissilesInField.Count}");
-                //collision.gameObject.GetComponent<HomingMissile.homing_missile>().MissileDestroyed += RemoveMissile;
-            }
+        // Add to the list if not already present
+        if (!homingMissilesInField.Contains(collision.gameObject))
+        {
+            homingMissilesInField.Add(collision.gameObject);
+            Debug.Log($"Homing missile count: {homingMissilesInField.Count}");
+            //collision.gameObject.GetComponent<HomingMissile.homing_missile>().MissileDestroyed += RemoveMissile;
         }
     }
     
     void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.tag == "homing_missile")
-        {
-            Debug.Log("Missile Left Force Field");
-            RemoveMissile(collision.gameObject);
-        }
+        if (!collision.gameObject.CompareTag("homing_missile")) return;
+        Debug.Log("Missile Left Force Field");
+        RemoveMissile(collision.gameObject);
     }
 
     void RemoveMissile(GameObject missile)
@@ -91,19 +85,17 @@ public class ForceField : MonoBehaviour
         
         foreach (GameObject missile in missilesToDestroy)
         {
-            if (missile != null) // Check if the object still exists
-            {
-                missile.GetComponent<HomingMissile.homing_missile>().StopFlySound();
-                missile.SetActive(false);
-                Vector3 direction = (missile.transform.position - transform.position).normalized;
-                Instantiate(deflectMissile, missile.transform.position, Quaternion.LookRotation(direction+ new Vector3(0,-.2f,0)) );
-                GameObject bounceVFX = Instantiate(BounceVFX, missile.transform.position, Quaternion.LookRotation(direction));
-                Destroy(bounceVFX, 1f);
-                bounceEventInstance = RuntimeManager.CreateInstance(eventBounce);
-                RuntimeManager.AttachInstanceToGameObject(bounceEventInstance, deflectMissile.transform);
-                bounceEventInstance.start();
-                Destroy(missile);
-            }
+            if (missile == null) continue; // Check if the object still exists
+            missile.GetComponent<HomingMissile.homing_missile>().StopFlySound();
+            missile.SetActive(false);
+            Vector3 direction = (missile.transform.position - transform.position).normalized;
+            Instantiate(deflectMissile, missile.transform.position, Quaternion.LookRotation(direction+ new Vector3(0,-.2f,0)) );
+            GameObject bounceVFX = Instantiate(BounceVFX, missile.transform.position, Quaternion.LookRotation(direction));
+            Destroy(bounceVFX, 1f);
+            bounceEventInstance = RuntimeManager.CreateInstance(eventBounce);
+            RuntimeManager.AttachInstanceToGameObject(bounceEventInstance, deflectMissile.transform);
+            bounceEventInstance.start();
+            Destroy(missile);
         }
         
         // Clear the list after destruction

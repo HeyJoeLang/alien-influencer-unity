@@ -1083,7 +1083,7 @@ MonoBehaviour:
     Path: event:/Music/Menu Music
   Event: 
   EventPlayTrigger: 1
-  EventStopTrigger: 0
+  EventStopTrigger: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -6030,11 +6030,11 @@ MonoBehaviour:
   scenesToPreload: 01000000
   eventplayButtonPressed:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 994879563
+      Data2: 1299276564
+      Data3: 21757318
+      Data4: -586850770
+    Path: event:/Sound Design/UI/PlayGame
 --- !u!114 &1273158583
 MonoBehaviour:
   m_ObjectHideFlags: 0

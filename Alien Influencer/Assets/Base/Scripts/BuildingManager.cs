@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
-using UnityEditor.Profiling;
-using HomingMissile;
 using FMODUnity;
 
 public class BuildingManager : MonoBehaviour
@@ -17,12 +15,23 @@ public class BuildingManager : MonoBehaviour
     // Event that emits the percentage of destroyed buildings (0 to 1)
     public static event Action<float> BuildingsDestroyedPercentage;
 
+    // Events for tracking rapid destruction
+    public static event Action<int> OnMassDestruction; // Emitted when >5 buildings destroyed in <0.5s
+    public static event Action<int> OnMinorDestruction; // Emitted when <=5 buildings destroyed in <0.5s
+
+    // Tracking for rapid destruction
+    private List<float> recentDestructionTimes = new List<float>();
+    private const float destructionTimeWindow = 0.5f;
+
     [Range(0, 1)]
     public float nextPhaseDestructionPercent = .8f;
 
     public ProgressBarPro destructionPercentageBar;
-    
-    
+    public float bgMusicIntensityStage1 = .1f;
+    public float bgMusicIntensityStage2 = .2f;
+    public float bgMusicIntensityStage3 = .45f;
+    public float bgMusicIntensityStage4 = .8f;
+    float bgMusicIntensity = 1;
 
     void Awake()
     {
@@ -81,7 +90,34 @@ public class BuildingManager : MonoBehaviour
         if (building != null && !destroyedBuildings.Contains(building))
         {
             destroyedBuildings.Add(building);
+            TrackRapidDestruction();
             CalculateAndEmitPercentage();
+        }
+    }
+
+    /// <summary>
+    /// Tracks destruction timing and emits events based on destruction rate
+    /// </summary>
+    private void TrackRapidDestruction()
+    {
+        float currentTime = Time.time;
+        recentDestructionTimes.Add(currentTime);
+
+        // Remove destruction times outside the time window
+        recentDestructionTimes.RemoveAll(time => currentTime - time > destructionTimeWindow);
+
+        // Check if we've accumulated enough destruction events
+        int destructionCount = recentDestructionTimes.Count;
+
+        if (destructionCount > 5)
+        {
+            OnMassDestruction?.Invoke(destructionCount);
+            Debug.Log($"Mass Destruction! {destructionCount} buildings destroyed in {destructionTimeWindow}s");
+        }
+        else if (destructionCount > 0)
+        {
+            OnMinorDestruction?.Invoke(destructionCount);
+            Debug.Log($"Minor Destruction: {destructionCount} buildings destroyed in {destructionTimeWindow}s");
         }
     }
 
@@ -103,6 +139,22 @@ public class BuildingManager : MonoBehaviour
 
         Debug.Log($"Buildings destroyed: {destroyedBuildings.Count}/{allBuildings.Count * nextPhaseDestructionPercent} ({percentage:P1})");
         destructionPercentageBar.SetValue(percentage);
+        if(percentage >= bgMusicIntensityStage4)
+        {
+            bgMusicIntensity = 3.0f;
+        }
+        else if (percentage >= bgMusicIntensityStage3)
+        {
+            bgMusicIntensity = 2.0f;
+        }
+        else if (percentage >= bgMusicIntensityStage2)
+        {
+            bgMusicIntensity = 1.0f;
+        }
+        else if (percentage >= bgMusicIntensityStage1)
+        {
+            bgMusicIntensity = 0.0f;
+        }
 
         // Set FMOD Intensity parameter based on percentage
         if (studioEventEmitter != null)
@@ -175,6 +227,7 @@ public class BuildingManager : MonoBehaviour
 
         allBuildings.Clear();
         destroyedBuildings.Clear();
+        recentDestructionTimes.Clear();
 
         RegisterAllBuildingsInScene();
         CalculateAndEmitPercentage();

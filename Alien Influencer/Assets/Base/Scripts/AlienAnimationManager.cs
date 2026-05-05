@@ -21,11 +21,42 @@ public class AlienAnimationManager : MonoBehaviour
     private int celebrationIterator = 0;
     private int hitIterator = 0;
 
+    private float lastMassDestructionTime = -1f;
+    private float lastMinorDestructionTime = -1f;
+    private const float destructionCooldown = 1f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (animator == null)
             animator = GetComponent<Animator>();
+
+        BuildingManager.OnMassDestruction += HandleMassDestruction;
+        BuildingManager.OnMinorDestruction += HandleMinorDestruction;
+    }
+
+    private void OnDestroy()
+    {
+        BuildingManager.OnMassDestruction -= HandleMassDestruction;
+        BuildingManager.OnMinorDestruction -= HandleMinorDestruction;
+    }
+
+    private void HandleMassDestruction(int count)
+    {
+        if (Time.time - lastMassDestructionTime >= destructionCooldown)
+        {
+            lastMassDestructionTime = Time.time;
+            Debug.Log($"AlienAnimationManager: Mass Destruction detected! {count} buildings destroyed rapidly");
+        }
+    }
+
+    private void HandleMinorDestruction(int count)
+    {
+        if (Time.time - lastMinorDestructionTime >= destructionCooldown)
+        {
+            lastMinorDestructionTime = Time.time;
+            Debug.Log($"AlienAnimationManager: Minor Destruction detected. {count} buildings destroyed");
+        }
     }
     public void AlienCelebrate()
     {

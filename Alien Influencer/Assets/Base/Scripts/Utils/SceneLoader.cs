@@ -33,7 +33,6 @@ public class SceneLoader : MonoBehaviour
     private void Start()
     {
         playButtonPressedEventInstance = RuntimeManager.CreateInstance(eventplayButtonPressed);
-        RuntimeManager.AttachInstanceToGameObject(playButtonPressedEventInstance, transform);
         if (preloadOnStart && scenesToPreload.Length > 0)
         {
             StartCoroutine(C_PreloadScenes());
@@ -74,12 +73,7 @@ public class SceneLoader : MonoBehaviour
 
     public void PlayGame()
     {
-        
-        playButtonPressedEventInstance.getPlaybackState(out var playbackState);
-        if (playbackState != PLAYBACK_STATE.PLAYING)
-        {
-            playButtonPressedEventInstance.start();
-        }
+        playButtonPressedEventInstance.start();
         if(coinManager)
         {
             coinManager.RemoveCredit();

@@ -48,7 +48,7 @@ public class UFOLaser : MonoBehaviour
     public float megaLaserTimeRemainingPercent = 0f; // 0 = no time remaining, 1 = full time remaining
     
     // Mega laser charge system
-    private int megaLaserCharges = 2; // Starting charges
+    private int megaLaserCharges = 10; // Starting charges
     
     // Public events for mega laser state changes
     public static event Action OnMegaLaserActivated;
@@ -252,7 +252,7 @@ public class UFOLaser : MonoBehaviour
         }
         
         // Handle normal laser firing (Fire3 button)
-        bool shouldNormalLaserFire = Input.GetButton("Fire3");
+        bool shouldNormalLaserFire = Input.GetKey(KeyCode.LeftControl);
         
         if (shouldNormalLaserFire)
         {
@@ -294,7 +294,7 @@ public class UFOLaser : MonoBehaviour
         }
         
         // Handle mega laser firing (Fire1 button)
-        bool shouldMegaLaserFire = Input.GetButtonDown("Fire1"); // Changed to GetButtonDown for single press
+        bool shouldMegaLaserFire = Input.GetKey(KeyCode.X); // Changed to GetButtonDown for single press
         
         if (shouldMegaLaserFire)
         {
@@ -353,9 +353,9 @@ public class UFOLaser : MonoBehaviour
         LaserBeamImpactFlames.SetActive(didHitBuilding);
         
         // Handle missile launching with recharge time and charge system
-        if (Input.GetButton("Jump"))
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
-            if (missileCharges <= 0)
+            if (false)//missileCharges <= 0)
             {
                 Debug.Log("No missile charges remaining!");
             }
