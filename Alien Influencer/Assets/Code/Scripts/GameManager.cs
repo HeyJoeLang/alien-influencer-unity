@@ -41,7 +41,7 @@ public class GameManager : Singleton<GameManager>
     {
         scoreMultiplierEventInstance = RuntimeManager.CreateInstance(eventScoreMultiplier);
         fadeInOut.SetActive(true);
-        //timeRemaining = 181f;
+        timeRemaining = 181f;
         PositionDeltaManager.Reset();
         Debug.Log("Starting Game...");
         StartGame();

@@ -2673,7 +2673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &672372241
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6053,11 +6053,11 @@ MonoBehaviour:
   eventSystem: {fileID: 253954863}
   eventCoinInsert:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -2109066891
+      Data2: 1087943534
+      Data3: -510533461
+      Data4: 219758062
+    Path: event:/Sound Design/UI/InsertCoin
 --- !u!1001 &1309486901
 PrefabInstance:
   m_ObjectHideFlags: 0

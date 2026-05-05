@@ -31,6 +31,7 @@ public class CoinManager : MonoBehaviour
 
     void Update()
     {
+        /*
         // Check if the '5' key is pressed to simulate inserting a coin
         if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Alpha6))
         {
@@ -40,9 +41,10 @@ public class CoinManager : MonoBehaviour
         {
             ResetCredits();
         }
+        */
         if (!Input.GetKeyDown(KeyCode.LeftAlt) && !Input.GetKeyDown(KeyCode.LeftControl)
                                                && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.X) &&
-                                               !Input.GetKeyDown(KeyCode.C) && !Input.GetKeyDown(KeyCode.V)) return;
+                                               !Input.GetKeyDown(KeyCode.LeftAlt) && !Input.GetKeyDown(KeyCode.Z)) return;
         if (playButton.interactable)
         {
             playButton.onClick.Invoke();
@@ -82,7 +84,8 @@ public class CoinManager : MonoBehaviour
     void UpdateCoinDisplay()
     {
         coinDisplay.text = string.Format("Coins: {0} / {1}", coinCount, minCoinsForCredit);
-        playButton.interactable = coinCount >= minCoinsForCredit;
+        //playButton.interactable = coinCount >= minCoinsForCredit;
+        playButton.interactable = true;
         eventSystem.SetSelectedGameObject(playButton.gameObject);
     }
 }

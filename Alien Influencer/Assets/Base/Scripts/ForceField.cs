@@ -17,7 +17,6 @@ public class ForceField : MonoBehaviour
     private EventInstance forceFieldEventInstance;
     private EventInstance bounceEventInstance;
     
-    
     // Persistent list to track homing missiles in the force field area
     private List<GameObject> homingMissilesInField = new List<GameObject>();
 
@@ -32,7 +31,7 @@ public class ForceField : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Input.GetKeyDown(KeyCode.C)) return;
+        if (!Input.GetKeyDown(KeyCode.LeftAlt)) return;
         if (isOn)
         {
             return;

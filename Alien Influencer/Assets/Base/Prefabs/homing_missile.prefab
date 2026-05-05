@@ -194,6 +194,7 @@ MonoBehaviour:
   smoke_position: {fileID: 6573806826555785937}
   destroy_effect: {fileID: 4868538168526089871, guid: 7bcf29c8fbb433f4cbc27a4ae6ac2b79, type: 3}
   distanceToUFO: 10
+  parameterMaxDistance: 10
   eventFly:
     Guid:
       Data1: 618988034

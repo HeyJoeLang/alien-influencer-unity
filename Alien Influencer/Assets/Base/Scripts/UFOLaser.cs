@@ -353,7 +353,7 @@ public class UFOLaser : MonoBehaviour
         LaserBeamImpactFlames.SetActive(didHitBuilding);
         
         // Handle missile launching with recharge time and charge system
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (false)//missileCharges <= 0)
             {
