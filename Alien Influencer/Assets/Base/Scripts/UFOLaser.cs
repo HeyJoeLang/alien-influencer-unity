@@ -252,7 +252,7 @@ public class UFOLaser : MonoBehaviour
         }
         
         // Handle normal laser firing (Fire3 button)
-        bool shouldNormalLaserFire = Input.GetKey(KeyCode.LeftControl);
+        bool shouldNormalLaserFire = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.U);
         
         if (shouldNormalLaserFire)
         {
@@ -294,7 +294,7 @@ public class UFOLaser : MonoBehaviour
         }
         
         // Handle mega laser firing (Fire1 button)
-        bool shouldMegaLaserFire = Input.GetKey(KeyCode.X); // Changed to GetButtonDown for single press
+        bool shouldMegaLaserFire = Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.J); // Changed to GetButtonDown for single press
         
         if (shouldMegaLaserFire)
         {
@@ -353,9 +353,9 @@ public class UFOLaser : MonoBehaviour
         LaserBeamImpactFlames.SetActive(didHitBuilding);
         
         // Handle missile launching with recharge time and charge system
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.I))
         {
-            if (false)//missileCharges <= 0)
+            if (missileCharges <= 0)
             {
                 Debug.Log("No missile charges remaining!");
             }

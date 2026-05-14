@@ -31,7 +31,7 @@ public class ForceField : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Input.GetKeyDown(KeyCode.LeftAlt)) return;
+        if (!Input.GetKeyDown(KeyCode.LeftAlt) && !Input.GetKeyDown(KeyCode.K)) return;
         if (isOn)
         {
             return;

@@ -102,18 +102,24 @@ public class SceneLoader : MonoBehaviour
         }
         
         Debug.Log($"Loading scene: {sceneNames[sceneIndex]}");
-        
-        // Check if scene is preloaded
-        AsyncOperation preloadedScene = GetPreloadedScene(sceneIndex);
-        if (preloadedScene != null)
+        if (sceneIndex == 0)//Skip preload for main menu
         {
-            Debug.Log($"Activating preloaded scene: {sceneNames[sceneIndex]}");
-            preloadedScene.allowSceneActivation = true;
+            SceneManager.LoadScene(sceneIndex);
         }
         else
         {
-            // Load normally if not preloaded
-            SceneManager.LoadScene(sceneIndex);
+            // Check if scene is preloaded
+            AsyncOperation preloadedScene = GetPreloadedScene(sceneIndex);
+            if (preloadedScene != null)
+            {
+                Debug.Log($"Activating preloaded scene: {sceneNames[sceneIndex]}");
+                preloadedScene.allowSceneActivation = true;
+            }
+            else
+            {
+                // Load normally if not preloaded
+                SceneManager.LoadScene(sceneIndex);
+            }
         }
     }
     
