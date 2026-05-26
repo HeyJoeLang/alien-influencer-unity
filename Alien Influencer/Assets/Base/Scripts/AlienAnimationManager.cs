@@ -1,8 +1,16 @@
+using System.Collections;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class AlienAnimationManager : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    
+    [SerializeField] private EventReference eventCheer;
+    [SerializeField] private EventReference eventGrumble;
+    private EventInstance cheerEventInstance;   
+    private EventInstance grumbleEventInstance;   
     
     [SerializeField] private string[] celebrationClips = {
         "cheer1",
@@ -24,12 +32,20 @@ public class AlienAnimationManager : MonoBehaviour
     private float lastMassDestructionTime = -1f;
     private float lastMinorDestructionTime = -1f;
     private const float destructionCooldown = 1f;
+    
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (animator == null)
             animator = GetComponent<Animator>();
+        
+        
+        cheerEventInstance = RuntimeManager.CreateInstance(eventCheer);
+        grumbleEventInstance = RuntimeManager.CreateInstance(eventGrumble);
+        RuntimeManager.AttachInstanceToGameObject(cheerEventInstance, transform);
+        RuntimeManager.AttachInstanceToGameObject(grumbleEventInstance, transform);
 
         BuildingManager.OnMassDestruction += HandleMassDestruction;
         BuildingManager.OnMinorDestruction += HandleMinorDestruction;
@@ -46,7 +62,20 @@ public class AlienAnimationManager : MonoBehaviour
         if (Time.time - lastMassDestructionTime >= destructionCooldown)
         {
             lastMassDestructionTime = Time.time;
+            StartCoroutine(StallCheers());
             Debug.Log($"AlienAnimationManager: Mass Destruction detected! {count} buildings destroyed rapidly");
+            
+        }
+    }
+
+    IEnumerator StallCheers()
+    {
+        yield return new WaitForSeconds(.75f);
+        
+        cheerEventInstance.getPlaybackState(out var playbackState);
+        if (playbackState != PLAYBACK_STATE.PLAYING)
+        {
+            cheerEventInstance.start();
         }
     }
 
@@ -65,14 +94,6 @@ public class AlienAnimationManager : MonoBehaviour
             Debug.Log($"AlienAnimation: {celebrationClips[celebrationIterator]}");
             animator.SetTrigger(celebrationClips[celebrationIterator]);
             celebrationIterator = (celebrationIterator + 1) % celebrationClips.Length;
-        }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            AlienCelebrate();
         }
     }
     

@@ -109,7 +109,7 @@ public class BuildingManager : MonoBehaviour
         // Check if we've accumulated enough destruction events
         int destructionCount = recentDestructionTimes.Count;
 
-        if (destructionCount > 5)
+        if (destructionCount >= 3)
         {
             OnMassDestruction?.Invoke(destructionCount);
             Debug.Log($"Mass Destruction! {destructionCount} buildings destroyed in {destructionTimeWindow}s");
@@ -164,7 +164,7 @@ public class BuildingManager : MonoBehaviour
             {
                 studioEventEmitter.Play();
             }
-            studioEventEmitter.SetParameter("Intensity", percentage*4f);
+            studioEventEmitter.SetParameter("Intensity", bgMusicIntensity);
         }
         
         if (percentage >= 1f)

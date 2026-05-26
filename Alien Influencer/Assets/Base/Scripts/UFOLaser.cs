@@ -48,7 +48,7 @@ public class UFOLaser : MonoBehaviour
     public float megaLaserTimeRemainingPercent = 0f; // 0 = no time remaining, 1 = full time remaining
     
     // Mega laser charge system
-    private int megaLaserCharges = 10; // Starting charges
+    private int megaLaserCharges = 5; // Starting charges
     
     // Public events for mega laser state changes
     public static event Action OnMegaLaserActivated;
@@ -62,7 +62,7 @@ public class UFOLaser : MonoBehaviour
     private bool isMissileRecharging = false;
     
     // Missile charge system
-    private int missileCharges = 2; // Starting missile charges
+    private int missileCharges = 5; // Starting missile charges
     
     // Public events for missile state changes
     public static event Action OnMissileLaunched;
