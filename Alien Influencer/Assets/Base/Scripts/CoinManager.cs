@@ -21,10 +21,6 @@ public class CoinManager : MonoBehaviour
     {
         coinInsertEventInstance = RuntimeManager.CreateInstance(eventCoinInsert);
         RuntimeManager.AttachInstanceToGameObject(coinInsertEventInstance, transform);
-        if(!Screen.fullScreen)
-        {
-            Screen.fullScreen = true;
-        }
         coinCount = PlayerPrefs.GetInt(CoinKey, 0);
         UpdateCoinDisplay();
     }
