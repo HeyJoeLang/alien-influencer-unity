@@ -11,7 +11,7 @@ namespace AmazingAssets.AdvancedDissolveEditor
         #region GUI
         public class GUIEnabled : IDisposable
         {
-            [SerializeField]
+            [field: SerializeField]
             private bool PreviousState
             {
                 get;
@@ -35,7 +35,7 @@ namespace AmazingAssets.AdvancedDissolveEditor
 
         public class GUIColor : IDisposable
         {
-            [SerializeField]
+            [field: SerializeField]
             private Color PreviousColor
             {
                 get;
@@ -56,7 +56,7 @@ namespace AmazingAssets.AdvancedDissolveEditor
 
         public class GUIBackgroundColor : IDisposable
         {
-            [SerializeField]
+            [field: SerializeField]
             private Color PreviousColor
             {
                 get;
@@ -77,7 +77,7 @@ namespace AmazingAssets.AdvancedDissolveEditor
 
         public class GUISkinLabelFontStyle : IDisposable
         {
-            [SerializeField]
+            [field: SerializeField]
             private FontStyle PreviousStyle
             {
                 set;
@@ -98,7 +98,7 @@ namespace AmazingAssets.AdvancedDissolveEditor
 
         public class GUISkinLabelNormalTextColor : IDisposable
         {
-            [SerializeField]
+            [field: SerializeField]
             private Color PreviousTextColor
             {
                 set;
@@ -181,7 +181,7 @@ namespace AmazingAssets.AdvancedDissolveEditor
         #region Editor GUI
         public class EditorGUIIndentLevel : IDisposable
         {
-            [SerializeField]
+            [field: SerializeField]
             private int PreviousIndent
             {
                 get;
@@ -202,7 +202,7 @@ namespace AmazingAssets.AdvancedDissolveEditor
 
         public class EditorGUIUtilityLabelWidth : IDisposable
         {
-            [SerializeField]
+            [field: SerializeField]
             private float PreviousWidth
             {
                 get;
@@ -223,7 +223,7 @@ namespace AmazingAssets.AdvancedDissolveEditor
 
         public class EditorGUIUtilityFieldWidth : IDisposable
         {
-            [SerializeField]
+            [field: SerializeField]
             private float PreviousWidth
             {
                 get;
