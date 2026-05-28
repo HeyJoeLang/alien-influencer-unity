@@ -380,8 +380,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../../Desktop/Alien Siege_FMOD_V2/Alien Siege_FMOD_V2.fspro
-  sourceBankPath: ../../../../Desktop/Alien Siege_FMOD_V2/Build
+  sourceProjectPath: Assets/Audio/Alien Siege_FMOD_V3/Alien Siege_FMOD_V3.fspro
+  sourceBankPath: Assets/Audio/Alien Siege_FMOD_V3/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

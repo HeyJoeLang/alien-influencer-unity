@@ -4,6 +4,9 @@
 		<property name="name">
 			<value>Destruction</value>
 		</property>
+		<property name="maxInstances">
+			<value>5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{b4169acf-211f-450a-a710-9d87de5c1134}</destination>
 		</relationship>
