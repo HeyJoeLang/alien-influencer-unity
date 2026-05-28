@@ -22,7 +22,7 @@ public class SceneLoader : MonoBehaviour
     
     string[] sceneNames = new string[] { 
         "MainMenu",
-        "Level 1" 
+        "Game" 
     };
 
     [SerializeField] private EventReference eventplayButtonPressed;
@@ -48,7 +48,7 @@ public class SceneLoader : MonoBehaviour
             int sceneIndex = scenesToPreload[i];
             Debug.Log($"Preloading scene: {sceneNames[sceneIndex]}");
             
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex);
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneNames[sceneIndex]);
             asyncLoad.allowSceneActivation = false; // Prevent automatic activation
             preloadedScenes[i] = asyncLoad;
             

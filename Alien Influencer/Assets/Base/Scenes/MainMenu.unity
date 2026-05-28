@@ -677,7 +677,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1537522941
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1796948667, guid: 8fa0316bb8a1b1d47ac93d46ec0aeae2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5904,7 +5904,6 @@ GameObject:
   - component: {fileID: 1273158577}
   - component: {fileID: 1273158576}
   - component: {fileID: 1273158581}
-  - component: {fileID: 1273158583}
   m_Layer: 5
   m_Name: Canvas_UI
   m_TagString: Untagged
@@ -6011,29 +6010,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1273158583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273158575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe2ada62174eac44abfcbe65ec17571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinDisplay: {fileID: 672372242}
-  minCoinsForCredit: 1
-  playButton: {fileID: 1825782575}
-  eventSystem: {fileID: 253954863}
-  eventCoinInsert:
-    Guid:
-      Data1: -2109066891
-      Data2: 1087943534
-      Data3: -510533461
-      Data4: 219758062
-    Path: event:/Sound Design/UI/InsertCoin
 --- !u!1001 &1309486901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9318,11 +9294,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 800622953}
   coinManager: {fileID: 1944064110}
-  mainMenuScene: MainMenu
-  gameScene: Game
   preloadOnStart: 1
-  scenesToPreload:
-  - Game
+  scenesToPreload: 01000000
   eventplayButtonPressed:
     Guid:
       Data1: 994879563

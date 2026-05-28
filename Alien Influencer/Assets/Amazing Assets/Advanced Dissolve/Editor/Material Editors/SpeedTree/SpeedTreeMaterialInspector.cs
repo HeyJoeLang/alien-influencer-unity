@@ -139,7 +139,7 @@ namespace AmazingAssets.AdvancedDissolveEditor
                 }
                 foreach (MaterialProperty prop6 in materialPropertyList)
                 {
-                    if ((uint)(prop6.flags & (MaterialProperty.PropFlags.HideInInspector | MaterialProperty.PropFlags.PerRendererData)) <= 0U)
+                    if ((uint)(prop6.propertyFlags & (ShaderPropertyFlags.HideInInspector | ShaderPropertyFlags.PerRendererData)) <= 0U)
                         materialEditor.ShaderProperty(prop6, prop6.displayName);
                 }
                 EditorGUILayout.Space();
