@@ -20,7 +20,7 @@ MonoBehaviour:
     Data4: 679680606
   Banks:
   - {fileID: -6590884091977507386}
-  IsStream: 1
+  IsStream: 0
   Is3D: 0
   IsOneShot: 0
   Parameters: []
@@ -47,7 +47,7 @@ MonoBehaviour:
     Data4: -78027969
   Banks:
   - {fileID: -6590884091977507386}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters:
@@ -70,7 +70,7 @@ MonoBehaviour:
   Path: Assets/Audio/Alien Siege_FMOD_V3/Build/Desktop/Sound Design.bank
   Name: Sound Design
   StudioPath: bank:/Sound Design
-  lastModified: 639127898456770176
+  lastModified: 639156470185642899
   FileSizes:
   - Name: Desktop
     Value: 3211840
@@ -300,7 +300,7 @@ MonoBehaviour:
     Data4: -1600001449
   Banks:
   - {fileID: -6590884091977507386}
-  IsStream: 1
+  IsStream: 0
   Is3D: 0
   IsOneShot: 0
   Parameters: []
@@ -354,7 +354,7 @@ MonoBehaviour:
     Data4: 1233793444
   Banks:
   - {fileID: -6590884091977507386}
-  IsStream: 1
+  IsStream: 0
   Is3D: 0
   IsOneShot: 0
   Parameters:
@@ -455,7 +455,7 @@ MonoBehaviour:
   Path: Assets/Audio/Alien Siege_FMOD_V3/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639155535688085326
+  lastModified: 639155525734898333
   FileSizes:
   - Name: Desktop
     Value: 4424
@@ -562,7 +562,7 @@ MonoBehaviour:
   - {fileID: -638471965399432529}
   StringsBanks:
   - {fileID: 4224978147201134173}
-  cacheTime: 639155535688095996
+  cacheTime: 639156470185642899
   cacheVersion: 131635
 --- !u!114 &908141188493268945
 MonoBehaviour:
@@ -784,7 +784,7 @@ MonoBehaviour:
   Path: Assets/Audio/Alien Siege_FMOD_V3/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639155535688095996
+  lastModified: 639155525734910219
   FileSizes:
   - Name: Desktop
     Value: 2860

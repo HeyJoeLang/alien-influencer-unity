@@ -4,6 +4,9 @@
 		<property name="name">
 			<value>Sound Design</value>
 		</property>
+		<property name="maxInstances">
+			<value>7</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{2dc59e67-66f1-490f-84cc-508675ef3ee7}</destination>
 		</relationship>

@@ -4,9 +4,6 @@
 		<property name="name">
 			<value>Power-Ups</value>
 		</property>
-		<property name="maxInstances">
-			<value>2</value>
-		</property>
 		<relationship name="effectChain">
 			<destination>{b3357bf9-99bf-4807-b2e0-cbf0bbaa5ec1}</destination>
 		</relationship>
