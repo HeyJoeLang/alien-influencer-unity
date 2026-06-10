@@ -455,7 +455,7 @@ MonoBehaviour:
   Path: Assets/Audio/Alien Siege_FMOD_V3/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639155525734898333
+  lastModified: 639166867651964899
   FileSizes:
   - Name: Desktop
     Value: 4424
@@ -557,12 +557,13 @@ MonoBehaviour:
   - {fileID: 2782507378740669756}
   - {fileID: -311504557069306228}
   - {fileID: -2740950514805281598}
+  - {fileID: 7862008312279395170}
   EditorParameters: []
   MasterBanks:
   - {fileID: -638471965399432529}
   StringsBanks:
   - {fileID: 4224978147201134173}
-  cacheTime: 639160731816632171
+  cacheTime: 639166867680975544
   cacheVersion: 131635
 --- !u!114 &908141188493268945
 MonoBehaviour:
@@ -711,10 +712,10 @@ MonoBehaviour:
   Path: Assets/Audio/Alien Siege_FMOD_V3/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639155525763345098
+  lastModified: 639166867680975544
   FileSizes:
   - Name: Desktop
-    Value: 18769920
+    Value: 21264736
   Exists: 1
 --- !u!114 &3500995484649526621
 MonoBehaviour:
@@ -784,10 +785,10 @@ MonoBehaviour:
   Path: Assets/Audio/Alien Siege_FMOD_V3/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639155525734910219
+  lastModified: 639166867651973346
   FileSizes:
   - Name: Desktop
-    Value: 2860
+    Value: 2904
   Exists: 1
 --- !u!114 &4548156906063133860
 MonoBehaviour:
@@ -941,6 +942,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &7862008312279395170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Game Loop 2
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Music/Game Loop 2
+  Guid:
+    Data1: 1092852038
+    Data2: 1267966914
+    Data3: -1084916337
+    Data4: 2056120160
+  Banks:
+  - {fileID: 3320246291802318576}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 186352
 --- !u!114 &7868817924204296513
 MonoBehaviour:
   m_ObjectHideFlags: 0
