@@ -26,7 +26,7 @@ public class Building : MonoBehaviour
     public delegate void DestroyedBuilding(Building building);
     public event DestroyedBuilding OnBuildingDestroyed;
     
-    private AudioHandle damagedHandle;
+    //private AudioHandle damagedHandle;
     ParticleSystem sparksParticles;
     float distance = 0f;
     private Transform mainCameraTransform;
@@ -71,7 +71,7 @@ public class Building : MonoBehaviour
     { 
         InitializeDamageVisuals();
         CurrentState = BuildingState.IsDamaged;
-        damagedHandle = AudioManager.Instance.PlayLoop(AudioSoundIds.SoundDesign.Destruction.Fire, transform);
+        //damagedHandle = AudioManager.Instance.PlayLoop(AudioSoundIds.SoundDesign.Destruction.Fire, transform);
     }
 
     private void InitializeDamageVisuals()
@@ -92,7 +92,7 @@ public class Building : MonoBehaviour
         distance = Vector3.Distance(transform.position, mainCameraTransform.position);
         if (distance < 10f)
         {
-            AudioManager.Instance.SetLoopDistanceAttenuation(damagedHandle, distance, 10f);
+            //AudioManager.Instance.SetLoopDistanceAttenuation(damagedHandle, distance, 10f);
         }
     }
 
@@ -201,7 +201,7 @@ public class Building : MonoBehaviour
     #endregion
     private void OnDestroy()
     {
-        AudioManager.Instance.StopLoop(ref damagedHandle, 0f);
+       // AudioManager.Instance.StopLoop(ref damagedHandle, 0f);
     }
     public void ResetBuilding()
     {
@@ -233,6 +233,6 @@ public class Building : MonoBehaviour
             damageProgressBar.SetValue(0);
         }
         
-        AudioManager.Instance.StopLoop(ref damagedHandle, 0f);
+     //   AudioManager.Instance.StopLoop(ref damagedHandle, 0f);
     }
 }
