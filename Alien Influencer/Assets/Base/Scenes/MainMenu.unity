@@ -1003,7 +1003,6 @@ GameObject:
   - component: {fileID: 253954864}
   - component: {fileID: 253954863}
   - component: {fileID: 253954865}
-  - component: {fileID: 253954866}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1061,39 +1060,6 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &253954866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 253954861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -2138393867
-      Data2: 1255043537
-      Data3: 1312268694
-      Data4: 266507431
-    Path: event:/Music/Menu Music
-  Event: 
-  EventPlayTrigger: 1
-  EventStopTrigger: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params:
-  - Name: Track Volume
-    Value: 100
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1001 &275473838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9296,13 +9262,6 @@ MonoBehaviour:
   coinManager: {fileID: 1944064110}
   preloadOnStart: 1
   scenesToPreload: 01000000
-  eventplayButtonPressed:
-    Guid:
-      Data1: 994879563
-      Data2: 1299276564
-      Data3: 21757318
-      Data4: -586850770
-    Path: event:/Sound Design/UI/PlayGame
 --- !u!114 &1944064110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9319,13 +9278,6 @@ MonoBehaviour:
   minCoinsForCredit: 1
   playButton: {fileID: 1012591929}
   eventSystem: {fileID: 253954863}
-  eventCoinInsert:
-    Guid:
-      Data1: -2109066891
-      Data2: 1087943534
-      Data3: -510533461
-      Data4: 219758062
-    Path: event:/Sound Design/UI/InsertCoin
 --- !u!1 &1947064158
 GameObject:
   m_ObjectHideFlags: 0

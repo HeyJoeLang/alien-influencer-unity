@@ -1,0 +1,285 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6b7e329307d604f885349239aaca84, type: 3}
+  m_Name: AudioSoundRegistry
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSoundRegistry
+  entries:
+  - soundId: Sound Design/Defenses/UFO Force Field Activation
+    clips:
+    - {fileID: 8300000, guid: eeeee44982ee720479acfe11961a9692, type: 3}
+    - {fileID: 8300000, guid: b5340a1848e82fd4792049e0b704a21f, type: 3}
+    - {fileID: 8300000, guid: 834890f92ab89ad4da7e544e198954f9, type: 3}
+    is2D: 0
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Defenses/UFO Force Field Bounce
+    clips:
+    - {fileID: 8300000, guid: ae294921ba4e711469398b4f67b29ec1, type: 3}
+    - {fileID: 8300000, guid: 23c6626134764d742ad88a9d8d35d9d6, type: 3}
+    - {fileID: 8300000, guid: e8bbbdeea6ddbca489cff12e757000fa, type: 3}
+    is2D: 0
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Destruction/Building Debris
+    clips:
+    - {fileID: 8300000, guid: 1521f2bc0e19cdf4380edd849341f048, type: 3}
+    - {fileID: 8300000, guid: 53d0277f02c4118458593c6a71b10e6a, type: 3}
+    is2D: 0
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Destruction/Building Explosion
+    clips:
+    - {fileID: 8300000, guid: 2f54fd3fae2c3e04ba092d0168337ba5, type: 3}
+    - {fileID: 8300000, guid: 7b2a7af10ceb46a469ecc9a891698d02, type: 3}
+    - {fileID: 8300000, guid: b95aac3905d79134cb8033a05f0f1ee8, type: 3}
+    - {fileID: 8300000, guid: 4e66201cf9a61194ebee61c986748c92, type: 3}
+    - {fileID: 8300000, guid: 9536f25d25031384db99935b32687a6d, type: 3}
+    - {fileID: 8300000, guid: 37440a5c27f40d34fb998c7ea0718a67, type: 3}
+    is2D: 0
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Destruction/Fire
+    clips:
+    - {fileID: 8300000, guid: f0d7fcfb048f16041925c9e5bf1e979a, type: 3}
+    is2D: 0
+    loop: 1
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Destruction/Missile Impact Explosion
+    clips:
+    - {fileID: 8300000, guid: 71c06622f0c459d46bd2b4171c470591, type: 3}
+    - {fileID: 8300000, guid: 0c5c5138d50f36c47992dabdf7d91a59, type: 3}
+    - {fileID: 8300000, guid: 189222502ee228d48808306a0a20a4de, type: 3}
+    - {fileID: 8300000, guid: f3d80ecccb2371f4382b5d092b45d0f2, type: 3}
+    is2D: 0
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Destruction/Deflected Missile Explosion
+    clips:
+    - {fileID: 8300000, guid: 555bcffbefb40cc46a48aa222c5874dc, type: 3}
+    - {fileID: 8300000, guid: dc9f5664aa4b16545a405572c267e80f, type: 3}
+    - {fileID: 8300000, guid: 489d9f849a122dc45b0156c21dcbfc43, type: 3}
+    - {fileID: 8300000, guid: 42ad298d27b66aa429b1242ee73e696d, type: 3}
+    is2D: 0
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Power-Ups/Collect Mega Laser Charge
+    clips:
+    - {fileID: 8300000, guid: fdbd3b5dc9fbe334a8dc5c020627c90b, type: 3}
+    is2D: 0
+    loop: 1
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Power-Ups/Collect UFO Missile Charge
+    clips:
+    - {fileID: 8300000, guid: 1e7b0fb6c09cacd4998fe76fdb531747, type: 3}
+    is2D: 0
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/UI/PlayGame
+    clips:
+    - {fileID: 8300000, guid: d251ca0690960f744aacdc394baaebee, type: 3}
+    is2D: 1
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/UI/ResetScore
+    clips:
+    - {fileID: 8300000, guid: 5a314ee37ed780045b0f0f4ee7e7efbe, type: 3}
+    is2D: 1
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/UI/MouseHover
+    clips: []
+    is2D: 1
+    loop: 1
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/UI/InsertCoin
+    clips: []
+    is2D: 1
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Vehicles/UFO Hover
+    clips:
+    - {fileID: 8300000, guid: aef296daa6e65f240a59972f794c8fde, type: 3}
+    - {fileID: 8300000, guid: 5db9413b4bf59bd49b9e69874b7907a7, type: 3}
+    is2D: 0
+    loop: 1
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Weapons/City Missile Flight
+    clips:
+    - {fileID: 8300000, guid: 72636ebf8a6348746918b147e369e5b4, type: 3}
+    is2D: 0
+    loop: 1
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Weapons/City Missile Launch
+    clips:
+    - {fileID: 8300000, guid: 96383bb5dcdf6374594ba664ceb5677c, type: 3}
+    is2D: 0
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Weapons/Laser
+    clips:
+    - {fileID: 8300000, guid: 7c4b8ce2e9c8c1d47a87fec046a80588, type: 3}
+    is2D: 1
+    loop: 1
+    priority: 90
+    maxConcurrent: 1
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Weapons/Mega Laser
+    clips:
+    - {fileID: 8300000, guid: 45dff2eecb8465b4b90c66d26ff17124, type: 3}
+    is2D: 1
+    loop: 1
+    priority: 90
+    maxConcurrent: 1
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Weapons/UFO Missiles Launch
+    clips:
+    - {fileID: 8300000, guid: 6152de78a6e9ad94e99ba28ca6dd684e, type: 3}
+    - {fileID: 8300000, guid: 5744eb76d1c589d42b1143c7423b15d5, type: 3}
+    - {fileID: 8300000, guid: fad5245894b10ca46b55e694921319ec, type: 3}
+    is2D: 0
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Sound Design/Weapons/UFO Damage
+    clips:
+    - {fileID: 8300000, guid: b0626ce772595df46abaf94d2ccff11f, type: 3}
+    - {fileID: 8300000, guid: 34f5f68054da1344d8e7d050d8ff4ea4, type: 3}
+    - {fileID: 8300000, guid: ea3c8edc3772cb74db1c22997646a5c5, type: 3}
+    - {fileID: 8300000, guid: a670649bae2b32a499af474b176be0dc, type: 3}
+    - {fileID: 8300000, guid: 6b716657575eeca4a8269d8ba611dfc1, type: 3}
+    - {fileID: 8300000, guid: 4f7bf3448dbf58340a346c9be1ef9f2a, type: 3}
+    - {fileID: 8300000, guid: f73cef0b6aee3f543a9213fc07a9bbd5, type: 3}
+    - {fileID: 8300000, guid: 642e7ee4477ea5149b3a14280ba503a0, type: 3}
+    is2D: 0
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Music/Menu Music
+    clips: []
+    is2D: 1
+    loop: 1
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Music/Game Loop
+    clips:
+    - {fileID: 8300000, guid: 13ec9535200744b4cba6a2fd39521eae, type: 3}
+    is2D: 1
+    loop: 1
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Music/Game Loop 2
+    clips: []
+    is2D: 1
+    loop: 1
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Dialogue/UFO Laughter
+    clips: []
+    is2D: 1
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50
+  - soundId: Dialogue/UFO Phrases
+    clips: []
+    is2D: 1
+    loop: 0
+    priority: 64
+    maxConcurrent: 8
+    overflowStrategy: 0
+    minDistance: 1
+    maxDistance: 50

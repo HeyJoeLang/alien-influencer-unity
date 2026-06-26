@@ -1,0 +1,21 @@
+{
+  "name": "AnkleBreaker.UnityMCP.Editor",
+  "rootNamespace": "UnityMCP.Editor",
+  "references": [
+    "UnityEngine.TestRunner",
+    "UnityEditor.TestRunner",
+    "UMA_Core",
+    "UMA_Core_Editor"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

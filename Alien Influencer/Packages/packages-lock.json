@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.anklebreaker.unity-mcp": {
+      "version": "file:com.anklebreaker.unity-mcp",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.coffee.ui-particle": {
       "version": "https://github.com/mob-sakai/ParticleEffectForUGUI.git",
       "depth": 0,

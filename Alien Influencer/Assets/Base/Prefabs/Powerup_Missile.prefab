@@ -5126,20 +5126,6 @@ MonoBehaviour:
   type: 0
   explosionParticles: {fileID: 6520876165326544579}
   orb: {fileID: 4175664382230285720}
-  eventMegaLaserPickup:
-    Guid:
-      Data1: 55237455
-      Data2: 1287668998
-      Data3: -1856062572
-      Data4: -868659559
-    Path: event:/Sound Design/Power-Ups/Collect Mega Laser Charge
-  eventMissilePickup:
-    Guid:
-      Data1: 1218879503
-      Data2: 1295631687
-      Data3: -1341917528
-      Data4: -549942013
-    Path: event:/Sound Design/Power-Ups/Collect UFO Missile Charge
 --- !u!1 &5721726876623753581
 GameObject:
   m_ObjectHideFlags: 0

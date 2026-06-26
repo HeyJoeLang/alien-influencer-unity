@@ -195,20 +195,6 @@ MonoBehaviour:
   destroy_effect: {fileID: 4868538168526089871, guid: 7bcf29c8fbb433f4cbc27a4ae6ac2b79, type: 3}
   distanceToUFO: 10
   parameterMaxDistance: 10
-  eventFly:
-    Guid:
-      Data1: 618988034
-      Data2: 1185777851
-      Data3: 1250045851
-      Data4: -78027969
-    Path: event:/Sound Design/Weapons/City Missile Flight
-  eventLaunch:
-    Guid:
-      Data1: -1305765418
-      Data2: 1165011075
-      Data3: -1544257861
-      Data4: -1913715414
-    Path: event:/Sound Design/Weapons/City Missile Launch
 --- !u!114 &1858012472242831238
 MonoBehaviour:
   m_ObjectHideFlags: 0
