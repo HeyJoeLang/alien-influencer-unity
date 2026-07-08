@@ -31,11 +31,11 @@ public class Powerup : MonoBehaviour
         {
             case PowerupType.Missile:
                 weaponScript.AddMissileCharges(1);
-                AudioManager.Instance.Play(AudioSoundIds.SoundDesign.PowerUps.CollectUfoMissileCharge, transform);
+    //            AudioManager.Instance.Play(AudioSoundIds.SoundDesign.PowerUps.CollectUfoMissileCharge, transform);
                 break;
             case PowerupType.MegaLaser:
                 weaponScript.AddMegaLaserCharge();
-                AudioManager.Instance.Play(AudioSoundIds.SoundDesign.PowerUps.CollectMegaLaserCharge, transform);
+   //             AudioManager.Instance.Play(AudioSoundIds.SoundDesign.PowerUps.CollectMegaLaserCharge, transform);
                 break;
         }
 

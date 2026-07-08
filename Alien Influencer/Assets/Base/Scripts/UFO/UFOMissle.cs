@@ -8,6 +8,7 @@ public class UFOMissile : MonoBehaviour
     public float explosionRadius = 10f;
     public float explosionDamage = 50f;
     public GameObject explosionEffectPrefab;
+    public AudioSourceList deflectedMissileExplosionAudio;
 
     private bool hasExploded = false;
 
@@ -59,7 +60,8 @@ public class UFOMissile : MonoBehaviour
 
         if (colliders.Length <= 0)
         {
-            AudioManager.Instance.Play(AudioSoundIds.SoundDesign.Destruction.DeflectedMissileExplosion, transform.position);
+            if(deflectedMissileExplosionAudio != null)
+                deflectedMissileExplosionAudio.Play();
         }
 
         MeshRenderer renderer = GetComponent<MeshRenderer>();

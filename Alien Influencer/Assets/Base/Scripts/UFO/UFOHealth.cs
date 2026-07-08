@@ -33,7 +33,7 @@ public class UFOHealth : MonoBehaviour
             if (!damageSoundPlaying)
             {
                 damageSoundPlaying = true;
-                AudioManager.Instance.Play(AudioSoundIds.SoundDesign.Weapons.UfoDamage, transform);
+                AudioManager.Instance.PlayUfoDamage();
                 StartCoroutine(ResetDamageSoundFlag());
             }
         }

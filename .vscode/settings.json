@@ -1,3 +1,7 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "dotrush.roslyn.projectOrSolutionFiles": [
+        "c:\\Users\\Joe\\Documents\\GitHub\\alien-influencer-unity\\Alien Influencer\\Alien Influencer.sln",
+        "c:\\Users\\Joe\\Documents\\GitHub\\alien-influencer-unity\\Alien Influencer\\Alien Influencer.slnx"
+    ]
 }

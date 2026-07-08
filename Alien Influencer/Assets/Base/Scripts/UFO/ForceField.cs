@@ -24,7 +24,7 @@ public class ForceField : MonoBehaviour
             
         StartCoroutine(ForceFieldEffect());
         animator.SetTrigger("On");
-        AudioManager.Instance.Play(AudioSoundIds.SoundDesign.Defenses.ForceFieldActivation, transform);
+        AudioManager.Instance.PlayUfoForceFieldActivation();
     }
     
     IEnumerator ForceFieldEffect()
@@ -69,7 +69,7 @@ public class ForceField : MonoBehaviour
             Instantiate(deflectMissile, missile.transform.position, Quaternion.LookRotation(direction+ new Vector3(0,-.2f,0)) );
             GameObject bounceVFX = Instantiate(BounceVFX, missile.transform.position, Quaternion.LookRotation(direction));
             Destroy(bounceVFX, 1f);
-            AudioManager.Instance.Play(AudioSoundIds.SoundDesign.Defenses.ForceFieldBounce, missile.transform.position);
+            AudioManager.Instance.PlayUfoForceFieldBounce();
             Destroy(missile);
         }
         

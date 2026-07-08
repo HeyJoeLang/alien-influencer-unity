@@ -33,8 +33,9 @@ public class homing_missile : MonoBehaviour
     public GameObject destroy_effect;
     public float distanceToUFO = 10;
     public float parameterMaxDistance = 10;
-
-    private AudioHandle flyHandle;
+    public AudioSource launchAudio;
+    public AudioSource flightAudio;
+//    private AudioHandle flyHandle;
     private MissileState state = MissileState.Idle;
 
     public event Action<GameObject> MissileDestroyed;
@@ -42,14 +43,6 @@ public class homing_missile : MonoBehaviour
     private void Start()
     {
         projectilerb = GetComponent<Rigidbody>();
-    }
-
-    public void call_destroy_effects()
-    {
-        if (destroy_effect != null)
-        {
-            Instantiate(destroy_effect, transform.position, transform.rotation);
-        }
     }
 
     public void setmissile()
@@ -61,15 +54,14 @@ public class homing_missile : MonoBehaviour
         {
             transform.position = shooter.transform.position;
         }
-
-        AudioManager.Instance.Play(AudioSoundIds.SoundDesign.Weapons.CityMissileLaunch, transform);
+        launchAudio.Play();
 
         Debug.Log("Launching!");
     }
 
     public void StopFlySound()
     {
-        AudioManager.Instance.StopLoop(ref flyHandle, 0.2f);
+        flightAudio.Stop();
     }
     public void DestroyMe()
     {
@@ -95,7 +87,12 @@ public class homing_missile : MonoBehaviour
             projectilerb.linearVelocity = Vector3.zero;
         }
 
-        call_destroy_effects();
+        if (destroy_effect != null)
+        {
+            GameObject fx = Instantiate(destroy_effect, transform.position, transform.rotation);
+            fx.SetActive(true);
+            Destroy(fx, 3f);
+        }
         transform.position = sleepposition;
         Destroy(gameObject);
     }
@@ -177,7 +174,7 @@ public class homing_missile : MonoBehaviour
                 turnSpeed);
         }
         distanceToUFO = Vector3.Distance(transform.position, target.transform.position);
-        AudioManager.Instance.SetLoopDistanceAttenuation(flyHandle, distanceToUFO, parameterMaxDistance);
+    //    AudioManager.Instance.SetLoopDistanceAttenuation(flyHandle, distanceToUFO, parameterMaxDistance);
 
         if (projectilerb != null)
         {
@@ -206,7 +203,7 @@ public class homing_missile : MonoBehaviour
         state = MissileState.Homing;
 
         Debug.Log("Flying!");
-        flyHandle = AudioManager.Instance.PlayLoop(AudioSoundIds.SoundDesign.Weapons.CityMissileFlight, transform);
+        flightAudio.Play();
     }
 
     private void SpawnSmoke()

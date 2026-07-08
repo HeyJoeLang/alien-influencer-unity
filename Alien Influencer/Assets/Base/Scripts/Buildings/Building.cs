@@ -22,6 +22,8 @@ public class Building : MonoBehaviour
     public ParticleSystem damagedParticles, destroyedParticles;
     public Animator damageBarAnimator;
     public ProgressBarPro damageProgressBar;
+    public AudioSourceList buildingDestroyAudio;
+    public AudioSourceList missileImpactExplosionAudio;
     
     public delegate void DestroyedBuilding(Building building);
     public event DestroyedBuilding OnBuildingDestroyed;
@@ -98,7 +100,8 @@ public class Building : MonoBehaviour
 
     private void StartDestroyed()
     {
-        AudioManager.Instance.Play(AudioSoundIds.SoundDesign.Destruction.BuildingDebris, transform);
+        buildingDestroyAudio.Play();
+    //    AudioManager.Instance.Play(AudioSoundIds.SoundDesign.Destruction.BuildingDebris, transform);
         //AudioManager.Instance.Play2D(AudioSoundIds.SoundDesign.Destruction.BuildingExplosion);
         
         if (OnBuildingDestroyed != null)
@@ -160,7 +163,8 @@ public class Building : MonoBehaviour
         {
             if (isMissile)
             {
-                AudioManager.Instance.Play(AudioSoundIds.SoundDesign.Destruction.MissileImpactExplosion, transform);
+                missileImpactExplosionAudio.Play();
+   //             AudioManager.Instance.Play(AudioSoundIds.SoundDesign.Destruction.MissileImpactExplosion, transform);
             }
         }
     }

@@ -66,7 +66,7 @@ public class SceneLoader : MonoBehaviour
 
     public void PlayGame()
     {
-        AudioManager.Instance.Play2D(AudioSoundIds.SoundDesign.UI.PlayGame);
+//        AudioManager.Instance.Play2D(AudioSoundIds.SoundDesign.UI.PlayGame);
         if(coinManager)
         {
             coinManager.RemoveCredit();

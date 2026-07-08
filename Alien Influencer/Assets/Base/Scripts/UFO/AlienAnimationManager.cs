@@ -55,7 +55,7 @@ public class AlienAnimationManager : MonoBehaviour
     {
         yield return new WaitForSeconds(.75f);
         // TODO: add Non-FMOD export for Dialogue/UFO Phrases
-        AudioManager.Instance.Play(AudioSoundIds.Dialogue.UfoPhrases, transform);
+//        AudioManager.Instance.Play(AudioSoundIds.Dialogue.UfoPhrases, transform);
     }
 
     private void HandleMinorDestruction(int count)

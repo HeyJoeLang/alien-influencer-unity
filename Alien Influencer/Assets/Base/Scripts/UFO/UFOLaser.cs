@@ -6,8 +6,8 @@ using UnityEngine;
 using System; // Added for Action
 public class UFOLaser : MonoBehaviour
 {
-    private AudioHandle laserHandle = AudioHandle.Invalid;
-    private AudioHandle megaLaserHandle = AudioHandle.Invalid;
+    //private AudioHandle laserHandle = AudioHandle.Invalid;
+    //private AudioHandle megaLaserHandle = AudioHandle.Invalid;
     
     [SerializeField] private float audioFadeTime = 0.2f;
     [SerializeField] private float weaponVolume = 1f;
@@ -90,33 +90,27 @@ public class UFOLaser : MonoBehaviour
 
     private void StartLaserSound()
     {
-        if (!AudioManager.Instance.IsLoopPlaying(laserHandle))
-        {
-            laserHandle = AudioManager.Instance.PlayLoop(AudioSoundIds.SoundDesign.Weapons.Laser, transform, weaponVolume);
-        }
+        AudioManager.Instance.PlayUfoLaser();
     }
 
     private void StopLaserSound()
     {
-        AudioManager.Instance.StopLoop(ref laserHandle, audioFadeTime);
+        AudioManager.Instance.StopUfoLaser();
     }
 
     private void StartMegaLaserSound()
     {
-        if (!AudioManager.Instance.IsLoopPlaying(megaLaserHandle))
-        {
-            megaLaserHandle = AudioManager.Instance.PlayLoop(AudioSoundIds.SoundDesign.Weapons.MegaLaser, transform, weaponVolume);
-        }
+        AudioManager.Instance.PlayUfoMegaLaser();
     }
 
     private void StopMegaLaserSound()
     {
-        AudioManager.Instance.StopLoop(ref megaLaserHandle, audioFadeTime);
+        AudioManager.Instance.StopUfoMegaLaser();
     }
 
     private void PlayMissileSound()
     {
-        AudioManager.Instance.Play(AudioSoundIds.SoundDesign.Weapons.UfoMissilesLaunch, transform, weaponVolume);
+        AudioManager.Instance.PlayUfoMissileLaunch();
     }
 
     void FixedUpdate()
@@ -345,6 +339,7 @@ public class UFOLaser : MonoBehaviour
         megaLaserCharges++;
         Debug.Log("Mega laser charge added! Total charges: " + megaLaserCharges);
         OnMegaLaserAdded?.Invoke();
+        AudioManager.Instance.PlayCollectMegaLaserCharge();
     }
     
     /// <summary>
@@ -363,6 +358,7 @@ public class UFOLaser : MonoBehaviour
         missileCharges += amount;
         Debug.Log("Missile charges added! Amount: " + amount + ", Total charges: " + missileCharges);
         OnMissileAdded?.Invoke();
+        AudioManager.Instance.PlayCollectMissileCharge();
     }
     
     /// <summary>
@@ -433,7 +429,7 @@ public class UFOLaser : MonoBehaviour
 
     private void OnDestroy()
     {
-        AudioManager.Instance.StopLoop(ref laserHandle, 0f);
-        AudioManager.Instance.StopLoop(ref megaLaserHandle, 0f);
+    //    AudioManager.Instance.StopLoop(ref laserHandle, 0f);
+    //    AudioManager.Instance.StopLoop(ref megaLaserHandle, 0f);
     }
 }

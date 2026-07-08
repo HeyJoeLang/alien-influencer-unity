@@ -32,7 +32,7 @@ public class CoinManager : MonoBehaviour
     void InsertCoin()
     {
         // TODO: add Non-FMOD export for Sound Design/UI/InsertCoin
-        AudioManager.Instance.Play2D(AudioSoundIds.SoundDesign.UI.InsertCoin);
+   //    AudioManager.Instance.Play2D(AudioSoundIds.SoundDesign.UI.InsertCoin);
         coinCount++;
         PlayerPrefs.SetInt(CoinKey, coinCount);
         UpdateCoinDisplay();

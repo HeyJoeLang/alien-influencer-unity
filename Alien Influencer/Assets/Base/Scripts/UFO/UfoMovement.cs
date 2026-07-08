@@ -15,7 +15,7 @@ public class UfoMovement : MonoBehaviour
     public float targetHeight = 8f;
     public float heightLerpSpeed = 3.0f;
 
-    private AudioHandle ufoEngineHandle = AudioHandle.Invalid;
+   // private AudioHandle ufoEngineHandle = AudioHandle.Invalid;
 
     private float minXPosition;
     private float maxXPosition;
@@ -30,12 +30,12 @@ public class UfoMovement : MonoBehaviour
         lastPosition = transform.position;
         InitializeUfoPosition();
 
-        ufoEngineHandle = AudioManager.Instance.PlayLoop(AudioSoundIds.SoundDesign.Vehicles.UfoHover, transform);
+    //    ufoEngineHandle = AudioManager.Instance.PlayLoop(AudioSoundIds.SoundDesign.Vehicles.UfoHover, transform);
     }
 
     private void OnDestroy()
     {
-        AudioManager.Instance.StopLoop(ref ufoEngineHandle, 0.2f);
+    //    AudioManager.Instance.StopLoop(ref ufoEngineHandle, 0.2f);
     }
 
     private void InitializeUfoPosition()
@@ -84,8 +84,9 @@ public class UfoMovement : MonoBehaviour
         lerpedVelocity = Mathf.Lerp(lerpedVelocity, normalizedVelocity, Time.fixedDeltaTime * FModAcceleration);
         lerpedVelocity = Mathf.Clamp01(lerpedVelocity);
         float enginePitch = Mathf.Lerp(0.75f, 1.25f, lerpedVelocity);
-        AudioManager.Instance.SetLoopPitch(ufoEngineHandle, enginePitch);
-        AudioManager.Instance.SetLoopVolume(ufoEngineHandle, Mathf.Lerp(0.35f, 1f, lerpedVelocity));
+        AudioManager.Instance.SetUFOAduioSpeed(lerpedVelocity);
+    //    AudioManager.Instance.SetLoopPitch(ufoEngineHandle, enginePitch);
+    //    AudioManager.Instance.SetLoopVolume(ufoEngineHandle, Mathf.Lerp(0.35f, 1f, lerpedVelocity));
         lastPosition = newPosition;
     }
 }

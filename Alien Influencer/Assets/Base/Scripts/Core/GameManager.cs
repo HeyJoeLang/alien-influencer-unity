@@ -125,7 +125,8 @@ public class GameManager : Singleton<GameManager>
         emission.SetBurst(0, burst);
         yield return new WaitForSeconds(.75f);
         scoreMultiplierParticle.Play();
-        AudioManager.Instance.Play2D(AudioSoundIds.SoundDesign.UI.ResetScore);
+        AudioManager.Instance.PlayResetScore();
+ //       AudioManager.Instance.Play2D(AudioSoundIds.SoundDesign.UI.ResetScore);
         yield return new WaitForSeconds(1f);
         scoreMultiplierText.text = $"{scoreMultiplier}";
         yield return new WaitForSeconds(1f);
