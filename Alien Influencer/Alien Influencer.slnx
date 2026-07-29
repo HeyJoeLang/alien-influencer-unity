@@ -1,6 +1,7 @@
 ﻿<Solution>
   <Project Path="Unity.VisualEffectGraph.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.GPUDriven.Runtime.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.ShaderGraph.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Runtime.csproj" />
   <Project Path="UnityUIExtensions.csproj" />
@@ -12,7 +13,6 @@
   <Project Path="Unity.RenderPipelines.Universal.Editor.csproj" />
   <Project Path="Coffee.UIParticle.Demo.csproj" />
   <Project Path="UnityEngine.TestRunner.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.2D.Tilemap.Editor.csproj" />
   <Project Path="UnityEditor.TestRunner.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Runtime.csproj" />
@@ -23,17 +23,15 @@
   <Project Path="Unity.TextMeshPro.csproj" />
   <Project Path="Unity.TextMeshPro.Editor.csproj" />
   <Project Path="UnityUIExtensions.editor.csproj" />
+  <Project Path="AnkleBreaker.UnityMCP.Editor.csproj" />
   <Project Path="UnityEditor.UI.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.2D.Editor.Overrides.csproj" />
   <Project Path="CFXRRuntime.csproj" />
   <Project Path="Unity.2D.Sprite.Editor.csproj" />
-  <Project Path="FMODUnityResonanceEditor.csproj" />
   <Project Path="CFXRDemo.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Editor.Shared.csproj" />
   <Project Path="CFXREditor.csproj" />
   <Project Path="Unity.Multiplayer.Center.Common.csproj" />
-  <Project Path="FMODUnityEditor.csproj" />
-  <Project Path="FMODUnity.csproj" />
   <Project Path="Coffee.UIParticle.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Runtime.Shared.csproj" />
   <Project Path="Unity.Collections.CodeGen.csproj" />
@@ -42,10 +40,10 @@
   <Project Path="Unity.PathTracing.Editor.csproj" />
   <Project Path="Coffee.UIParticle.Editor.csproj" />
   <Project Path="Unity.ShaderGraph.Utilities.csproj" />
+  <Project Path="UnityMCP.Editor.Welcome.csproj" />
   <Project Path="KinoBloom.Runtime.csproj" />
   <Project Path="Unity.SurfaceCache.Runtime.csproj" />
   <Project Path="Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.csproj" />
-  <Project Path="FMODUnityResonance.csproj" />
   <Project Path="CFXR.WelcomeScreen.csproj" />
   <Project Path="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
   <Project Path="ToonyColorsPro.Demo.Editor.csproj" />
