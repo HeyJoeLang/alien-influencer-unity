@@ -74,10 +74,6 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField]
     private AudioList _alienCheers;
     
-    [Tooltip("Music")]
-    [SerializeField]
-    private AudioItem _gameBgMusic;
-    
     #region PlayStopFunctions
 
     public void PlayUfoLaser()
