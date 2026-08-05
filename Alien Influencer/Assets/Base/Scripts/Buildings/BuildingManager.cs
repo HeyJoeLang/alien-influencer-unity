@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Collections;
 
 public class BuildingManager : MonoBehaviour
 {
@@ -104,12 +105,19 @@ public class BuildingManager : MonoBehaviour
         {
             OnMassDestruction?.Invoke(destructionCount);
             Debug.Log($"Mass Destruction! {destructionCount} buildings destroyed in {destructionTimeWindow}s");
+            StartCoroutine(StallAlienCheers());
         }
         else if (destructionCount > 0)
         {
             OnMinorDestruction?.Invoke(destructionCount);
             Debug.Log($"Minor Destruction: {destructionCount} buildings destroyed in {destructionTimeWindow}s");
         }
+    }
+
+    IEnumerator StallAlienCheers()
+    {
+        yield return new WaitForSeconds(1);
+        AudioManager.Instance.PlayCheers();
     }
 
     /// <summary>

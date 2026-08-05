@@ -64,6 +64,8 @@ public class AudioManager : Singleton<AudioManager>
     private AudioList _ufoDamage;
     [SerializeField]
     private AudioItem _resetScore;
+    [SerializeField]
+    private AudioList _alienCheers;
     
     [Header(("ToDo"))]
     //
@@ -71,8 +73,6 @@ public class AudioManager : Singleton<AudioManager>
     private AudioList _deflectedMissileExplosion;
     [SerializeField]
     private AudioItem _buildingFire;
-    [SerializeField]
-    private AudioList _alienCheers;
     
     #region PlayStopFunctions
 
@@ -131,6 +131,11 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayResetScore()
     {
         _resetScore.Play();
+    }
+    
+    public void PlayCheers()
+    {
+        _alienCheers.Play();
     }
     #endregion
 }
