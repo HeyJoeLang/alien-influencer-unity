@@ -19,7 +19,7 @@ public class Building : MonoBehaviour
 
     public int scoreValue = 10;
     public GameObject buildingStanding, buildingDestroyed;
-    public ParticleSystem damagedParticles, destroyedParticles;
+    public ParticleSystem damagedParticles, destroyedParticles, rebirthParticles;
     public Animator damageBarAnimator;
     public ProgressBarPro damageProgressBar;
     public AudioSourceList buildingDestroyAudio;
@@ -211,6 +211,13 @@ public class Building : MonoBehaviour
     {
         CurrentState = BuildingState.Untouched;
         currentDamage = 0;
+        
+        if (rebirthParticles)
+        {
+            Debug.Log($"Building: Reset Building");
+            rebirthParticles.gameObject.SetActive(true);
+            rebirthParticles.Play();
+        }
         
         if (buildingStanding)
             buildingStanding.SetActive(true);
