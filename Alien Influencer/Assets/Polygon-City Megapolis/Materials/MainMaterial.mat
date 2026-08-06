@@ -97,7 +97,7 @@ Material:
     - _AdvancedDissolveCutoutGeometric1Height: 2.5
     - _AdvancedDissolveCutoutGeometric1Radius: 3
     - _AdvancedDissolveCutoutGeometric2Height: 0
-    - _AdvancedDissolveCutoutGeometric2Radius: 10
+    - _AdvancedDissolveCutoutGeometric2Radius: 10.000004
     - _AdvancedDissolveCutoutGeometric3Height: 1
     - _AdvancedDissolveCutoutGeometric3Radius: 3
     - _AdvancedDissolveCutoutGeometric4Height: 1

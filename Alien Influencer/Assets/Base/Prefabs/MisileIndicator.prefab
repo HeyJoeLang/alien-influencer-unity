@@ -50,6 +50,11 @@ MonoBehaviour:
   distanceStartVisible: 100
   distanceFullyVisible: 50
   distanceRed: 10
+  pulseSpeed: 6
+  pulseSpeedMax: 14
+  pulseAmount: 0.35
+  scaleMin: 1
+  scaleMax: 1.6
 --- !u!1 &8945662997881138395
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,10 +116,12 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 71b06adc646c446ce9e3a2b4592627f3, type: 2}
+  - {fileID: 2100000, guid: 144e8add7a449494ebdb54a340fa93f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -132,7 +139,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
